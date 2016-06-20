@@ -1,0 +1,34 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand navbar__link" ui-sref="home">Бег в Пензе</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="navbar__link" ng-class="{ active: $ctrl.state.news }"><a ui-sref="news">Новости</a></li>
+                <li class="navbar__link" ng-class="{ active: $ctrl.state.calendar }"><a ui-sref="calendar">Календарь</a></li>
+                <li class="navbar__link" ng-class="{ active: $ctrl.state.probegs }"><a ui-sref="probegs">Пробеги</a></li>
+                <li class="navbar__link" ng-class="{ active: $ctrl.state.about }"><a ui-sref="about">О проекте</a></li>
+                <li class="navbar__link" ng-class="{ active: $ctrl.state.contacts }"><a ui-sref="contacts">Контакты</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-if="!$ctrl.auth" ng-class="{ active: $ctrl.state.login }">
+                    <a ui-sref="login" class="navbar__link">
+                        <i class="fa fa-sign-in" aria-hidden="true"></i> Вход
+                    </a>
+                </li>
+                <li ng-if="$ctrl.auth">
+                    <a href="#" ng-click="$ctrl.logout()">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> Выход
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

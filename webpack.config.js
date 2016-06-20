@@ -3,18 +3,26 @@
 var path = require ('path');
 var webpack = require ('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
+var HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     context: path.join(__dirname, '/'),
 
     entry: {
+        vendor: [
+            'angular',
+            'angularfire',
+            'babel-polyfill',
+            'jquery'
+        ],
         penzarun: './src/index.js'
     },
 
     output: {
         path: path.join(__dirname, 'dist'),
         publicPath: '/dist/',
-        filename: '[name].js'
+        filename: 'bundle.[chunkhash].js'
     },
     
     watchOptions: {
@@ -28,12 +36,27 @@ module.exports = {
         new webpack.DefinePlugin({
             LANG: JSON.stringify('ru')
         }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor'
+        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {
+        //         drop_console: true,
+        //         unsafe: true
+        //     }
+        // }),
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',
             'window.jQuery': 'jquery'
         }),
-        new ExtractTextPlugin('penzarun.css')
+        new ExtractTextPlugin('penzarun.css'),
+        new ngAnnotatePlugin({
+            add: true
+        }),
+        new HtmlWebPackPlugin({
+            template: './index.html'
+        })
     ],
 
     resolve: {
@@ -41,6 +64,7 @@ module.exports = {
         modulesDirectories: ['node_modules'],
         extensions: ['', '.js'],
         alias: {
+            components: 'src/components'
         }
     },
 

@@ -1,4 +1,4 @@
-# Penzarun
+# Penzarun - web site about running and runners of Penza city
 ## install
 `npm install`
 
