@@ -4,7 +4,13 @@ import angularfire from 'angularfire';
 
 import navbar from './components/navbar';
 import footer from './components/footer';
+
+import home from './components/home';
+import news from './components/news';
 import calendar from './components/calendar';
+import events from './components/events';
+import about from './components/about';
+import login from './components/login';
 
 import './style.less';
 
@@ -13,14 +19,15 @@ angular.module('app', [
     angularfire,
     navbar,
     footer,
-    calendar
+    home,
+    news,
+    calendar,
+    events,
+    about,
+    login
 ])
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($urlRouterProvider) {
     'ngInject';
 
-    $stateProvider
-        .state('about', {
-            url: '/about',
-            template: '<about></about>'
-        });
+    $urlRouterProvider.otherwise('/home');
 });

@@ -11,21 +11,20 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="navbar__link" ng-class="{ active: $ctrl.state.news }"><a ui-sref="news">Новости</a></li>
-                <li class="navbar__link" ng-class="{ active: $ctrl.state.calendar }"><a ui-sref="calendar">Календарь</a></li>
-                <li class="navbar__link" ng-class="{ active: $ctrl.state.probegs }"><a ui-sref="probegs">Пробеги</a></li>
-                <li class="navbar__link" ng-class="{ active: $ctrl.state.about }"><a ui-sref="about">О проекте</a></li>
-                <li class="navbar__link" ng-class="{ active: $ctrl.state.contacts }"><a ui-sref="contacts">Контакты</a></li>
+                <li class="navbar__link" ng-class="{ active: $ctrl.state.news }"><a ui-sref="news">НОВОСТИ</a></li>
+                <li class="navbar__link" ng-class="{ active: $ctrl.state.calendar }"><a ui-sref="calendar">КАЛЕНДАРЬ</a></li>
+                <li class="navbar__link" ng-class="{ active: $ctrl.state.events }"><a ui-sref="events">СОБЫТИЯ</a></li>
+                <li class="navbar__link" ng-class="{ active: $ctrl.state.about }"><a ui-sref="about">О ПРОЕКТЕ</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li ng-if="!$ctrl.auth" ng-class="{ active: $ctrl.state.login }">
                     <a ui-sref="login" class="navbar__link">
-                        <i class="fa fa-sign-in" aria-hidden="true"></i> Вход
+                        <i class="fa fa-sign-in" aria-hidden="true"></i> ВХОД
                     </a>
                 </li>
                 <li ng-if="$ctrl.auth">
                     <a href="#" ng-click="$ctrl.logout()">
-                        <i class="fa fa-sign-out" aria-hidden="true"></i> Выход
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> ВЫХОД
                     </a>
                 </li>
             </ul>

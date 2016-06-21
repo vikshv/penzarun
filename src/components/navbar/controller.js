@@ -4,6 +4,15 @@ export default class NavbarController {
 
         this.$scope = $scope;
         this.$state = $state;
+
+        this.stateNames = [
+            'home',
+            'news',
+            'calendar',
+            'events',
+            'about',
+            'login'
+        ];
         
         this._initState();
         this._initAuth();
@@ -19,18 +28,11 @@ export default class NavbarController {
     }
 
     _initState() {
-        this.state = {
-            home: this._getState('home'),
-            diary: this._getState('diary'),
-            food: this._getState('food'),
-            about: this._getState('about'),
-            login: this._getState('login'),
-            register: this._getState('register')
-        };
-    }
-
-    _getState(name) {
-        return this.$state.includes(name);
+        const state = {};
+        this.stateNames.forEach(name => {
+            state[name] = this.$state.includes(name);
+        });
+        this.state = state;
     }
 
     _bindEvents() {

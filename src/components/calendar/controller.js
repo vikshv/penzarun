@@ -1,3 +1,3 @@
-export default class CalendarController {
+export default class CalendarPageController {
     constructor() {}
 };
