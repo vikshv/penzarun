@@ -3,9 +3,7 @@ import controller from './controller';
 import template from './template.html';
 import './style.less';
 
-const moduleName = 'app.home';
-
-angular.module(moduleName, [])
+export default angular.module('app.home', [])
 .config(function($stateProvider) {
     'ngInject';
 
@@ -18,6 +16,4 @@ angular.module(moduleName, [])
 .component('home', {
     template,
     controller
-})
-
-export default moduleName;
+});

@@ -7,18 +7,18 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand navbar__link" ui-sref="home">Бег в Пензе</a>
+            <a class="navbar-brand" ui-sref="home">Бег в Пензе</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="navbar__link" ng-class="{ active: $ctrl.state.news }"><a ui-sref="news">НОВОСТИ</a></li>
-                <li class="navbar__link" ng-class="{ active: $ctrl.state.calendar }"><a ui-sref="calendar">КАЛЕНДАРЬ</a></li>
-                <li class="navbar__link" ng-class="{ active: $ctrl.state.events }"><a ui-sref="events">СОБЫТИЯ</a></li>
-                <li class="navbar__link" ng-class="{ active: $ctrl.state.about }"><a ui-sref="about">О ПРОЕКТЕ</a></li>
+                <li ng-class="{ active: $ctrl.state.news }"><a ui-sref="news">НОВОСТИ</a></li>
+                <li ng-class="{ active: $ctrl.state.calendar }"><a ui-sref="calendar">КАЛЕНДАРЬ</a></li>
+                <li ng-class="{ active: $ctrl.state.events }"><a ui-sref="events">СОБЫТИЯ</a></li>
+                <li ng-class="{ active: $ctrl.state.about }"><a ui-sref="about">О ПРОЕКТЕ</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li ng-if="!$ctrl.auth" ng-class="{ active: $ctrl.state.login }">
-                    <a ui-sref="login" class="navbar__link">
+                    <a ui-sref="login">
                         <i class="fa fa-sign-in" aria-hidden="true"></i> ВХОД
                     </a>
                 </li>

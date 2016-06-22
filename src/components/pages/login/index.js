@@ -3,21 +3,17 @@ import controller from './controller';
 import template from './template.html';
 import './style.less';
 
-const moduleName = 'app.news';
-
-angular.module(moduleName, [])
+export default  angular.module('app.login', [])
 .config(function($stateProvider) {
     'ngInject';
 
     $stateProvider
-        .state('news', {
-            url: '/news',
-            template: '<news></news>'
+        .state('login', {
+            url: '/login',
+            template: '<login></login>'
         });
 })
-.component('news', {
+.component('login', {
     template,
     controller
-})
-
-export default moduleName;
+});

@@ -7,8 +7,8 @@ var options = {
     hot: true,
     stats: {
         chunkModules: false,
-        colors: true,
-    },
+        colors: true
+    }
 };
 
 new WebpackDevServer(webpack(config), options).listen(3000, 'localhost', function (err) {
