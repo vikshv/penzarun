@@ -1,3 +1,9 @@
 export default class CalendarPageController {
-    constructor() {}
+    constructor() {
+        this.filter || (this.filter = 'events');
+    }
+
+    filterIs(val) {
+        return val === this.filter;
+    }
 };

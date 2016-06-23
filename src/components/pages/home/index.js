@@ -3,7 +3,7 @@ import controller from './controller';
 import template from './template.html';
 import './style.less';
 
-export default angular.module('app.home', [])
+export default angular.module('app.components.pages.home', [])
 .config(function($stateProvider) {
     'ngInject';
 

@@ -3,7 +3,7 @@ import controller from './controller';
 import template from './template.html';
 import './style.less';
 
-export default angular.module('app.footer', []).component('footer', {
+export default angular.module('app.components.footer', []).component('footer', {
     template,
     controller
 });

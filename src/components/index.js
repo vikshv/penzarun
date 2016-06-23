@@ -1,9 +1,12 @@
 import angular from 'angular';
 
-import common from './common';
+import navbar from './common/navbar';
+import footer from './common/footer';
+
 import pages from './pages';
 
 export default angular.module('app.components', [
-    common.name,
+    navbar.name,
+    footer.name,
     pages.name
 ]);

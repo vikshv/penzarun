@@ -7,7 +7,7 @@ import events from './events';
 import about from './about';
 import login from './login';
 
-export default angular.module('app.pages', [
+export default angular.module('app.components.pages', [
     home.name,
     news.name,
     calendar.name,
