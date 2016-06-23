@@ -1,15 +1,13 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
-import component from './component';
-import filter from './components/filter';
-import event from './components/event';
-import eventsList from 'components/common/eventsList';
+
+import eventPage from './eventPage';
+import eventsListPage from './eventsListPage';
 
 export default angular.module('app.components.pages.events', [
         uiRouter,
-        event.name,
-        filter.name,
-        eventsList.name
+        eventPage.name,
+        eventsListPage.name
     ])
     .config(function($stateProvider) {
         'ngInject';
@@ -22,7 +20,7 @@ export default angular.module('app.components.pages.events', [
             })
             .state('events.list', {
                 url: '/list',
-                template: '<events></events>',
+                template: '<events-list-page></events-list-page>',
                 resolve: {
                     load: function(EventService) {
                         'ngInject';
@@ -32,17 +30,17 @@ export default angular.module('app.components.pages.events', [
             })
             .state('events.new', {
                 url: '/new',
-                template: '<event></event>',
+                template: '<event-page></event-page>',
                 resolve: {
-                    auth: function() {
+                    auth: function($q) {
                         'ngInject';
-                        return true;
+                        return $q.resolve();
                     }
                 }
             })
             .state('events.edit', {
                 url: '/edit/:id',
-                template: '<event id="$ctrl.id"></event>',
+                template: '<event-page id="$ctrl.id"></event-page>',
                 resolve: {
                     auth: function() {
                         'ngInject';
@@ -55,5 +53,4 @@ export default angular.module('app.components.pages.events', [
                 },
                 controllerAs: '$ctrl'
             });
-    })
-    .component('events', component);
+    });

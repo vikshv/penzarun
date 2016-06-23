@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="well">
+            <form name="event" class="form-horizontal" ng-submit="$ctrl.submit()">
+                <fieldset>
+                    <legend>Добавление нового события</legend>
+                    
+                    <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('title') }">
+                        <label for="title" class="col-md-2 control-label">Заголовок</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="title" name="title" required ng-model="$ctrl.event.title" ng-disabled="$ctrl.progress" autocomplete="off">
+                            <div ng-messages="event.title.$error" ng-if="$ctrl.isHasError('title')" role="alert">
+                                <div ng-message="required" class="form__message--error">Введите заголовок</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descriptionShort" class="col-md-2 control-label">Краткое описание</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="descriptionShort" name="descriptionShort" ng-model="$ctrl.event.descriptionShort" ng-disabled="$ctrl.progress" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descriptionLong" class="col-md-2 control-label">Подробное описание</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control" id="descriptionLong" name="descriptionLong" ng-model="$ctrl.event.descriptionLong" ng-disabled="$ctrl.progress" autocomplete="off"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10 col-md-offset-2">
+                            <button type="submit" class="btn btn-primary" ng-disabled="event.$invalid || $ctrl.progress">
+                                <i class="fa fa-lg fa-spinner fa-spin" ng-if="$ctrl.progress"></i> Сохранить
+                            </button>
+                            <a ui-sref="events.list" class="btn btn-link">Отмена</a>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

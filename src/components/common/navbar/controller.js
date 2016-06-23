@@ -40,10 +40,6 @@ export default class NavbarController {
             this._initState();
         });
 
-        this.$scope.$on('$stateChangeError', () => {
-            debugger;
-        });
-
         // this.AuthService.onAuth(() => {
         //     this._initAuth();
         // });
