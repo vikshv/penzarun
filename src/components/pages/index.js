@@ -6,6 +6,7 @@ import calendarPage from './calendarPage';
 import eventsPage from './eventsPage';
 import about from './about';
 import login from './login';
+import userPage from './userPage';
 
 export default angular.module('app.components.pages', [
     home.name,
@@ -13,5 +14,6 @@ export default angular.module('app.components.pages', [
     calendarPage.name,
     eventsPage.name,
     about.name,
-    login.name
+    login.name,
+    userPage.name
 ]);

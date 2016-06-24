@@ -1,9 +1,10 @@
 export default class NavbarController {
-    constructor($scope, $state) {
+    constructor($scope, $state, AuthService) {
         'ngInject';
 
         this.$scope = $scope;
         this.$state = $state;
+        this.AuthService = AuthService;
 
         this.stateNames = [
             'home',
@@ -11,7 +12,8 @@ export default class NavbarController {
             'calendar',
             'events',
             'about',
-            'login'
+            'login',
+            'user'
         ];
         
         this._initState();
@@ -20,11 +22,11 @@ export default class NavbarController {
     }
 
     logout() {
-        //this.AuthService.logout();
+        this.AuthService.signOut();
     }
 
     _initAuth() {
-        //this.auth = this.AuthService.getAuth();
+        this.auth = this.AuthService.getAuth();
     }
 
     _initState() {
@@ -40,8 +42,8 @@ export default class NavbarController {
             this._initState();
         });
 
-        // this.AuthService.onAuth(() => {
-        //     this._initAuth();
-        // });
+        this.AuthService.onAuthStateChanged(() => {
+            this._initAuth();
+        });
     }
 }

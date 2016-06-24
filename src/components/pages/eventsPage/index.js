@@ -32,9 +32,9 @@ export default angular.module('app.components.pages.events', [
                 url: '/new',
                 template: '<event-page></event-page>',
                 resolve: {
-                    auth: function($q) {
+                    auth: function(AuthService) {
                         'ngInject';
-                        return $q.resolve();
+                        return AuthService.requireSignIn();
                     }
                 }
             })
@@ -42,9 +42,9 @@ export default angular.module('app.components.pages.events', [
                 url: '/edit/:id',
                 template: '<event-page id="$ctrl.id"></event-page>',
                 resolve: {
-                    auth: function() {
+                    auth: function(AuthService) {
                         'ngInject';
-                        return true;
+                        return AuthService.requireSignIn();
                     }
                 },
                 controller: function($stateParams) {

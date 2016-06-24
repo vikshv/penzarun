@@ -22,6 +22,11 @@
                         <i class="fa fa-sign-in" aria-hidden="true"></i> ВХОД
                     </a>
                 </li>
+                <li ng-class="{ active: $ctrl.state.user }" ng-if="$ctrl.auth">
+                    <a ui-sref="user">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </a>
+                </li>
                 <li ng-if="$ctrl.auth">
                     <a href="#" ng-click="$ctrl.logout()">
                         <i class="fa fa-sign-out" aria-hidden="true"></i> ВЫХОД

@@ -26,4 +26,14 @@ angular.module('app', [
             databaseURL: "https://project-5043437142388192252.firebaseio.com",
             storageBucket: ""
         });
+    })
+    .run(function($rootScope, $state) {
+        'ngInject';
+
+        $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
+            console.log('stateChangeError:', error);
+            if (error === "AUTH_REQUIRED") {
+                $state.go("home");
+            }
+        });
     });

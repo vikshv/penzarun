@@ -24,20 +24,10 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <div class="col-md-10 col-md-offset-2">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" ng-model="$ctrl.auth.remember" ng-disabled="$ctrl.progress"> Запомнить
-                                </label>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="form-group">
                         <div class="col-md-10 col-md-offset-2">
-                            <button type="submit" class="btn btn-primary" ng-disabled="$ctrl.progress">
+                            <button type="submit" class="btn btn-primary" ng-disabled="auth.$invalid || $ctrl.progress">
                                 <i class="fa fa-lg fa-spinner fa-spin" ng-if="$ctrl.progress"></i> Войти
                             </button>
                         </div>
