@@ -1,15 +1,37 @@
 export default class EventService {
-    constructor($q, $firebaseArray) {
+    constructor($firebaseArray) {
         'ngInject';
 
-        this.$q = $q;
-        this.$firebaseArray = $firebaseArray;
+        const ref = firebase.database().ref('events');
+        this.list = $firebaseArray(ref);
     }
 
-    load() {
-        const ref = firebase.database().ref().child('events');
-        const query = ref.limitToLast(10);
+    loadEvents() {
+        return this.list.$loaded()
+            .then(result => result.map(item => {
+                const { title, abstract, description, timestamp } = item;
+                return {
+                    title, 
+                    abstract, 
+                    description, 
+                    timestamp
+                };
+            }));
+    }
 
-        return this.$firebaseArray(query);
+    getEvent(index) {
+        const key = this.list.$keyAt(index);
+        return this.list.$getRecord(key);
+    }
+
+    addEvent(data) {
+        const timestamp = Date.now();
+        return this.list.$add({
+                ...data,
+                timestamp
+            })
+            .then(ref => {
+                return this.list.$indexFor(ref.key);
+            });
     }
 };

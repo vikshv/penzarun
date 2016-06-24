@@ -1,3 +1,4 @@
-export default class {
-    constructor() {}
+export default class EventsListController {
+    constructor() {
+    }
 };

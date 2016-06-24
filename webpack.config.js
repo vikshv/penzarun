@@ -45,11 +45,6 @@ module.exports = {
         //         unsafe: true
         //     }
         // }),
-        new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery',
-            'window.jQuery': 'jquery'
-        }),
         new ExtractTextPlugin('penzarun.css'),
         new ngAnnotatePlugin({
             add: true
@@ -81,7 +76,7 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'babel',
                 query: {
-                    presets: ['es2015']
+                    presets: ['es2015', 'stage-0']
                 }
             },
             {

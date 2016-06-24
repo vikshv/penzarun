@@ -20,13 +20,7 @@ export default angular.module('app.components.pages.events', [
             })
             .state('events.list', {
                 url: '/list',
-                template: '<events-list-page></events-list-page>',
-                resolve: {
-                    load: function(EventService) {
-                        'ngInject';
-                        return EventService.load();
-                    }
-                }
+                template: '<events-list-page></events-list-page>'
             })
             .state('events.new', {
                 url: '/new',
@@ -45,6 +39,10 @@ export default angular.module('app.components.pages.events', [
                     auth: function(AuthService) {
                         'ngInject';
                         return AuthService.requireSignIn();
+                    },
+                    load: function($stateParams, EventService) {
+                        'ngInject';
+                        return EventService.getEvent($stateParams.id);
                     }
                 },
                 controller: function($stateParams) {
