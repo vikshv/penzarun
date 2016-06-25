@@ -39,10 +39,6 @@ export default angular.module('app.components.pages.events', [
                     auth: function(AuthService) {
                         'ngInject';
                         return AuthService.requireSignIn();
-                    },
-                    load: function($stateParams, EventService) {
-                        'ngInject';
-                        return EventService.getEvent($stateParams.id);
                     }
                 },
                 controller: function($stateParams) {

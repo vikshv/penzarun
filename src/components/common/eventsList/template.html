@@ -1,5 +1,9 @@
 <div>
-    <ul>
-        <li ng-repeat="event in $ctrl.events">{{ event.title }}</li>
-    </ul>
+    <div class="row" ng-repeat="event in $ctrl.events">
+        <div class="col-md-6">
+            <a href="#events/edit/{{ event.$id }}" class="thumbnail">
+                {{ event.title }}
+            </a>
+        </div>
+    </div>
 </div>

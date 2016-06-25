@@ -1,12 +1,30 @@
 export default class EventPageController {
-    constructor($scope, $state, EventService) {
+    constructor($q, $scope, $state, EventService) {
         'ngInject';
 
+        this.$q = $q;
         this.$scope = $scope;
         this.$state = $state;
         this.EventService = EventService;
+        
+        this._initEvent();
+    }
 
-        this.event = {};
+    _initEvent() {
+        if (this.id) {
+            this._startLoadProgress();
+            this.EventService.getEvent(this.id)
+                .then(result => {
+                    this.event = result;
+                    this._stopLoadProgress();
+                })
+                .catch(error => {
+                    this._stopLoadProgress();
+                    throw Error(error);
+                });
+        } else {
+            this.event = {};
+        }
     }
 
     isHasError(attrName) {
@@ -17,7 +35,7 @@ export default class EventPageController {
     submit() {
         const { title, abstract = '', description = '' } = this.event;
 
-        this._startProgress();
+        this._startSaveProgress();
         this.EventService.addEvent({
                 title,
                 abstract,
@@ -27,17 +45,25 @@ export default class EventPageController {
                 this._gotoEventState(id);
             })
             .catch(error => {
-                this._stopProgress();
+                this._stopSaveProgress();
                 throw Error(error);
             });
     }
 
-    _startProgress() {
-        this.progress = true;
+    _startLoadProgress() {
+        this.loadProgress = true;
     }
 
-    _stopProgress() {
-        this.progress = false;
+    _stopLoadProgress() {
+        this.loadProgress = false;
+    }
+
+    _startSaveProgress() {
+        this.saveProgress = true;
+    }
+
+    _stopSaveProgress() {
+        this.saveProgress = false;
     }
 
     _gotoEventState(id) {
