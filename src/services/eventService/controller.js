@@ -13,9 +13,14 @@ export default class EventService {
     }
 
     getEvent(key) {
-        const ref = firebase.database().ref(`events/${key}`);
-        const obj = this.$firebaseObject(ref);
+        const obj = this._getEventObj(key);
         return obj.$loaded();
+    }
+
+    saveEvent(key, data) {
+        const obj = this._getEventObj(key);
+        Object.assign(obj, data);
+        return obj.$save();
     }
 
     addEvent(data) {
@@ -23,9 +28,16 @@ export default class EventService {
         return this.list.$add({
                 ...data,
                 timestamp
-            })
-            .then(ref => {
-                return this.list.$indexFor(ref.key);
             });
+    }
+
+    removeEvent(key) {
+        const obj = this._getEventObj(key);
+        return obj.$remove();
+    }
+
+    _getEventObj(key) {
+        const ref = firebase.database().ref(`events/${key}`);
+        return this.$firebaseObject(ref);
     }
 };

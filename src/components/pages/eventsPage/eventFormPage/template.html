@@ -12,12 +12,12 @@
         <div class="well">
             <form name="event" class="form-horizontal" ng-submit="$ctrl.submit()">
                 <fieldset>
-                    <legend>Добавление нового события</legend>
+                    <legend>{{ $ctrl.id ? 'Редактирование события' : 'Добавление нового события' }}</legend>
                     
                     <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('title') }">
                         <label for="title" class="col-md-2 control-label">Заголовок</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" id="title" name="title" required ng-model="$ctrl.event.title" ng-disabled="$ctrl.saveProgress" autocomplete="off">
+                            <input type="text" class="form-control" id="title" name="title" required ng-model="$ctrl.event.title" ng-disabled="$ctrl.disabledForm" autocomplete="off">
                             <div ng-messages="event.title.$error" ng-if="$ctrl.isHasError('title')" role="alert">
                                 <div ng-message="required" class="form__message--error">Введите заголовок</div>
                             </div>
@@ -27,23 +27,26 @@
                     <div class="form-group">
                         <label for="abstract" class="col-md-2 control-label">Краткое описание</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" id="abstract" name="abstract" ng-model="$ctrl.event.abstract" ng-disabled="$ctrl.saveProgress" autocomplete="off">
+                            <input type="text" class="form-control" id="abstract" name="abstract" ng-model="$ctrl.event.abstract" ng-disabled="$ctrl.disabledForm" autocomplete="off">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="description" class="col-md-2 control-label">Подробное описание</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" id="description" name="description" ng-model="$ctrl.event.description" ng-disabled="$ctrl.saveProgress" autocomplete="off"></textarea>
+                            <textarea class="form-control" id="description" name="description" ng-model="$ctrl.event.description" ng-disabled="$ctrl.disabledForm" autocomplete="off"></textarea>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-10 col-md-offset-2">
-                            <button type="submit" class="btn btn-primary" ng-disabled="event.$invalid || $ctrl.saveProgress">
+                            <button type="submit" class="btn btn-success" ng-disabled="event.$invalid || $ctrl.disabledForm">
                                 <i class="fa fa-lg fa-spinner fa-spin" ng-if="$ctrl.saveProgress"></i> Сохранить
                             </button>
-                            <a ui-sref="events.list" class="btn btn-link">Отмена</a>
+                            <button type="button" class="btn btn-danger" ng-if="$ctrl.id" ng-click="$ctrl.onClickRemoveButton()" ng-disabled="$ctrl.disabledForm">
+                                <i class="fa fa-lg fa-spinner fa-spin" ng-if="$ctrl.removeProgress"></i> Удалить
+                            </button>
+                            <a ui-sref="events.list" class="btn btn-link" ng-disabled="$ctrl.disabledForm">Отмена</a>
                         </div>
                     </div>
                 </fieldset>

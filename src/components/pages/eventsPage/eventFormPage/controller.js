@@ -1,8 +1,7 @@
-export default class EventPageController {
-    constructor($q, $scope, $state, EventService) {
+export default class EventFormPageController {
+    constructor($scope, $state, EventService) {
         'ngInject';
-
-        this.$q = $q;
+        
         this.$scope = $scope;
         this.$state = $state;
         this.EventService = EventService;
@@ -36,16 +35,43 @@ export default class EventPageController {
         const { title, abstract = '', description = '' } = this.event;
 
         this._startSaveProgress();
-        this.EventService.addEvent({
+        this._saveEvent({
                 title,
                 abstract,
                 description
             })
-            .then(id => {
-                this._gotoEventState(id);
+            .then(() => {
+                this._gotoEventList();
             })
             .catch(error => {
                 this._stopSaveProgress();
+                throw Error(error);
+            });
+    }
+
+    onClickRemoveButton() {
+        // TODO: edd confirm dialog
+        this._removeEvent();
+    }
+
+    _saveEvent(data) {
+        let result;
+        if (this.id) {
+            result = this.EventService.saveEvent(this.id, data);
+        } else {
+            result = this.EventService.addEvent(data);
+        }
+        return result;
+    }
+
+    _removeEvent() {
+        this._startRemoveProgress();
+        this.EventService.removeEvent(this.id)
+            .then(() => {
+                this._gotoEventList();
+            })
+            .catch(error => {
+                this._stopRemoveProgress();
                 throw Error(error);
             });
     }
@@ -59,14 +85,22 @@ export default class EventPageController {
     }
 
     _startSaveProgress() {
-        this.saveProgress = true;
+        this.saveProgress = this.disabledForm = true;
     }
 
     _stopSaveProgress() {
-        this.saveProgress = false;
+        this.saveProgress = this.disabledForm = false;
     }
 
-    _gotoEventState(id) {
-        this.$state.go('events.edit', { id });
+    _startRemoveProgress() {
+        this.removeProgress = this.disabledForm = true;
+    }
+
+    _stopRemoveProgress() {
+        this.removeProgress = this.disabledForm = false;
+    }
+
+    _gotoEventList() {
+        this.$state.go('events.list');
     }
 };

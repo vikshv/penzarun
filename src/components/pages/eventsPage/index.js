@@ -1,12 +1,14 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 
-import eventPage from './eventPage';
+import eventFormPage from './eventFormPage';
+import eventCardPage from './eventCardPage';
 import eventsListPage from './eventsListPage';
 
 export default angular.module('app.components.pages.events', [
         uiRouter,
-        eventPage.name,
+        eventFormPage.name,
+        eventCardPage.name,
         eventsListPage.name
     ])
     .config(function($stateProvider) {
@@ -24,7 +26,7 @@ export default angular.module('app.components.pages.events', [
             })
             .state('events.new', {
                 url: '/new',
-                template: '<event-page></event-page>',
+                template: '<event-form-page></event-form-page>',
                 resolve: {
                     auth: function(AuthService) {
                         'ngInject';
@@ -34,7 +36,7 @@ export default angular.module('app.components.pages.events', [
             })
             .state('events.edit', {
                 url: '/edit/:id',
-                template: '<event-page id="$ctrl.id"></event-page>',
+                template: '<event-form-page id="$ctrl.id"></event-form-page>',
                 resolve: {
                     auth: function(AuthService) {
                         'ngInject';
@@ -46,5 +48,14 @@ export default angular.module('app.components.pages.events', [
                     this.id = $stateParams.id;
                 },
                 controllerAs: '$ctrl'
-            });
+            })
+            .state('events.card', {
+                url: '/card/:id',
+                template: '<event-card-page id="$ctrl.id"></event-card-page>',
+                controller: function($stateParams) {
+                    'ngInject';
+                    this.id = $stateParams.id;
+                },
+                controllerAs: '$ctrl'
+            })
     });
