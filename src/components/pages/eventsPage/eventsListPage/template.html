@@ -1,5 +1,5 @@
-<div class="row">
-    <div ng-if="$ctrl.progress">
+<div class="container" ng-if="$ctrl.progress">
+    <div class="row">
         <div class="col-md-offset-3 col-md-6">
             <div class="progress">
                 <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
@@ -8,12 +8,16 @@
             </div>
         </div>
     </div>
-    <div ng-if="!$ctrl.progress">
-        <div class="col-md-2">
-            <events-list-filter></events-list-filter>
-        </div>
-        <div class="col-md-10">
-            <events-list events="$ctrl.events" handlers="$ctrl.eventsListHandler"></events-list>
+</div>
+<div class="page page--eventsList">
+    <div class="container" ng-if="!$ctrl.progress">
+        <div class="row">
+            <div class="col-md-2">
+                <events-list-filter></events-list-filter>
+            </div>
+            <div class="col-md-10">
+                <events-list events="$ctrl.events"></events-list>
+            </div>
         </div>
     </div>
 </div>

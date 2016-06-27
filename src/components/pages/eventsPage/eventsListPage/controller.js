@@ -1,11 +1,8 @@
 export default class EventsListPageController {
-    constructor($state, EventService) {
+    constructor(EventService) {
         'ngInject';
 
-        this.$state = $state;
         this.EventService = EventService;
-
-        this._initEventsListHandler();
 
         this._loadEvents();
     }
@@ -25,15 +22,5 @@ export default class EventsListPageController {
 
     _stopProgress() {
         this.progress = false;
-    }
-
-    _initEventsListHandler() {
-        this.eventsListHandler = {
-            onClickEvent: id => this._gotoEventPage(id)
-        };
-    }
-
-    _gotoEventPage(id) {
-        this.$state.go('events.card', { id });
     }
 };

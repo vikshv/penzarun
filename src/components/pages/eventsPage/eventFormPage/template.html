@@ -1,56 +1,60 @@
-<div class="row">
-    <div ng-if="$ctrl.loadProgress">
-        <div class="col-md-offset-3 col-md-6">
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                    Загрузка события
+<div class="page page--eventForm">
+    <div class="container">
+        <div class="row">
+            <div ng-if="$ctrl.loadProgress">
+                <div class="col-md-offset-3 col-md-6">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                            Загрузка события
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="col-md-12" ng-hide="$ctrl.loadProgress">
-        <div class="well">
-            <form name="event" class="form-horizontal" ng-submit="$ctrl.submit()">
-                <fieldset>
-                    <legend>{{ $ctrl.id ? 'Редактирование события' : 'Добавление нового события' }}</legend>
-                    
-                    <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('title') }">
-                        <label for="title" class="col-md-2 control-label">Заголовок</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" id="title" name="title" required ng-model="$ctrl.event.title" ng-disabled="$ctrl.disabledForm" autocomplete="off">
-                            <div ng-messages="event.title.$error" ng-if="$ctrl.isHasError('title')" role="alert">
-                                <div ng-message="required" class="form__message--error">Введите заголовок</div>
+            <div class="col-md-12" ng-hide="$ctrl.loadProgress">
+                <div class="well">
+                    <form name="event" class="form-horizontal" ng-submit="$ctrl.submit()">
+                        <fieldset>
+                            <legend>{{ $ctrl.id ? 'Редактирование события' : 'Добавление нового события' }}</legend>
+                            
+                            <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('title') }">
+                                <label for="title" class="col-md-2 control-label">Заголовок</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="title" name="title" required ng-model="$ctrl.event.title" ng-disabled="$ctrl.disabledForm" autocomplete="off">
+                                    <div ng-messages="event.title.$error" ng-if="$ctrl.isHasError('title')" role="alert">
+                                        <div ng-message="required" class="form__message--error">Введите заголовок</div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="abstract" class="col-md-2 control-label">Краткое описание</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" id="abstract" name="abstract" ng-model="$ctrl.event.abstract" ng-disabled="$ctrl.disabledForm" autocomplete="off">
-                        </div>
-                    </div>
+                            <div class="form-group">
+                                <label for="abstract" class="col-md-2 control-label">Краткое описание</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="abstract" name="abstract" ng-model="$ctrl.event.abstract" ng-disabled="$ctrl.disabledForm" autocomplete="off">
+                                </div>
+                            </div>
 
-                    <div class="form-group">
-                        <label for="description" class="col-md-2 control-label">Подробное описание</label>
-                        <div class="col-md-10">
-                            <textarea class="form-control" id="description" name="description" ng-model="$ctrl.event.description" ng-disabled="$ctrl.disabledForm" autocomplete="off"></textarea>
-                        </div>
-                    </div>
+                            <div class="form-group">
+                                <label for="description" class="col-md-2 control-label">Подробное описание</label>
+                                <div class="col-md-10">
+                                    <textarea class="form-control" id="description" name="description" ng-model="$ctrl.event.description" ng-disabled="$ctrl.disabledForm" autocomplete="off"></textarea>
+                                </div>
+                            </div>
 
-                    <div class="form-group">
-                        <div class="col-md-10 col-md-offset-2">
-                            <button type="submit" class="btn btn-success" ng-disabled="event.$invalid || $ctrl.disabledForm">
-                                <i class="fa fa-lg fa-spinner fa-spin" ng-if="$ctrl.saveProgress"></i> Сохранить
-                            </button>
-                            <button type="button" class="btn btn-danger" ng-if="$ctrl.id" ng-click="$ctrl.onClickRemoveButton()" ng-disabled="$ctrl.disabledForm">
-                                <i class="fa fa-lg fa-spinner fa-spin" ng-if="$ctrl.removeProgress"></i> Удалить
-                            </button>
-                            <a ui-sref="events.list" class="btn btn-link" ng-disabled="$ctrl.disabledForm">Отмена</a>
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
+                            <div class="form-group">
+                                <div class="col-md-10 col-md-offset-2">
+                                    <button type="submit" class="btn btn-success" ng-disabled="event.$invalid || $ctrl.disabledForm">
+                                        <i class="fa fa-lg fa-spinner fa-spin" ng-if="$ctrl.saveProgress"></i> Сохранить
+                                    </button>
+                                    <button type="button" class="btn btn-danger" ng-if="$ctrl.id" ng-click="$ctrl.onClickRemoveButton()" ng-disabled="$ctrl.disabledForm">
+                                        <i class="fa fa-lg fa-spinner fa-spin" ng-if="$ctrl.removeProgress"></i> Удалить
+                                    </button>
+                                    <a ui-sref="events.list" class="btn btn-link" ng-disabled="$ctrl.disabledForm">Отмена</a>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
