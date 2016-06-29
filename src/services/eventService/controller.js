@@ -19,15 +19,16 @@ export default class EventService {
 
     saveEvent(key, data) {
         const obj = this._getEventObj(key);
-        Object.assign(obj, data);
+        Object.assign(obj, data, {
+            editTimestamp: Date.now()
+        });
         return obj.$save();
     }
 
     addEvent(data) {
-        const timestamp = Date.now();
         return this.list.$add({
                 ...data,
-                timestamp
+                createTimestamp: Date.now()
             });
     }
 

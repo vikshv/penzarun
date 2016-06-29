@@ -13,6 +13,10 @@ module.exports = {
         vendor: [
             'angular',
             'angularfire',
+            'angular-ui-router',
+            'angular-i18n/angular-locale_ru-ru',
+            'firebase',
+            'angular-ui-bootstrap',
             'babel-polyfill',
             'jquery'
         ],
@@ -22,11 +26,11 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'dist'),
         publicPath: '/dist/',
-        filename: 'bundle.[chunkhash].js'
+        filename: 'bundle.[name].[chunkhash].js'
     },
     
     watchOptions: {
-        aggregateTimeout: 100
+        aggregateTimeout: 300
     },
 
     devtool: 'source-map',
@@ -95,7 +99,7 @@ module.exports = {
     },
 
     noParse: [
-        /\/node_modules\/(bootstrap|jquery|font-awesome)/
+        /\/node_modules\/(angular|bootstrap|jquery|font-awesome)/
     ]
 };
 

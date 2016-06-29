@@ -3,12 +3,7 @@ var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
 
 var options = {
-    publicPath: config.output.publicPath,
-    hot: true,
-    stats: {
-        chunkModules: false,
-        colors: true
-    }
+    publicPath: config.output.publicPath
 };
 
 new WebpackDevServer(webpack(config), options).listen(3000, 'localhost', function (err) {

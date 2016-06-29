@@ -1,21 +1,60 @@
-<div class="container" ng-if="$ctrl.loadProgress">
-    <div class="row">
-        <div class="col-md-offset-3 col-md-6">
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                    Загрузка события
+
+<progress-bar text="Загрузка события..." ng-if="$ctrl.loadProgress"></progress-bar>
+
+<div class="page page--eventCard" ng-if="!$ctrl.loadProgress">
+    <div class="eventCard__header eventCard__header--{{ $ctrl.event.tag }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <div class="eventCard__title">{{ $ctrl.event.title }}</div>
+                    <div class="eventCard__abstract">{{ $ctrl.event.abstract }}</div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="page page--eventCard">
-    <div class="eventCard__header eventCard__header--default" ng-if="!$ctrl.loadProgress">
+    <div class="eventCard__body">
+        <div class="container" ng-if="$ctrl.event.description">
+            <div class="row">
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <p class="eventCard__description">{{ $ctrl.event.description }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="eventCard__date">
+                        <h3><span class="head-info">Дата, время и место проведения</span></h3>
+                        <p>
+                            <strong>Когда:</strong> 23 февраля 2016 г., старт в 11:00 <br>
+                            <strong>Где:</strong> Олимпийская аллея г. Пенза <br>
+                            <strong>Регистрация:</strong> в день соревнований с 10:00
+                        </p>
+                    </div>
+                    <div class="eventCard__distance">
+                        <h3>Дистанции</h3>
+                    </div>
+                    <div class="eventCard__master">
+                        <h3>Организаторы</h3>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="eventCard__documents">
+                        <h3>Документы</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="eventCard__footer">
         <div class="container">
             <div class="row">
                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                    <div class="title">{{ $ctrl.event.title }}</div>
-                    <div class="abstract">{{ $ctrl.event.abstract }}</div>
+                    <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group" role="group">
+                            <a ui-sref="events.edit({ id: $ctrl.event.$id })" class="btn btn-default">Редактировать событие</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

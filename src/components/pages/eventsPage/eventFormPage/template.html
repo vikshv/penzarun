@@ -1,20 +1,31 @@
-<div class="page page--eventForm">
+
+<progress-bar text="Загрузка события..." ng-if="$ctrl.loadProgress"></progress-bar>
+
+<div class="page page--eventForm" ng-hide="$ctrl.loadProgress">
     <div class="container">
         <div class="row">
-            <div ng-if="$ctrl.loadProgress">
-                <div class="col-md-offset-3 col-md-6">
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                            Загрузка события
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12" ng-hide="$ctrl.loadProgress">
+            <div class="col-md-12">
                 <div class="well">
                     <form name="event" class="form-horizontal" ng-submit="$ctrl.submit()">
                         <fieldset>
                             <legend>{{ $ctrl.id ? 'Редактирование события' : 'Добавление нового события' }}</legend>
+
+                            <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('date') }">
+                                <label for="date" class="col-md-2 control-label">Дата</label>
+                                <div class="col-md-5">
+                                    <div class="input-group">
+                                        <input type="text" id="date" name="date" required class="form-control" autocomplete="off" uib-datepicker-popup="{{ $ctrl.dateFormat }}" ng-model="$ctrl.event.date" is-open="$ctrl.datePopupIsOpen" show-button-bar="false" on-open-focus="true">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary" type="button" ng-click="$ctrl.openDatePopup()">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                    <div ng-messages="event.date.$error" ng-if="$ctrl.isHasError('date')" role="alert">
+                                        <div ng-message="required" class="form__message--error">Введите дату</div>
+                                    </div>
+                                </div>
+                            </div>
                             
                             <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('title') }">
                                 <label for="title" class="col-md-2 control-label">Заголовок</label>
@@ -39,6 +50,26 @@
                                     <textarea class="form-control" id="description" name="description" ng-model="$ctrl.event.description" ng-disabled="$ctrl.disabledForm" autocomplete="off"></textarea>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label for="tag" class="col-md-2 control-label">Теги</label>
+                                <div class="col-md-10">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="tag" id="inlineRadio1" value="event" ng-model="$ctrl.event.tag"> <span class="label label-default label--md">Событие</span>
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="tag" id="inlineRadio1" value="probeg" ng-model="$ctrl.event.tag"> <span class="label label-warning label--md">Пробег</span>
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="tag" id="inlineRadio2" value="marathon" ng-model="$ctrl.event.tag"> <span class="label label-danger label--md">Марафон</span>
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="tag" id="inlineRadio3" value="training" ng-model="$ctrl.event.tag"> <span class="label label-success label--md">Тренировка</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group"></div>
 
                             <div class="form-group">
                                 <div class="col-md-10 col-md-offset-2">

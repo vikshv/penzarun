@@ -7,6 +7,9 @@ export default class EventFormPageController {
         this.EventService = EventService;
         
         this._initEvent();
+
+        this.dateFormat = 'EEEE, dd MMMM yyyy';
+        this.datePopupIsOpen = false;
     }
 
     _initEvent() {
@@ -14,7 +17,16 @@ export default class EventFormPageController {
             this._startLoadProgress();
             this.EventService.getEvent(this.id)
                 .then(result => {
-                    this.event = result;
+                    const { $id, date, title, abstract, description, tag = 'event' } = result;
+                    this.event = {
+                        $id,
+                        date,
+                        title,
+                        abstract,
+                        description,
+                        tag,
+                        date: new Date(date)
+                    };
                     this._stopLoadProgress();
                 })
                 .catch(error => {
@@ -22,7 +34,9 @@ export default class EventFormPageController {
                     throw Error(error);
                 });
         } else {
-            this.event = {};
+            this.event = {
+                tag: 'event'
+            };
         }
     }
 
@@ -31,14 +45,20 @@ export default class EventFormPageController {
         return item.$invalid && item.$dirty && item.$touched;
     }
 
+    openDatePopup() {
+        this.datePopupIsOpen = true;
+    }
+
     submit() {
-        const { title, abstract = '', description = '' } = this.event;
+        const { date, title, abstract = '', description = '', tag } = this.event;
 
         this._startSaveProgress();
         this._saveEvent({
+                date: date.getTime(),
                 title,
                 abstract,
-                description
+                description,
+                tag
             })
             .then(() => {
                 this._gotoEventList();
