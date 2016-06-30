@@ -33,7 +33,7 @@ module.exports = {
         aggregateTimeout: 300
     },
 
-    devtool: 'source-map',
+    //devtool: 'source-map',
 
     plugins: [
         new webpack.NoErrorsPlugin(),

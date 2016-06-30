@@ -74,6 +74,10 @@ export default class EventFormPageController {
         this._removeEvent();
     }
 
+    onClickCancelButton() {
+        this._gotoEventList();
+    }
+
     _saveEvent(data) {
         let result;
         if (this.id) {

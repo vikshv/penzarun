@@ -73,13 +73,13 @@
 
                             <div class="form-group">
                                 <div class="col-md-10 col-md-offset-2">
-                                    <button type="submit" class="btn btn-success" ng-disabled="event.$invalid || $ctrl.disabledForm">
+                                    <button type="submit" class="btn btn-primary" ng-disabled="event.$invalid || $ctrl.disabledForm">
                                         <i class="fa fa-lg fa-spinner fa-spin" ng-if="$ctrl.saveProgress"></i> Сохранить
                                     </button>
                                     <button type="button" class="btn btn-danger" ng-if="$ctrl.id" ng-click="$ctrl.onClickRemoveButton()" ng-disabled="$ctrl.disabledForm">
                                         <i class="fa fa-lg fa-spinner fa-spin" ng-if="$ctrl.removeProgress"></i> Удалить
                                     </button>
-                                    <a ui-sref="events.list" class="btn btn-link" ng-disabled="$ctrl.disabledForm">Отмена</a>
+                                    <button type="button" class="btn btn-default" ng-click="$ctrl.onClickCancelButton()" ng-disabled="$ctrl.disabledForm">Отмена</button>
                                 </div>
                             </div>
                         </fieldset>
