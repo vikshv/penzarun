@@ -11,17 +11,8 @@ export default class EventCardPageController {
         if (this.id) {
             this._startLoadProgress();
             this.EventService.getEvent(this.id)
-                .then(result => {
-                    const { $id, date, title, abstract, description, tag = 'event' } = result;
-                    this.event = {
-                        $id,
-                        date,
-                        title,
-                        abstract,
-                        description,
-                        tag,
-                        date: new Date(date)
-                    };
+                .then(event => {
+                    this.event = event;
                     this._stopLoadProgress();
                 })
                 .catch(error => {

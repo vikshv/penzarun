@@ -4,6 +4,8 @@ export default class EventsListPageController {
 
         this.EventService = EventService;
 
+        this._initFilterHandlers();
+
         this._loadEvents();
     }
 
@@ -12,7 +14,7 @@ export default class EventsListPageController {
         this.EventService.loadEvents()
             .then(result => {
                 this._stopProgress();
-                this.events = result;
+                this.filtredEvents = this.events = result;
             });
     }
 
@@ -22,5 +24,15 @@ export default class EventsListPageController {
 
     _stopProgress() {
         this.progress = false;
+    }
+
+    _initFilterHandlers() {
+        this.filterHandlers = {
+            onChangeFilter: filter => {
+                this.filtredEvents = !filter.length ? this.events : this.events.filter(event => {
+                    return filter.some(item => item === event.tag);
+                });
+            }
+        };
     }
 };

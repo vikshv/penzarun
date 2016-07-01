@@ -18,7 +18,7 @@
         <div class="container" ng-if="$ctrl.event.description">
             <div class="row">
                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                    <p class="eventCard__description">{{ $ctrl.event.description }}</p>
+                    <p class="eventCard__description" ng-bind-html="$ctrl.event.description"></p>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
                         <h3><span class="head-info">Дата, время и место проведения</span></h3>
                         <p>
                             <strong>Когда:</strong> 23 февраля 2016 г., старт в 11:00 <br>
-                            <strong>Где:</strong> Олимпийская аллея г. Пенза <br>
+                            <strong>Где:</strong> {{ $ctrl.event.place }} <br>
                             <strong>Регистрация:</strong> в день соревнований с 10:00
                         </p>
                     </div>
@@ -54,7 +54,7 @@
                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group" role="group">
-                            <a ui-sref="events.edit({ id: $ctrl.event.$id })" class="btn btn-default">Редактировать событие</a>
+                            <a ui-sref="events.edit({ id: $ctrl.event.id })" class="btn btn-default">Редактировать событие</a>
                         </div>
                     </div>
                 </div>

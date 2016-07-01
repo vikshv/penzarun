@@ -16,17 +16,8 @@ export default class EventFormPageController {
         if (this.id) {
             this._startLoadProgress();
             this.EventService.getEvent(this.id)
-                .then(result => {
-                    const { $id, date, title, abstract, description, tag = 'event' } = result;
-                    this.event = {
-                        $id,
-                        date,
-                        title,
-                        abstract,
-                        description,
-                        tag,
-                        date: new Date(date)
-                    };
+                .then(event => {
+                    this.event = event;
                     this._stopLoadProgress();
                 })
                 .catch(error => {
@@ -34,9 +25,7 @@ export default class EventFormPageController {
                     throw Error(error);
                 });
         } else {
-            this.event = {
-                tag: 'event'
-            };
+            this.event = this.EventService.getDefaultEvent();
         }
     }
 
@@ -50,7 +39,7 @@ export default class EventFormPageController {
     }
 
     submit() {
-        const { date, title, abstract = '', description = '', tag } = this.event;
+        const { date, title, abstract = '', description = '', tag, place = 'г. Пенза, Олимпийская аллея' } = this.event;
 
         this._startSaveProgress();
         this._saveEvent({
@@ -58,7 +47,8 @@ export default class EventFormPageController {
                 title,
                 abstract,
                 description,
-                tag
+                tag,
+                place
             })
             .then(() => {
                 this._gotoEventList();

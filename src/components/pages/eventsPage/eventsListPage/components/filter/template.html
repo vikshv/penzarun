@@ -1,3 +1,25 @@
-<div>
-    Filter block
+<div class="eventsFilter">
+    <div class="filter__title">
+        Фильтр
+    </div>
+    <div class="filter__body">
+        <div class="checkbox">
+            <label class="label--filter">
+                <input type="checkbox" value="probeg" ng-click="$ctrl.onClickTag()" ng-model="$ctrl.filter.probeg"> Пробеги
+            </label>
+        </div>
+        <div class="checkbox">
+            <label class="label--filter">
+                <input type="checkbox" value="marathon" ng-click="$ctrl.onClickTag()" ng-model="$ctrl.filter.marathon"> Марафоны
+            </label>
+        </div>
+        <div class="checkbox">
+            <label class="label--filter">
+                <input type="checkbox" value="training" ng-click="$ctrl.onClickTag()" ng-model="$ctrl.filter.training"> Тренировки
+            </label>
+        </div>
+        <div ng-if="$ctrl.isActive()">
+            <button type="button" class="btn btn-block btn-default" ng-click="$ctrl.resetFilter()">Очистить</button>
+        </div>
+    </div>
 </div>

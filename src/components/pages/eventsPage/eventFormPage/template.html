@@ -47,7 +47,14 @@
                             <div class="form-group">
                                 <label for="description" class="col-md-2 control-label">Подробное описание</label>
                                 <div class="col-md-10">
-                                    <textarea class="form-control" id="description" name="description" ng-model="$ctrl.event.description" ng-disabled="$ctrl.disabledForm" autocomplete="off"></textarea>
+                                    <textarea class="form-control" id="description" name="description" rows="5" ng-model="$ctrl.event.description" ng-disabled="$ctrl.disabledForm" autocomplete="off"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="place" class="col-md-2 control-label">Место проведения</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="place" name="place" placeholder="г. Пенза, Олимпийская аллея" ng-model="$ctrl.event.place" ng-disabled="$ctrl.disabledForm" autocomplete="off">
                                 </div>
                             </div>
 

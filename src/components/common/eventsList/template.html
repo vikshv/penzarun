@@ -3,21 +3,19 @@
         <div class="event__date">
             {{ event.date | date: 'dd MMMM yyyy' }}
         </div>
-        <div class="well well-lg">
+        <div class="well well-lg well--event">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-9">
                     <h4><a ui-sref="events.card({ id: event.$id })" >
                         {{ event.title }}
                     </a></h4>
-                    <p>{{ event.abstract }}</p>
                 </div>
-                <div class="col-md-3">
-                    <div class="event_description">
-                        {{ event.description }}
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="">
+                        {{ event.abstract }}
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div>Дистанции</div>
                 </div>
             </div>
         </div>

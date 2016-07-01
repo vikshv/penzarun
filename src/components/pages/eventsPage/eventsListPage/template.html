@@ -5,10 +5,10 @@
     <div class="container" ng-if="!$ctrl.progress">
         <div class="row">
             <div class="col-md-2">
-                <events-list-filter></events-list-filter>
+                <events-list-filter handlers="$ctrl.filterHandlers"></events-list-filter>
             </div>
             <div class="col-md-10">
-                <events-list events="$ctrl.events"></events-list>
+                <events-list events="$ctrl.filtredEvents"></events-list>
             </div>
         </div>
     </div>
