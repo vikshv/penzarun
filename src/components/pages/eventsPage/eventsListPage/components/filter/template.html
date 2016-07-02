@@ -1,24 +1,26 @@
 <div class="eventsFilter">
-    <div class="filter__title">
-        Фильтр
-    </div>
-    <div class="filter__body">
-        <div class="checkbox">
-            <label class="label--filter">
-                <input type="checkbox" value="probeg" ng-click="$ctrl.onClickTag()" ng-model="$ctrl.filter.probeg"> Пробеги
-            </label>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Фильтр</h3>
         </div>
-        <div class="checkbox">
-            <label class="label--filter">
-                <input type="checkbox" value="marathon" ng-click="$ctrl.onClickTag()" ng-model="$ctrl.filter.marathon"> Марафоны
-            </label>
+        <div class="panel-body">
+            <div class="checkbox">
+                <label class="label--filter">
+                    <input type="checkbox" value="probeg" ng-click="$ctrl.onClickTag()" ng-model="$ctrl.filter.probeg"> Пробеги
+                </label>
+            </div>
+            <div class="checkbox">
+                <label class="label--filter">
+                    <input type="checkbox" value="marathon" ng-click="$ctrl.onClickTag()" ng-model="$ctrl.filter.marathon"> Марафоны
+                </label>
+            </div>
+            <div class="checkbox">
+                <label class="label--filter">
+                    <input type="checkbox" value="training" ng-click="$ctrl.onClickTag()" ng-model="$ctrl.filter.training"> Тренировки
+                </label>
+            </div>
         </div>
-        <div class="checkbox">
-            <label class="label--filter">
-                <input type="checkbox" value="training" ng-click="$ctrl.onClickTag()" ng-model="$ctrl.filter.training"> Тренировки
-            </label>
-        </div>
-        <div ng-if="$ctrl.isActive()">
+        <div class="panel-footer" ng-if="$ctrl.isActive()">
             <button type="button" class="btn btn-block btn-default" ng-click="$ctrl.resetFilter()">Очистить</button>
         </div>
     </div>
