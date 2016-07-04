@@ -5,20 +5,10 @@
                 {{ event.date | date: 'dd MMMM yyyy' }}
             </div>
             <div class="well well-lg well--event">
-                <div class="row">
-                    <div class="col-md-9">
-                        <h4><a ui-sref="events.card({ id: event.$id })" >
-                            {{ event.title }}
-                        </a></h4>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-9">
-                        <div class="">
-                            {{ event.abstract }}
-                        </div>
-                    </div>
-                </div>
+                <h4><a ui-sref="events.card({ id: event.$id })" >
+                    {{ event.title }}
+                </a></h4>
+                <p>{{ event.abstract }}</p>
             </div>
         </div>
     </div>

@@ -16,23 +16,37 @@ export default class EventService {
         const obj = this._getEventObj(key);
         return obj.$loaded()
             .then(result => {
-                const { $id, date, title, abstract, description, tag = 'event', place } = result;
+                const { 
+                    $id, 
+                    date,
+                    time,
+                    title, 
+                    abstract, 
+                    description, 
+                    tag = 'event', 
+                    place, 
+                    distances
+                } = result;
+
                 return {
                     id: $id,
                     date,
+                    time,
                     title,
                     abstract,
                     description,
                     tag,
                     date: new Date(date),
-                    place
+                    place,
+                    distances
                 };
             });
     }
 
     getDefaultEvent() {
         return {
-            tag: 'event'
+            tag: 'event',
+            time: '11:00'
         };
     }
 

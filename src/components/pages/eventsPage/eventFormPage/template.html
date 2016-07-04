@@ -11,8 +11,8 @@
                             <legend>{{ $ctrl.id ? 'Редактирование события' : 'Добавление нового события' }}</legend>
 
                             <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('date') }">
-                                <label for="date" class="col-md-2 control-label">Дата</label>
-                                <div class="col-md-5">
+                                <label for="date" class="col-md-2 control-label">Дата события</label>
+                                <div class="col-md-4">
                                     <div class="input-group">
                                         <input type="text" id="date" name="date" required class="form-control" autocomplete="off" uib-datepicker-popup="{{ $ctrl.dateFormat }}" ng-model="$ctrl.event.date" is-open="$ctrl.datePopupIsOpen" show-button-bar="false" on-open-focus="true">
                                         <span class="input-group-btn">
@@ -22,7 +22,17 @@
                                         </span>
                                     </div>
                                     <div ng-messages="event.date.$error" ng-if="$ctrl.isHasError('date')" role="alert">
-                                        <div ng-message="required" class="form__message--error">Введите дату</div>
+                                        <div ng-message="required" class="form__message--error">Введите дату события</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('time') }">
+                                <label for="time" class="col-md-2 control-label">Время начала</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="time" name="time" required placeholder="11:00" ng-model="$ctrl.event.time" ng-disabled="$ctrl.disabledForm" autocomplete="off">
+                                    <div ng-messages="event.time.$error" ng-if="$ctrl.isHasError('time')" role="alert">
+                                        <div ng-message="required" class="form__message--error">Введите время начала события</div>
                                     </div>
                                 </div>
                             </div>
@@ -55,6 +65,13 @@
                                 <label for="place" class="col-md-2 control-label">Место проведения</label>
                                 <div class="col-md-10">
                                     <input type="text" class="form-control" id="place" name="place" placeholder="г. Пенза, Олимпийская аллея" ng-model="$ctrl.event.place" ng-disabled="$ctrl.disabledForm" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="distances" class="col-md-2 control-label">Дистанции</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="distances" name="distances" ng-model="$ctrl.event.distances" ng-disabled="$ctrl.disabledForm" autocomplete="off">
                                 </div>
                             </div>
 

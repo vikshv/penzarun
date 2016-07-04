@@ -14,47 +14,50 @@
             </div>
         </div>
     </div>
+
     <div class="eventCard__body">
-        <div class="container" ng-if="$ctrl.event.description">
-            <div class="row">
+        <div class="container">
+            <div class="row" ng-if="$ctrl.event.description">
                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                    <p class="eventCard__description" ng-bind-html="$ctrl.event.description"></p>
+                    <div class="eventCard__description">
+                        <p ng-bind-html="$ctrl.event.description"></p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="container">
             <div class="row">
-                <div class="col-md-8">
-                    <div class="eventCard__date">
-                        <h3><span class="head-info">Дата, время и место проведения</span></h3>
-                        <p>
-                            <strong>Когда:</strong> 23 февраля 2016 г., старт в 11:00 <br>
-                            <strong>Где:</strong> {{ $ctrl.event.place }} <br>
-                            <strong>Регистрация:</strong> в день соревнований с 10:00
-                        </p>
-                    </div>
-                    <div class="eventCard__distance">
-                        <h3>Дистанции</h3>
-                    </div>
-                    <div class="eventCard__master">
-                        <h3>Организаторы</h3>
+                <div class="col-md-12">
+                    <div class="body__paragraph">
+                        <div class="body__title">Дата и время начала</div>
+                        <p>{{ $ctrl.event.date | date: 'EEEE, dd MMMM yyyy' }}, {{ $ctrl.event.time }}</p>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="eventCard__documents">
-                        <h3>Документы</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="body__paragraph">
+                        <div class="body__title">Место проведения</div>
+                        <p>{{ $ctrl.event.place }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="body__paragraph">
+                        <div class="body__title">Дистанции</div>
+                        <p>{{ $ctrl.event.distances }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="eventCard__footer">
         <div class="container">
             <div class="row">
                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group" role="group">
-                            <a ui-sref="events.edit({ id: $ctrl.event.id })" class="btn btn-default">Редактировать событие</a>
+                            <a ui-sref="events.edit({ id: $ctrl.event.id })" class="btn btn-default" ng-if="$ctrl.getAuth()">Редактировать событие</a>
                         </div>
                     </div>
                 </div>

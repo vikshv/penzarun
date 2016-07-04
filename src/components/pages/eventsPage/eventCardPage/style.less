@@ -11,31 +11,34 @@
 
 .eventCard__header {
     text-align: left;
-}
 
-.eventCard__header--event {
-    background-color: #4e5d6c;
-    background-image: linear-gradient(to bottom, #3a4958 0, #4e5d6c 100%);
-    background-repeat: repeat-x;
-}
+    &--event {
+        background-color: #4e5d6c;
+    }
 
-.eventCard__header--training {
-    background-color: #5cb85c;
-    background-repeat: repeat-x;
-}
+    &--training {
+        background-color: #5cb85c;
+    }
 
-.eventCard__header--probeg {
-    background-color: #f0ad4e;
-    background-repeat: repeat-x;
-}
+    &--probeg {
+        background-color: #f0ad4e;
+    }
 
-.eventCard__header--marathon {
-    background-color: #d9534f;
-    background-image: linear-gradient(to bottom, #ba5e5b 0, #d9534f 100%);
-    background-repeat: repeat-x;
+    &--marathon {
+        background-color: #d9534f;
+    }
 }
 
 .eventCard__body {
+    .body__paragraph {
+        margin-bottom: 20px;
+    }
+
+    .body__title {
+        font-size: 22px;
+        line-height: 22px;
+        margin-bottom: 8px;
+    }
 }
 
 .eventCard__jumbotron {
@@ -54,7 +57,7 @@
 }
 
 .eventCard__description {
-    margin: 0;
+    margin: 0 0 40px 0;
     text-align: justify;
 }
 

@@ -39,16 +39,27 @@ export default class EventFormPageController {
     }
 
     submit() {
-        const { date, title, abstract = '', description = '', tag, place = 'г. Пенза, Олимпийская аллея' } = this.event;
+        const { 
+            date,
+            time,
+            title, 
+            abstract = '', 
+            description = '', 
+            tag, 
+            place = 'г. Пенза, Олимпийская аллея',
+            distances = ''
+        } = this.event;
 
         this._startSaveProgress();
         this._saveEvent({
                 date: date.getTime(),
+                time,
                 title,
                 abstract,
                 description,
                 tag,
-                place
+                place,
+                distances
             })
             .then(() => {
                 this._gotoEventList();

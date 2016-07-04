@@ -1,10 +1,15 @@
 export default class EventCardPageController {
-    constructor(EventService) {
+    constructor(EventService, AuthService) {
         'ngInject';
         
         this.EventService = EventService;
+        this.AuthService = AuthService;
         
         this._initEvent();
+    }
+
+    getAuth() {
+        return this.AuthService.getAuth();
     }
 
     _initEvent() {
