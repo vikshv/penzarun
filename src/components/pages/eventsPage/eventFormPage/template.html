@@ -47,6 +47,16 @@
                                 </div>
                             </div>
 
+                            <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('master') }">
+                                <label for="master" class="col-md-2 control-label">Организаторы</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="master" name="master" required ng-model="$ctrl.event.master" ng-disabled="$ctrl.disabledForm">
+                                    <div ng-messages="event.master.$error" ng-if="$ctrl.isHasError('master')" role="alert">
+                                        <div ng-message="required" class="form__message--error">Укажите организаторов</div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label for="abstract" class="col-md-2 control-label">Краткое описание</label>
                                 <div class="col-md-10">

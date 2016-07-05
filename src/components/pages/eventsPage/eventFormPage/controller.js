@@ -47,7 +47,8 @@ export default class EventFormPageController {
             description = '', 
             tag, 
             place = 'г. Пенза, Олимпийская аллея',
-            distances = ''
+            distances = '',
+            master
         } = this.event;
 
         this._startSaveProgress();
@@ -59,7 +60,8 @@ export default class EventFormPageController {
                 description,
                 tag,
                 place,
-                distances
+                distances,
+                master
             })
             .then(() => {
                 this._gotoEventList();

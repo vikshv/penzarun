@@ -26,7 +26,7 @@ module.exports = {
 
     output: {
         path: path.join(__dirname, 'dist'),
-        publicPath: './',
+        publicPath: '/dist/',
         filename: 'bundle.[name].[chunkhash].js'
     },
     
@@ -101,6 +101,10 @@ module.exports = {
 
     noParse: [
         /\/node_modules\/(angular|bootstrap|jquery|font-awesome)/
-    ]
+    ],
+
+    htmlLoader: {
+        minimize: true
+    }
 };
 

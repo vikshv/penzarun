@@ -25,7 +25,8 @@ export default class EventService {
                     description, 
                     tag = 'event', 
                     place, 
-                    distances
+                    distances,
+                    master
                 } = result;
 
                 return {
@@ -38,7 +39,8 @@ export default class EventService {
                     tag,
                     date: new Date(date),
                     place,
-                    distances
+                    distances,
+                    master
                 };
             });
     }

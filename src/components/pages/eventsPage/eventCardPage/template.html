@@ -13,39 +13,77 @@
                 </div>
             </div>
         </div>
+
+        <div class="eventHeader__info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                        <div class="info__title">Организаторы</div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                        <div class="info__title">Дата и время события</div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                        <div class="info__title">Место проведения</div>
+                    </div>
+                </div>
+            </div>
+            <div class="info__division info__division--{{ $ctrl.event.tag }}"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                        <div class="info__content">
+                            <div class="eventCard__master">
+                                {{ $ctrl.event.master }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 col--{{ $ctrl.event.tag }}">
+                        <div class="info__content">
+                            <div class="eventCard__date">
+                                <div>{{ $ctrl.event.date | date: 'EEEE' }}</div>
+                                <div>{{ $ctrl.event.date | date: 'dd MMMM yyyy' }}, {{ $ctrl.event.time }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                        <div class="info__content">
+                            <div class="eventCard__place">
+                                {{ $ctrl.event.place }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="eventCard__body">
         <div class="container">
-            <div class="row" ng-if="$ctrl.event.description">
+            <div class="row">
                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                    <div class="eventCard__description">
+                    <div class="eventCard__description" ng-if="$ctrl.event.description">
                         <p ng-bind-html="$ctrl.event.description"></p>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="body__paragraph">
-                        <div class="body__title">Дата и время начала</div>
-                        <p>{{ $ctrl.event.date | date: 'EEEE, dd MMMM yyyy' }}, {{ $ctrl.event.time }}</p>
+                    <div class="eventCard__description">
+                        Сообщение от организаторов
+                    </div>
+                    <div class="well well-sm well--programm">
+                        <table class="table table-hover table--programm">
+                            <caption class="table__caption">Программа</caption>
+                            <tbody>
+                                <tr><td>09:00</td><td>Начало регистрации участников</td></tr>
+                                <tr><td>10:45</td><td>Построение участников в стартовой зоне</td></tr>
+                                <tr><td>10:50</td><td>Приветственное слово оргнизаторов</td></tr>
+                                <tr><td>11:00</td><td>Старт соревнований</td></tr>
+                                <tr><td>11:30-17:30</td><td>Награждение победителей</td></tr>
+                                <tr><td>14:00</td><td>Закрытие дистанции полумарафона</td></tr>
+                                <tr><td>17:00</td><td>Закрытие дистанции марафона</td></tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="body__paragraph">
-                        <div class="body__title">Место проведения</div>
-                        <p>{{ $ctrl.event.place }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="body__paragraph">
-                        <div class="body__title">Дистанции</div>
-                        <p>{{ $ctrl.event.distances }}</p>
-                    </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 </div>
             </div>
         </div>
