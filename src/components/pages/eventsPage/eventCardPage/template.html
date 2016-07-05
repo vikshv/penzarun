@@ -15,42 +15,39 @@
         </div>
 
         <div class="eventHeader__info">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                        <div class="info__title">Организаторы</div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                        <div class="info__title">Дата и время события</div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                        <div class="info__title">Место проведения</div>
+            <div class="info__title">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            Дата и время события
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            Место проведения
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            Организаторы
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="info__division info__division--{{ $ctrl.event.tag }}"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                        <div class="info__content">
-                            <div class="eventCard__master">
-                                {{ $ctrl.event.master }}
-                            </div>
+            <div class="info__division"></div>
+            <div class="info__content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col--date">
+                            <h4 class="content__item">
+                                {{ $ctrl.event.date | date: 'EEEE, dd MMMM yyyy' }}, {{ $ctrl.event.time }}
+                            </h4>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 col--{{ $ctrl.event.tag }}">
-                        <div class="info__content">
-                            <div class="eventCard__date">
-                                <div>{{ $ctrl.event.date | date: 'EEEE' }}</div>
-                                <div>{{ $ctrl.event.date | date: 'dd MMMM yyyy' }}, {{ $ctrl.event.time }}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                        <div class="info__content">
-                            <div class="eventCard__place">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col--place">
+                            <h4 class="content__item">
                                 {{ $ctrl.event.place }}
-                            </div>
+                            </h4>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col--master">
+                            <h4 class="content__item">
+                                {{ $ctrl.event.master }}
+                            </h4>
                         </div>
                     </div>
                 </div>
@@ -65,8 +62,8 @@
                     <div class="eventCard__description" ng-if="$ctrl.event.description">
                         <p ng-bind-html="$ctrl.event.description"></p>
                     </div>
-                    <div class="eventCard__description">
-                        Сообщение от организаторов
+                    <div class="eventCard__message">
+                        <p ng-bind-html="$ctrl.event.message"></p>
                     </div>
                     <div class="well well-sm well--programm">
                         <table class="table table-hover table--programm">

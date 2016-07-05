@@ -1,7 +1,15 @@
-@event: rgba(78, 93, 108, 0.5);
-@training: rgba(92, 184, 92, 0.5);
-@probeg: rgba(240, 173, 78, 0.5);
-@marathon: rgba(217, 83, 79, 0.5);
+.event-background-color(@aplha: 1) {
+    background-color: rgba(78, 93, 108, @aplha);
+}
+.training-background-color(@aplha: 1) {
+    background-color: rgba(92, 184, 92, @aplha);
+}
+.probeg-background-color(@aplha: 1) {
+    background-color: rgba(240, 173, 78, @aplha);
+}
+.marathon-background-color(@aplha: 1) {
+    background-color: rgba(217, 83, 79, @aplha);
+}
 
 .penzarun {
     .page.page--eventCard {
@@ -14,19 +22,91 @@
     margin-bottom: 40px;
 
     &--event {
-        background-color: @event;
+        .event-background-color(0.5);
+
+        .info__division {
+            .event-background-color();
+        }
+
+        .col {
+            &--date {
+                .event-background-color(0.8);
+            }
+
+            &--place {
+                .event-background-color(0.5);
+            }
+
+            &--master {
+                .event-background-color(0.3);
+            }
+        }
     }
 
     &--training {
-        background-color: @training;
+        .training-background-color(0.5);
+
+        .info__division {
+            .training-background-color();
+        }
+
+        .col {
+            &--date {
+                .training-background-color(0.8);
+            }
+
+            &--place {
+                .training-background-color(0.5);
+            }
+
+            &--master {
+                .training-background-color(0.3);
+            }
+        }
     }
 
     &--probeg {
-        background-color: @probeg;
+        .probeg-background-color(0.5);
+
+        .info__division {
+            .probeg-background-color();
+        }
+
+        .col {
+            &--date {
+                .probeg-background-color(0.8);
+            }
+
+            &--place {
+                .probeg-background-color(0.5);
+            }
+
+            &--master {
+                .probeg-background-color(0.3);
+            }
+        }
     }
 
     &--marathon {
-        background-color: @marathon;
+        .marathon-background-color(0.5);
+
+        .info__division {
+            .marathon-background-color();
+        }
+
+        .col {
+            &--date {
+                .marathon-background-color(0.8);
+            }
+
+            &--place {
+                .marathon-background-color(0.5);
+            }
+
+            &--master {
+                .marathon-background-color(0.3);
+            }
+        }
     }
 }
 
@@ -40,52 +120,13 @@
     .info__division {
         border-top-style: dotted;
         border-top-width: 1px;
-
-        &--event {
-            border-top-color: rgb(78, 93, 108);
-        }
-
-        &--training {
-            border-top-color: rgb(92, 184, 92);
-        }
-
-        &--probeg {
-            border-top-color: rgb(240, 173, 78);
-        }
-
-        &--marathon {
-            border-top-color: rgb(217, 83, 79);
-        }
     }
 
-    .info__content {
-        display: flex;
+    .content__item {
         height: 60px;
+        line-height: 60px;
+        margin: 0;
     }
-
-    .col {
-        &--event {
-            background-color: @event;
-        }
-
-        &--training {
-            background-color: @training;
-        }
-
-        &--probeg {
-            background-color: @probeg;
-        }
-
-        &--marathon {
-            background-color: @marathon;
-        }
-    }
-}
-
-.eventCard__master,
-.eventCard__place,
-.eventCard__date {
-    margin: auto 0;
 }
 
 .eventCard__body {
@@ -130,7 +171,8 @@
     font-size: 22px;
 }
 
-.eventCard__description {
+.eventCard__description,
+.eventCard__message {
     margin: 0 0 40px 0;
     text-align: justify;
 }
