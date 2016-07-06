@@ -1,13 +1,15 @@
 
 <progress-bar text="Загрузка события..." ng-if="$ctrl.loadProgress"></progress-bar>
 
-<div class="page page--eventCard" ng-if="!$ctrl.loadProgress">
-    <div class="eventCard__header eventCard__header--{{ $ctrl.event.tag }}">
+<div class="page page--eventCard eventCard--{{ $ctrl.event.tag }}" ng-if="!$ctrl.loadProgress">
+    <div class="eventCard__header">
         <div class="container">
             <div class="row">
                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                     <div class="eventCard__jumbotron">
-                        <div class="eventCard__title">{{ $ctrl.event.title }}</div>
+                        <div class="eventCard__title">
+                            {{ $ctrl.event.title }}
+                        </div>
                         <div class="eventCard__abstract">{{ $ctrl.event.abstract }}</div>
                     </div>
                 </div>
@@ -58,16 +60,16 @@
     <div class="eventCard__body">
         <div class="container">
             <div class="row">
-                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 body__col--left">
                     <div class="eventCard__description" ng-if="$ctrl.event.description">
                         <p ng-bind-html="$ctrl.event.description"></p>
                     </div>
-                    <div class="eventCard__message">
-                        <p ng-bind-html="$ctrl.event.message"></p>
+                    <div class="eventCard__message" ng-if="$ctrl.event.message">
+                        <div ng-bind-html="$ctrl.event.message"></div>
                     </div>
-                    <div class="well well-sm well--programm">
-                        <table class="table table-hover table--programm">
-                            <caption class="table__caption">Программа</caption>
+                    <div class="eventCard__program">
+                        <p>Программа</p>
+                        <table class="table table-striped table--program">
                             <tbody>
                                 <tr><td>09:00</td><td>Начало регистрации участников</td></tr>
                                 <tr><td>10:45</td><td>Построение участников в стартовой зоне</td></tr>
@@ -80,7 +82,9 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 body__col--right">
+                    <a href="#" class="btn btn-default btn-lg btn-block"><i class="fa fa-download" aria-hidden="true"></i> Положение</a>
+                    <a ui-sref="events.startlist({ id: $ctrl.event.id })" class="btn btn-info btn-lg btn-block">Список участников</a>
                 </div>
             </div>
         </div>
@@ -92,7 +96,7 @@
                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group" role="group">
-                            <a ui-sref="events.edit({ id: $ctrl.event.id })" class="btn btn-default" ng-if="$ctrl.getAuth()">Редактировать событие</a>
+                            <a href="#" class="btn btn-lg btn-primary">Регистрация</a>
                         </div>
                     </div>
                 </div>

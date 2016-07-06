@@ -67,14 +67,7 @@
                             <div class="form-group">
                                 <label for="description" class="col-md-2 control-label">Подробное описание</label>
                                 <div class="col-md-10">
-                                    <textarea class="form-control" id="description" name="description" rows="5" ng-model="$ctrl.event.description" ng-disabled="$ctrl.disabledForm" autocomplete="off"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="description" class="col-md-2 control-label">Сообщение</label>
-                                <div class="col-md-10">
-                                    <text-angular name="message" ng-model="$ctrl.event.message" />
+                                    <textarea class="form-control" id="description" name="description" rows="5" ng-model="$ctrl.event.description" ng-disabled="$ctrl.disabledForm"></textarea>
                                 </div>
                             </div>
 
@@ -89,6 +82,13 @@
                                 <label for="distances" class="col-md-2 control-label">Дистанции</label>
                                 <div class="col-md-10">
                                     <input type="text" class="form-control" id="distances" name="distances" ng-model="$ctrl.event.distances" ng-disabled="$ctrl.disabledForm" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description" class="col-md-2 control-label">Сообщение организаторов</label>
+                                <div class="col-md-10">
+                                    <textarea class="form-control" id="message" name="message" rows="5" ng-model="$ctrl.event.message" ng-disabled="$ctrl.disabledForm"></textarea>
                                 </div>
                             </div>
 

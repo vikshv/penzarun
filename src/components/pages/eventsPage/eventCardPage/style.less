@@ -1,3 +1,8 @@
+@eventBorderColor: rgb(78, 93, 108);
+@trainingBorderColor: rgb(92, 184, 92);
+@probegBorderColor: rgb(240, 173, 78);
+@marathonBorderColor: rgb(217, 83, 79);
+
 .event-background-color(@aplha: 1) {
     background-color: rgba(78, 93, 108, @aplha);
 }
@@ -17,97 +22,107 @@
     }
 }
 
-.eventCard__header {
-    text-align: left;
-    margin-bottom: 40px;
-
+.eventCard {
     &--event {
-        .event-background-color(0.5);
+        .eventCard__header {
+            .event-background-color(0.5);
 
-        .info__division {
-            .event-background-color();
-        }
-
-        .col {
-            &--date {
-                .event-background-color(0.8);
+            .info__division {
+                border-color: @eventBorderColor;
             }
 
-            &--place {
-                .event-background-color(0.5);
-            }
+            .col {
+                &--date {
+                    .event-background-color(0.8);
+                }
 
-            &--master {
-                .event-background-color(0.3);
+                &--place {
+                    .event-background-color(0.5);
+                }
+
+                &--master {
+                    .event-background-color(0.3);
+                }
             }
         }
     }
 
     &--training {
-        .training-background-color(0.5);
+        .eventCard__header {
+            .training-background-color(0.5);
 
-        .info__division {
-            .training-background-color();
-        }
-
-        .col {
-            &--date {
-                .training-background-color(0.8);
+            .info__division {
+                border-color: @trainingBorderColor;
             }
 
-            &--place {
-                .training-background-color(0.5);
-            }
+            .col {
+                &--date {
+                    .training-background-color(0.8);
+                }
 
-            &--master {
-                .training-background-color(0.3);
+                &--place {
+                    .training-background-color(0.5);
+                }
+
+                &--master {
+                    .training-background-color(0.3);
+                }
             }
         }
     }
 
     &--probeg {
-        .probeg-background-color(0.5);
+        .eventCard__header {
+            .probeg-background-color(0.5);
 
-        .info__division {
-            .probeg-background-color();
-        }
-
-        .col {
-            &--date {
-                .probeg-background-color(0.8);
+            .info__division {
+                border-color: @probegBorderColor;
             }
 
-            &--place {
-                .probeg-background-color(0.5);
-            }
+            .col {
+                &--date {
+                    .probeg-background-color(0.8);
+                }
 
-            &--master {
-                .probeg-background-color(0.3);
+                &--place {
+                    .probeg-background-color(0.5);
+                }
+
+                &--master {
+                    .probeg-background-color(0.3);
+                }
             }
         }
     }
 
     &--marathon {
-        .marathon-background-color(0.5);
+        .eventCard__header {
+            .marathon-background-color(0.5);
 
-        .info__division {
-            .marathon-background-color();
-        }
-
-        .col {
-            &--date {
-                .marathon-background-color(0.8);
+            .info__division {
+                border-color: @marathonBorderColor;
             }
 
-            &--place {
-                .marathon-background-color(0.5);
-            }
+            .col {
+                &--date {
+                    .marathon-background-color(0.8);
+                }
 
-            &--master {
-                .marathon-background-color(0.3);
+                &--place {
+                    .marathon-background-color(0.5);
+                }
+
+                &--master {
+                    .marathon-background-color(0.3);
+                }
             }
         }
     }
+}
+
+.eventCard__header {
+    text-align: left;
+    margin-bottom: 40px;
 }
 
 .eventHeader__info {
@@ -126,6 +141,9 @@
         height: 60px;
         line-height: 60px;
         margin: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 }
 
@@ -142,17 +160,13 @@
         margin-bottom: 8px;
     }
 
-    .well.well--programm {
-        background-color: rgba(78,93,108,0.5);
-    }
-
-    .table--programm {
+    .table--program {
         font-size: 14px;
+        margin: 0;
     }
 
-    .table__caption {
-        color: #ebebeb;
-        font-size: 15px;
+    .body__col--left {
+        border-right: 1px solid #ebebeb;
     }
 }
 

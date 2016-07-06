@@ -4,12 +4,14 @@ import uiRouter from 'angular-ui-router';
 import eventFormPage from './eventFormPage';
 import eventCardPage from './eventCardPage';
 import eventsListPage from './eventsListPage';
+import eventStartlist from './eventStartlist';
 
 export default angular.module('app.components.pages.events', [
         uiRouter,
         eventFormPage.name,
         eventCardPage.name,
-        eventsListPage.name
+        eventsListPage.name,
+        eventStartlist.name
     ])
     .config(function($stateProvider) {
         'ngInject';
@@ -58,4 +60,13 @@ export default angular.module('app.components.pages.events', [
                 },
                 controllerAs: '$ctrl'
             })
+            .state('events.startlist', {
+                url: '/startlist/:id',
+                template: '<event-startlist-page id="$ctrl.id"></event-startlist-page>',
+                controller: function($stateParams) {
+                    'ngInject';
+                    this.id = $stateParams.id;
+                },
+                controllerAs: '$ctrl'
+            });
     });

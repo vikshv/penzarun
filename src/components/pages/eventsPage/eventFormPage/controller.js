@@ -49,7 +49,7 @@ export default class EventFormPageController {
             place = 'г. Пенза, Олимпийская аллея',
             distances = '',
             master,
-            message
+            message = ''
         } = this.event;
 
         this._startSaveProgress();
