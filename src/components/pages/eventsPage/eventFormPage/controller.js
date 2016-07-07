@@ -10,6 +10,17 @@ export default class EventFormPageController {
 
         this.dateFormat = 'EEEE, dd MMMM yyyy';
         this.datePopupIsOpen = false;
+
+        this._initCkeditorOptions();
+    }
+
+    _initCkeditorOptions() {
+        this.ckeditorOptions = {
+            language: 'ru',
+            allowedContent: true,
+            entities: false,
+            height: 300
+        };
     }
 
     _initEvent() {
@@ -48,8 +59,7 @@ export default class EventFormPageController {
             tag, 
             place = 'г. Пенза, Олимпийская аллея',
             distances = '',
-            master,
-            message = ''
+            master
         } = this.event;
 
         this._startSaveProgress();
@@ -62,8 +72,7 @@ export default class EventFormPageController {
                 tag,
                 place,
                 distances,
-                master,
-                message
+                master
             })
             .then(() => {
                 this._gotoEventList();
@@ -115,21 +124,29 @@ export default class EventFormPageController {
 
     _startSaveProgress() {
         this.saveProgress = this.disabledForm = true;
+        this._setReadOnlyCKEDITOR(this.disabledForm);
     }
 
     _stopSaveProgress() {
         this.saveProgress = this.disabledForm = false;
+        this._setReadOnlyCKEDITOR(this.disabledForm);
     }
 
     _startRemoveProgress() {
         this.removeProgress = this.disabledForm = true;
+        this._setReadOnlyCKEDITOR(this.disabledForm);
     }
 
     _stopRemoveProgress() {
         this.removeProgress = this.disabledForm = false;
+        this._setReadOnlyCKEDITOR(this.disabledForm);
     }
 
     _gotoEventList() {
         this.$state.go('events.list');
+    }
+
+    _setReadOnlyCKEDITOR(val) {
+        CKEDITOR.instances.eventDescription.setReadOnly(val);
     }
 };

@@ -19,7 +19,8 @@ module.exports = {
             'firebase',
             'angular-ui-bootstrap',
             'babel-polyfill',
-            'jquery'
+            'jquery',
+            'angular-ckeditor/angular-ckeditor.min.js'
         ],
         penzarun: './src/index.js'
     },
