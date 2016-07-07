@@ -1,4 +1,10 @@
-# Penzarun - web site about running and runners of Penza city
+# Penzarun
+
+[![Dependency Status](https://david-dm.org/vikshv/penzarun.svg?theme=shields.io)](https://david-dm.org/penzarun/penzarun)
+[![devDependency Status](https://david-dm.org/vikshv/penzarun/dev-status.svg?theme=shields.io)](https://david-dm.org/penzarun/penzarun#info=devDependencies)
+
+Web site about run and running of Penza city
+
 ## install
 `npm install`
 
