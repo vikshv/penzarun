@@ -10,7 +10,7 @@ Web site about run and running of Penza city
 ### Using npm
 
 ```sh
-`npm install`
+npm install
 ```
 
 ## Usage
@@ -18,5 +18,5 @@ Web site about run and running of Penza city
 ### Run locally http://localhost:3000/dist
 
 ```sh
-`npm start`
+npm start
 ```
