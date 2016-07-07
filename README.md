@@ -5,8 +5,18 @@
 
 Web site about run and running of Penza city
 
-## install
-`npm install`
+## Install
 
-## Run locally http://localhost:3000
+### Using npm
+
+```sh
+`npm install`
+```
+
+## Usage
+
+### Run locally http://localhost:3000/dist
+
+```sh
 `npm start`
+```
