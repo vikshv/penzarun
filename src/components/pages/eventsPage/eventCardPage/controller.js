@@ -1,7 +1,8 @@
 export default class EventCardPageController {
-    constructor(EventService) {
+    constructor($sce, EventService) {
         'ngInject';
         
+        this.$sce = $sce;
         this.EventService = EventService;
         
         this._initEvent();
@@ -30,5 +31,9 @@ export default class EventCardPageController {
 
     _stopLoadProgress() {
         this.loadProgress = false;
+    }
+
+    getDescriptionHtml() {
+        return this.$sce.trustAsHtml(this.event.description);
     }
 };

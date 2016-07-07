@@ -39,7 +39,7 @@
                             
                             <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('title') }">
                                 <label for="title" class="col-md-2 control-label">Заголовок</label>
-                                <div class="col-md-10">
+                                <div class="col-md-8">
                                     <input type="text" class="form-control" id="title" name="title" required ng-model="$ctrl.event.title" ng-disabled="$ctrl.disabledForm" autocomplete="off">
                                     <div ng-messages="event.title.$error" ng-if="$ctrl.isHasError('title')" role="alert">
                                         <div ng-message="required" class="form__message--error">Введите заголовок</div>
@@ -49,8 +49,8 @@
 
                             <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('master') }">
                                 <label for="master" class="col-md-2 control-label">Организаторы</label>
-                                <div class="col-md-10">
-                                    <input type="text" class="form-control" id="master" name="master" required ng-model="$ctrl.event.master" ng-disabled="$ctrl.disabledForm">
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control" id="master" name="master" placeholder="Сообщество &ldquo;Бег в Пензе&rdquo;" required ng-model="$ctrl.event.master" ng-disabled="$ctrl.disabledForm">
                                     <div ng-messages="event.master.$error" ng-if="$ctrl.isHasError('master')" role="alert">
                                         <div ng-message="required" class="form__message--error">Укажите организаторов</div>
                                     </div>
@@ -58,37 +58,16 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="abstract" class="col-md-2 control-label">Краткое описание</label>
-                                <div class="col-md-10">
-                                    <input type="text" class="form-control" id="abstract" name="abstract" ng-model="$ctrl.event.abstract" ng-disabled="$ctrl.disabledForm" autocomplete="off">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="description" class="col-md-2 control-label">Подробное описание</label>
-                                <div class="col-md-10">
-                                    <textarea class="form-control" id="description" name="description" rows="5" ng-model="$ctrl.event.description" ng-disabled="$ctrl.disabledForm"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
                                 <label for="place" class="col-md-2 control-label">Место проведения</label>
-                                <div class="col-md-10">
+                                <div class="col-md-5">
                                     <input type="text" class="form-control" id="place" name="place" placeholder="г. Пенза, Олимпийская аллея" ng-model="$ctrl.event.place" ng-disabled="$ctrl.disabledForm" autocomplete="off">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="distances" class="col-md-2 control-label">Дистанции</label>
-                                <div class="col-md-10">
-                                    <input type="text" class="form-control" id="distances" name="distances" ng-model="$ctrl.event.distances" ng-disabled="$ctrl.disabledForm" autocomplete="off">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="description" class="col-md-2 control-label">Сообщение организаторов</label>
-                                <div class="col-md-10">
-                                    <textarea class="form-control" id="message" name="message" rows="5" ng-model="$ctrl.event.message" ng-disabled="$ctrl.disabledForm"></textarea>
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control" id="distances" name="distances" placeholder="1 км, 3 км, 5 км, 10 км, полумарафон, марафон" ng-model="$ctrl.event.distances" ng-disabled="$ctrl.disabledForm" autocomplete="off">
                                 </div>
                             </div>
 
@@ -107,6 +86,22 @@
                                     <label class="radio-inline">
                                         <input type="radio" name="tag" id="inlineRadio3" value="training" ng-model="$ctrl.event.tag"> <span class="label label-success label--md">Тренировка</span>
                                     </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group"></div>
+
+                            <div class="form-group">
+                                <label for="abstract" class="col-md-2 control-label">Краткое описание</label>
+                                <div class="col-md-10">
+                                    <textarea class="form-control" id="abstract" name="abstract" rows="2" ng-model="$ctrl.event.abstract" ng-disabled="$ctrl.disabledForm" autocomplete="off"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description" class="col-md-2 control-label">Подробное описание</label>
+                                <div class="col-md-10">
+                                    <div ckeditor="$ctrl.ckeditorOptions" id="eventDescription" ng-model="$ctrl.event.description"></div>
                                 </div>
                             </div>
 
