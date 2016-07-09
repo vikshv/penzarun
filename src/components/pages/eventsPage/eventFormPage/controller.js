@@ -1,10 +1,11 @@
 export default class EventFormPageController {
-    constructor($scope, $state, EventService) {
+    constructor($scope, $state, EventService, ProvisionFileService) {
         'ngInject';
         
         this.$scope = $scope;
         this.$state = $state;
         this.EventService = EventService;
+        this.ProvisionFileService = ProvisionFileService;
         
         this._initEvent();
 
@@ -29,6 +30,12 @@ export default class EventFormPageController {
             this.EventService.getEvent(this.id)
                 .then(event => {
                     this.event = event;
+                    return event.id;
+                })
+                .then(id => {
+                    return this.ProvisionFileService.isFileExist(id, 'Положение');
+                })
+                .then(() => {
                     this._stopLoadProgress();
                 })
                 .catch(error => {
@@ -63,24 +70,34 @@ export default class EventFormPageController {
         } = this.event;
 
         this._startSaveProgress();
+
         this._saveEvent({
-                date: date.getTime(),
-                time,
-                title,
-                abstract,
-                description,
-                tag,
-                place,
-                distances,
-                master
-            })
-            .then(() => {
-                this._gotoEventList();
-            })
-            .catch(error => {
-                this._stopSaveProgress();
-                throw Error(error);
-            });
+            date: date.getTime(),
+            time,
+            title,
+            abstract,
+            description,
+            tag,
+            place,
+            distances,
+            master
+        })
+        .then(id => {
+            if (this.provisionFile) {
+                return this.ProvisionFileService.upload({
+                    key: id,
+                    file: this.provisionFile, 
+                    fileName: 'Положение'
+                });
+            }
+        })
+        .then(() => {
+            this._gotoEventList();
+        })
+        .catch(error => {
+            this._stopSaveProgress();
+            throw Error(error);
+        });
     }
 
     onClickRemoveButton() {
@@ -90,6 +107,10 @@ export default class EventFormPageController {
 
     onClickCancelButton() {
         this._gotoEventList();
+    }
+
+    removeProvision() {
+        debugger;
     }
 
     _saveEvent(data) {

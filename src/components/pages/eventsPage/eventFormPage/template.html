@@ -49,7 +49,7 @@
 
                             <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('master') }">
                                 <label for="master" class="col-md-2 control-label">Организаторы</label>
-                                <div class="col-md-5">
+                                <div class="col-md-8">
                                     <input type="text" class="form-control" id="master" name="master" placeholder="Сообщество &ldquo;Бег в Пензе&rdquo;" required ng-model="$ctrl.event.master" ng-disabled="$ctrl.disabledForm">
                                     <div ng-messages="event.master.$error" ng-if="$ctrl.isHasError('master')" role="alert">
                                         <div ng-message="required" class="form__message--error">Укажите организаторов</div>
@@ -59,14 +59,14 @@
 
                             <div class="form-group">
                                 <label for="place" class="col-md-2 control-label">Место проведения</label>
-                                <div class="col-md-5">
+                                <div class="col-md-8">
                                     <input type="text" class="form-control" id="place" name="place" placeholder="г. Пенза, Олимпийская аллея" ng-model="$ctrl.event.place" ng-disabled="$ctrl.disabledForm" autocomplete="off">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="distances" class="col-md-2 control-label">Дистанции</label>
-                                <div class="col-md-5">
+                                <div class="col-md-8">
                                     <input type="text" class="form-control" id="distances" name="distances" placeholder="1 км, 3 км, 5 км, 10 км, полумарафон, марафон" ng-model="$ctrl.event.distances" ng-disabled="$ctrl.disabledForm" autocomplete="off">
                                 </div>
                             </div>
@@ -102,6 +102,23 @@
                                 <label for="description" class="col-md-2 control-label">Подробное описание</label>
                                 <div class="col-md-10">
                                     <div ckeditor="$ctrl.ckeditorOptions" id="eventDescription" ng-model="$ctrl.event.description"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description" class="col-md-2 control-label">Положение</label>
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" readonly ng-model="$ctrl.provisionFile.name">
+                                        <span class="input-group-btn">
+                                            <upload-file-button upload-file="$ctrl.provisionFile"></upload-file-button>
+                                        </span>
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-danger" type="button" ng-click="$ctrl.removeProvision()">
+                                                <i class="fa fa-times" aria-hidden="true"></i>
+                                            </button>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
 

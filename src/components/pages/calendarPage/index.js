@@ -1,11 +1,9 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import component from './component';
-import eventsList from 'components/common/eventsList';
 
 export default angular.module('app.components.pages.calendar', [
-        uiRouter,
-        eventsList.name
+        uiRouter
     ])
     .config(function($stateProvider) {
         'ngInject';

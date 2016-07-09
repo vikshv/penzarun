@@ -57,13 +57,19 @@ export default class EventService {
         Object.assign(obj, data, {
             editTimestamp: Date.now()
         });
-        return obj.$save();
+        return obj.$save()
+            .then(ref => {
+                return ref.key;
+            });
     }
 
     addEvent(data) {
         return this.list.$add({
                 ...data,
                 createTimestamp: Date.now()
+            })
+            .then(ref => {
+                return ref.key;
             });
     }
 

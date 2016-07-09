@@ -7,6 +7,7 @@ import angularfire from 'angularfire';
 import uiBootstrap from 'angular-ui-bootstrap';
 
 import components from './components';
+import directives from './directives';
 import services from './services';
 
 import './style.less';
@@ -17,6 +18,7 @@ angular.module('app', [
         uiBootstrap,
 
         components.name,
+        directives.name,
         services.name
     ])
     .config(function($urlRouterProvider) {
@@ -28,7 +30,7 @@ angular.module('app', [
             apiKey: 'AIzaSyBmx88VowTEZpgtDyM02J3Y0Ntq6wBPaOE',
             authDomain: 'project-5043437142388192252.firebaseapp.com',
             databaseURL: 'https://project-5043437142388192252.firebaseio.com',
-            storageBucket: ''
+            storageBucket: 'gs://project-5043437142388192252.appspot.com'
         });
     })
     .run(function($rootScope, $state) {
