@@ -1,11 +1,11 @@
 export default class EventFormPageController {
-    constructor($scope, $state, EventService, ProvisionFileService) {
+    constructor($scope, $state, EventService, FileStorageService) {
         'ngInject';
         
         this.$scope = $scope;
         this.$state = $state;
         this.EventService = EventService;
-        this.ProvisionFileService = ProvisionFileService;
+        this.FileStorageService = FileStorageService;
         
         this._initEvent();
 
@@ -32,8 +32,13 @@ export default class EventFormPageController {
                     this.event = event;
                     return event.id;
                 })
-                .then(id => {
-                    return this.ProvisionFileService.isFileExist(id, 'Положение');
+                .then(eventId => {
+                    return this.FileStorageService.getProvisionFileName(eventId);
+                })
+                .then(name => {
+                    this.provisionFile = {
+                        name
+                    };
                 })
                 .then(() => {
                     this._stopLoadProgress();
@@ -84,11 +89,11 @@ export default class EventFormPageController {
         })
         .then(id => {
             if (this.provisionFile) {
-                return this.ProvisionFileService.upload({
-                    key: id,
-                    file: this.provisionFile, 
-                    fileName: 'Положение'
-                });
+                if (this.provisionFile.size) {
+                    return this._uploadProvisionFile(id);
+                }
+            } else {
+                return this._deleteProvisionFile(id);
             }
         })
         .then(() => {
@@ -110,7 +115,7 @@ export default class EventFormPageController {
     }
 
     removeProvision() {
-        debugger;
+        this.provisionFile = null;
     }
 
     _saveEvent(data) {
@@ -133,6 +138,14 @@ export default class EventFormPageController {
                 this._stopRemoveProgress();
                 throw Error(error);
             });
+    }
+
+    _uploadProvisionFile(eventId) {
+        return this.FileStorageService.uploadProvisionFile(eventId, this.provisionFile);
+    }
+
+    _deleteProvisionFile(eventId) {
+        return this.FileStorageService.deleteProvisionFile(eventId);
     }
 
     _startLoadProgress() {

@@ -1,10 +1,10 @@
 export default class EventCardPageController {
-    constructor($sce, EventService, ProvisionFileService) {
+    constructor($sce, EventService, FileStorageService) {
         'ngInject';
         
         this.$sce = $sce;
         this.EventService = EventService;
-        this.ProvisionFileService = ProvisionFileService;
+        this.FileStorageService = FileStorageService;
         
         this._initEvent();
     }
@@ -17,8 +17,8 @@ export default class EventCardPageController {
                     this.event = event;
                     return event.id;
                 })
-                .then(id => {
-                    return this.ProvisionFileService.getUrl(id, 'Положение');
+                .then(eventId => {
+                    return this.FileStorageService.getProvisionFileUrl(eventId);
                 })
                 .then(url => {
                     this.provisionFileUrl = url;
