@@ -1,0 +1,29 @@
+<div class="eventCard__body">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 leftBlock">
+                <div class="eventCard__description" ng-if="$ctrl.event.description" ng-bind-html="$ctrl.getDescriptionHtml()"></div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 rightBlock">
+                <div class="rightBlock__buttons">
+                    <a href="{{ $ctrl.provisionFileUrl }}" class="btn btn-default btn-lg btn-block" ng-if="$ctrl.provisionFileUrl">
+                        <i class="fa fa-download" aria-hidden="true"></i> Положение
+                    </a>
+                    <a ui-sref="events.startlist({ id: $ctrl.event.id })" class="btn btn-info btn-lg btn-block">Список участников</a>
+                </div>
+                <div>
+                    <h4>Контакты</h4>
+                    <address>
+                        <strong>{{ $ctrl.event.master }}</strong>,<br>
+                        <abbr title="Адрес в сети Интернет">www:</abbr> <a target="_blank" href="https://vk.com/penzarun" rel="nofollow">vk.com/penzarun</a>
+                    </address>
+                    <address>
+                        <strong>Швецов Виктор Владимирович</strong><br>
+                        <abbr title="Телефон">Тел:</abbr> 8-909-319-63-54<br>
+                        <abbr title="Электронная почта">Эл. почта:</abbr> <a href="mailto:#">first.last@example.com</a>
+                    </address>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
