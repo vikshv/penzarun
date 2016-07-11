@@ -5,10 +5,20 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="well">
+                <div class="well well-sm well--form">
                     <form name="event" class="form-horizontal" ng-submit="$ctrl.submit()">
                         <fieldset>
                             <legend>{{ $ctrl.id ? 'Редактирование события' : 'Добавление нового события' }}</legend>
+
+                            <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('title') }">
+                                <label for="title" class="col-md-2 control-label">Заголовок</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" id="title" name="title" required ng-model="$ctrl.event.title" ng-disabled="$ctrl.disabledForm" autocomplete="off">
+                                    <div ng-messages="event.title.$error" ng-if="$ctrl.isHasError('title')" role="alert">
+                                        <div ng-message="required" class="form__message--error">Введите заголовок</div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('date') }">
                                 <label for="date" class="col-md-2 control-label">Дата события</label>
@@ -36,16 +46,44 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('title') }">
-                                <label for="title" class="col-md-2 control-label">Заголовок</label>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control" id="title" name="title" required ng-model="$ctrl.event.title" ng-disabled="$ctrl.disabledForm" autocomplete="off">
-                                    <div ng-messages="event.title.$error" ng-if="$ctrl.isHasError('title')" role="alert">
-                                        <div ng-message="required" class="form__message--error">Введите заголовок</div>
-                                    </div>
+
+                            <div class="form-group">
+                                <label for="place" class="col-md-2 control-label">Место проведения</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="place" name="place" placeholder="г. Пенза, Олимпийская аллея" ng-model="$ctrl.event.place" ng-disabled="$ctrl.disabledForm" autocomplete="off">
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label for="distances" class="col-md-2 control-label">Дистанции</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="distances" name="distances" placeholder="1 км, 3 км, 5 км, 10 км, полумарафон, марафон" ng-model="$ctrl.event.distances" ng-disabled="$ctrl.disabledForm" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tag" class="col-md-2 control-label">Теги</label>
+                                <div class="col-md-8">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="tag" id="inlineRadio1" value="event" ng-model="$ctrl.event.tag">
+                                        <span class="label label-default label--md">Событие</span>
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="tag" id="inlineRadio1" value="probeg" ng-model="$ctrl.event.tag">
+                                        <span class="label label-warning label--md">Пробег</span>
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="tag" id="inlineRadio2" value="marathon" ng-model="$ctrl.event.tag">
+                                        <span class="label label-danger label--md">Марафон</span>
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="tag" id="inlineRadio3" value="training" ng-model="$ctrl.event.tag">
+                                        <span class="label label-success label--md">Тренировка</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group"></div>
 
                             <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('master') }">
                                 <label for="master" class="col-md-2 control-label">Организаторы</label>
@@ -58,34 +96,33 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="place" class="col-md-2 control-label">Место проведения</label>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control" id="place" name="place" placeholder="г. Пенза, Олимпийская аллея" ng-model="$ctrl.event.place" ng-disabled="$ctrl.disabledForm" autocomplete="off">
+                                <label for="masterUrl" class="col-md-2 control-label">Сайт организаторов</label>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">www</span>
+                                        <input type="text" class="form-control" id="masterUrl" name="masterUrl" ng-model="$ctrl.event.masterUrl" ng-disabled="$ctrl.disabledForm">
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="distances" class="col-md-2 control-label">Дистанции</label>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control" id="distances" name="distances" placeholder="1 км, 3 км, 5 км, 10 км, полумарафон, марафон" ng-model="$ctrl.event.distances" ng-disabled="$ctrl.disabledForm" autocomplete="off">
+                                <label for="masterPerson" class="col-md-2 control-label">Контактное лицо</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="masterPerson" name="masterPerson" ng-model="$ctrl.event.masterPerson" ng-disabled="$ctrl.disabledForm">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="tag" class="col-md-2 control-label">Теги</label>
-                                <div class="col-md-10">
-                                    <label class="radio-inline">
-                                        <input type="radio" name="tag" id="inlineRadio1" value="event" ng-model="$ctrl.event.tag"> <span class="label label-default label--md">Событие</span>
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="tag" id="inlineRadio1" value="probeg" ng-model="$ctrl.event.tag"> <span class="label label-warning label--md">Пробег</span>
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="tag" id="inlineRadio2" value="marathon" ng-model="$ctrl.event.tag"> <span class="label label-danger label--md">Марафон</span>
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="tag" id="inlineRadio3" value="training" ng-model="$ctrl.event.tag"> <span class="label label-success label--md">Тренировка</span>
-                                    </label>
+                                <label for="masterPhone" class="col-md-2 control-label">Телефон</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="masterPhone" name="masterPhone" ng-model="$ctrl.event.masterPhone" ng-disabled="$ctrl.disabledForm">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="masterEmail" class="col-md-2 control-label">Адрес эл. почты</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="masterEmail" name="masterEmail" placeholder="info@penzarun.ru" ng-model="$ctrl.event.masterEmail" ng-disabled="$ctrl.disabledForm">
                                 </div>
                             </div>
 
@@ -93,21 +130,21 @@
 
                             <div class="form-group">
                                 <label for="abstract" class="col-md-2 control-label">Краткое описание</label>
-                                <div class="col-md-10">
+                                <div class="col-md-8">
                                     <textarea class="form-control" id="abstract" name="abstract" rows="2" ng-model="$ctrl.event.abstract" ng-disabled="$ctrl.disabledForm" autocomplete="off"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="description" class="col-md-2 control-label">Подробное описание</label>
-                                <div class="col-md-10">
+                                <div class="col-md-8">
                                     <div ckeditor="$ctrl.ckeditorOptions" id="eventDescription" ng-model="$ctrl.event.description"></div>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="description" class="col-md-2 control-label">Положение</label>
-                                <div class="col-md-10">
+                                <div class="col-md-8">
                                     <div class="input-group">
                                         <input type="text" class="form-control" readonly ng-value="$ctrl.provisionFile.name">
                                         <span class="input-group-btn">
@@ -125,7 +162,7 @@
                             <div class="form-group"></div>
 
                             <div class="form-group">
-                                <div class="col-md-10 col-md-offset-2">
+                                <div class="col-md-8 col-md-offset-2">
                                     <button type="submit" class="btn btn-primary" ng-disabled="event.$invalid || $ctrl.disabledForm">
                                         <i class="fa fa-lg fa-spinner fa-spin" ng-if="$ctrl.saveProgress"></i> Сохранить
                                     </button>

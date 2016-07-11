@@ -6,21 +6,31 @@
             </div>
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 rightBlock">
                 <div class="rightBlock__buttons">
-                    <a href="{{ $ctrl.provisionFileUrl }}" class="btn btn-default btn-lg btn-block" ng-if="$ctrl.provisionFileUrl">
-                        <i class="fa fa-download" aria-hidden="true"></i> Положение
+                    <a ng-href="{{ $ctrl.provisionFileUrl }}" class="btn btn-default btn-lg btn-block" ng-if="$ctrl.provisionFileUrl">
+                        <i class="fa fa-download" aria-hidden="true"></i> Положение ({{ $ctrl.getFileSize() }})
                     </a>
                     <a ui-sref="events.startlist({ id: $ctrl.event.id })" class="btn btn-info btn-lg btn-block">Список участников</a>
                 </div>
                 <div>
                     <h4>Контакты</h4>
                     <address>
-                        <strong>{{ $ctrl.event.master }}</strong>,<br>
-                        <abbr title="Адрес в сети Интернет">www:</abbr> <a target="_blank" href="https://vk.com/penzarun" rel="nofollow">vk.com/penzarun</a>
+                        <div>
+                            <strong>{{ $ctrl.event.master }}</strong>
+                        </div>
+                        <div ng-if="$ctrl.event.masterUrl">
+                            <abbr title="Адрес в сети Интернет">www:</abbr> <a target="_blank" rel="nofollow" ng-href="http://www.{{ $ctrl.event.masterUrl }}">{{ $ctrl.event.masterUrl }}</a>
+                        </div>
                     </address>
-                    <address>
-                        <strong>Швецов Виктор Владимирович</strong><br>
-                        <abbr title="Телефон">Тел:</abbr> 8-909-319-63-54<br>
-                        <abbr title="Электронная почта">Эл. почта:</abbr> <a href="mailto:#">first.last@example.com</a>
+                    <address ng-if="$ctrl.event.masterPerson">
+                        <div>
+                            <strong>{{ $ctrl.event.masterPerson }}</strong>
+                        </div>
+                        <div ng-if="$ctrl.event.masterPhone">
+                            <abbr title="Телефон">Тел:</abbr> {{ $ctrl.event.masterPhone }}
+                        </div>
+                        <div ng-if="$ctrl.event.masterEmail">
+                            <abbr title="Электронная почта">Эл. почта:</abbr> <a href="mailto:#">{{ $ctrl.event.masterEmail }}</a>
+                        </div>
                     </address>
                 </div>
             </div>

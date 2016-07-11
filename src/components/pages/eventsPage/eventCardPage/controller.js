@@ -18,10 +18,15 @@ export default class EventCardPageController {
                     return event.id;
                 })
                 .then(eventId => {
-                    return this.FileStorageService.getProvisionFileUrl(eventId);
+                    return Promise.all([
+                        this.FileStorageService.getProvisionFileUrl(eventId),
+                        this.FileStorageService.getProvisionFileSize(eventId)
+                    ]);
                 })
-                .then(url => {
-                    this.provisionFileUrl = url;
+                .then(result => {
+                    console.log({result})
+                    this.provisionFileUrl = result[0];
+                    this.provisionFileSize = result[1];
                 })
                 .then(() => {
                     this._stopLoadProgress();

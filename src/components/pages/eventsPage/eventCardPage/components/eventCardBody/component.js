@@ -7,6 +7,7 @@ export default {
     controller,
     bindings: {
         event: '<',
-        provisionFileUrl: '<'
+        provisionFileUrl: '<',
+        provisionFileSize: '<'
     }
 };

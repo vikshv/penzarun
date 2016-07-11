@@ -30,6 +30,13 @@ export default class FileStorageServiceController {
         });
     }
 
+    getProvisionFileSize(eventKey) {
+        return this._getFileSize({
+            eventKey,
+            fileName: fileName.provision
+        });
+    }
+
     _getFileRef(key, fileName) {
         return this.storageRef.child(`${fileName}${key}`);
     }
@@ -76,7 +83,14 @@ export default class FileStorageServiceController {
     _getFileName(options) {
         return this._getFileMetadata(options)
             .then(metadata => {
-                return metadata ? metadata.name : metadata;
+                return metadata ? metadata.name : null;
+            });
+    }
+
+    _getFileSize(options) {
+        return this._getFileMetadata(options)
+            .then(metadata => {
+                return metadata ? metadata.size : null;
             });
     }
 

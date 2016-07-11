@@ -26,7 +26,11 @@ export default class EventService {
                     tag = 'event', 
                     place, 
                     distances,
-                    master
+                    master,
+                    masterUrl,
+                    masterPerson,
+                    masterPhone,
+                    masterEmail
                 } = result;
 
                 return {
@@ -40,7 +44,11 @@ export default class EventService {
                     date: new Date(date),
                     place,
                     distances,
-                    master
+                    master,
+                    masterUrl,
+                    masterPerson,
+                    masterPhone,
+                    masterEmail
                 };
             });
     }
