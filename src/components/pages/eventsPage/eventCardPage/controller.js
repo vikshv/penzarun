@@ -24,7 +24,6 @@ export default class EventCardPageController {
                     ]);
                 })
                 .then(result => {
-                    console.log({result})
                     this.provisionFileUrl = result[0];
                     this.provisionFileSize = result[1];
                 })
