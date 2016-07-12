@@ -4,7 +4,7 @@
             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                 <div class="btn-toolbar" role="toolbar">
                     <div class="btn-group" role="group">
-                        <a href="#" class="btn btn-lg btn-primary">Регистрация</a>
+                        <a class="btn btn-lg btn-primary" ui-sref="events.register({ id: $ctrl.eventId })" ng-if="$ctrl.isAuth()">Регистрация</a>
                     </div>
                 </div>
             </div>

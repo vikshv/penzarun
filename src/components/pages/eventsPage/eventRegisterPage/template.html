@@ -1,0 +1,136 @@
+
+<progress-bar text="Загрузка информации о событии..." ng-if="$ctrl.progress"></progress-bar>
+
+<div class="page page--eventRegister">
+    <div class="container" ng-hide="$ctrl.progress">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="well well--form">
+                    <form name="member" class="form-horizontal" ng-submit="$ctrl.submit()">
+                        <fieldset>
+                            <legend>Регистрация</legend>
+
+                            <div class="form-group">
+                                <label for="place" class="col-md-2 control-label">Событие</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static form-control-static--event">
+                                        {{ $ctrl.event.title }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="place" class="col-md-2 control-label">Дата и время</label>
+                                <div class="col-md-4">
+                                    <p class="form-control-static form-control-static--event">
+                                        {{ $ctrl.event.date | date: 'EEEE, dd MMMM yyyy' }}, {{ $ctrl.event.time }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="place" class="col-md-2 control-label">Место проведения</label>
+                                <div class="col-md-4">
+                                    <p class="form-control-static form-control-static--event">
+                                        {{ $ctrl.event.place }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="place" class="col-md-2 control-label">Дистанции</label>
+                                <div class="col-md-4">
+                                    <p class="form-control-static form-control-static--event">
+                                        {{ $ctrl.event.distances }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('fio') }">
+                                <label for="fio" class="col-md-2 control-label">ФИО</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" name="fio" required ng-model="$ctrl.member.fio" ng-disabled="$ctrl.disabledForm" autocomplete="off">
+                                    <div ng-messages="member.fio.$error" ng-if="$ctrl.isHasError('fio')" role="alert">
+                                        <div ng-message="required" class="form__message--error">Введите ФИО</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('age') }">
+                                <label for="age" class="col-md-2 control-label">Год рождения</label>
+                                <div class="col-md-4">
+                                    <input type="text" maxlength="4" class="form-control" name="age" required ng-model="$ctrl.member.age" ng-disabled="$ctrl.disabledForm" autocomplete="off">
+                                    <div ng-messages="member.age.$error" ng-if="$ctrl.isHasError('age')" role="alert">
+                                        <div ng-message="required" class="form__message--error">Введите год рождения</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="gender" class="col-md-2 control-label">Пол</label>
+                                <div class="col-md-4">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="gender" value="муж" checked ng-model="$ctrl.member.gender"> муж
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="gender" value="жен" ng-model="$ctrl.member.gender"> жен
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('distance') }">
+                                <label for="distance" class="col-md-2 control-label">Дистанция</label>
+                                <div class="col-md-4">
+                                    <input type="text" maxlength="32" class="form-control" name="distance" required ng-model="$ctrl.member.distance" ng-disabled="$ctrl.disabledForm" autocomplete="off">
+                                    <div ng-messages="member.distance.$error" ng-if="$ctrl.isHasError('distance')" role="alert">
+                                        <div ng-message="required" class="form__message--error">Введите дистанцию</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="startNumber" class="col-md-2 control-label">Стартовый номер</label>
+                                <div class="col-md-4">
+                                    <input type="text" maxlength="8" class="form-control" name="startNumber" placeholder="без номера">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="city" class="col-md-2 control-label">Город</label>
+                                <div class="col-md-4">
+                                    <input type="text" maxlength="32" class="form-control" name="city" placeholder="Пенза">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="club" class="col-md-2 control-label">Клуб</label>
+                                <div class="col-md-4">
+                                    <input type="text" maxlength="64" class="form-control" name="club" placeholder="Не состою в клубе">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="сountry" class="col-md-2 control-label">Страна/Регион</label>
+                                <div class="col-md-4">
+                                    <input type="text" maxlength="64" class="form-control" name="сountry" placeholder="Россия">
+                                </div>
+                            </div>
+
+                            <div class="form-group"></div>
+
+                            <div class="form-group">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <button type="submit" class="btn btn-primary" ng-disabled="member.$invalid || $ctrl.disabledForm">
+                                        <i class="fa fa-lg fa-spinner fa-spin" ng-if="$ctrl.registerProgress"></i> Регистрация
+                                    </button>
+                                    <button type="button" class="btn btn-default" ng-click="$ctrl.onClickCancelButton()" ng-disabled="$ctrl.disabledForm">Отмена</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

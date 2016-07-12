@@ -1,8 +1,7 @@
 export default class EventCardPageController {
-    constructor($sce, EventService, FileStorageService, StartlistService) {
+    constructor(EventService, FileStorageService, StartlistService) {
         'ngInject';
         
-        this.$sce = $sce;
         this.EventService = EventService;
         this.FileStorageService = FileStorageService;
         this.StartlistService = StartlistService;
@@ -19,14 +18,7 @@ export default class EventCardPageController {
                     return event.id;
                 })
                 .then(eventId => {
-                    return Promise.all([
-                        this.FileStorageService.getProvisionFileUrl(eventId),
-                        this.FileStorageService.getProvisionFileSize(eventId)
-                    ]);
-                })
-                .then(result => {
-                    this.provisionFileUrl = result[0];
-                    this.provisionFileSize = result[1];
+                    return this._initProvisionFile(eventId); 
                 })
                 .then(() => {
                     return this.StartlistService.getStartlist(this.event.id);
@@ -46,15 +38,22 @@ export default class EventCardPageController {
         }
     }
 
+    _initProvisionFile(eventId) {
+        return Promise.all([
+            this.FileStorageService.getProvisionFileUrl(eventId),
+            this.FileStorageService.getProvisionFileSize(eventId)
+        ])
+        .then(result => {
+            this.provisionFileUrl = result[0];
+            this.provisionFileSize = result[1];
+        });
+    }
+
     _startLoadProgress() {
         this.loadProgress = true;
     }
 
     _stopLoadProgress() {
         this.loadProgress = false;
-    }
-
-    getDescriptionHtml() {
-        return this.$sce.trustAsHtml(this.event.description);
     }
 };

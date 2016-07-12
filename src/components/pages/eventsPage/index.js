@@ -4,14 +4,16 @@ import uiRouter from 'angular-ui-router';
 import eventFormPage from './eventFormPage';
 import eventCardPage from './eventCardPage';
 import eventsListPage from './eventsListPage';
-import eventStartlist from './eventStartlist';
+import eventStartlistPage from './eventStartlistPage';
+import eventRegisterPage from './eventRegisterPage';
 
 export default angular.module('app.components.pages.events', [
         uiRouter,
         eventFormPage.name,
         eventCardPage.name,
         eventsListPage.name,
-        eventStartlist.name
+        eventStartlistPage.name,
+        eventRegisterPage.name
     ])
     .config(function($stateProvider) {
         'ngInject';
@@ -30,43 +32,47 @@ export default angular.module('app.components.pages.events', [
                 url: '/new',
                 template: '<event-form-page></event-form-page>',
                 resolve: {
-                    auth: function(AuthService) {
-                        'ngInject';
-                        return AuthService.requireSignIn();
-                    }
+                    authResolve
                 }
             })
             .state('events.edit', {
                 url: '/edit/:id',
                 template: '<event-form-page id="$ctrl.id"></event-form-page>',
                 resolve: {
-                    auth: function(AuthService) {
-                        'ngInject';
-                        return AuthService.requireSignIn();
-                    }
+                    authResolve
                 },
-                controller: function($stateParams) {
-                    'ngInject';
-                    this.id = $stateParams.id;
-                },
+                controller: idStateController,
                 controllerAs: '$ctrl'
             })
             .state('events.card', {
                 url: '/card/:id',
                 template: '<event-card-page id="$ctrl.id"></event-card-page>',
-                controller: function($stateParams) {
-                    'ngInject';
-                    this.id = $stateParams.id;
-                },
+                controller: idStateController,
                 controllerAs: '$ctrl'
             })
             .state('events.startlist', {
                 url: '/startlist/:id',
                 template: '<event-startlist-page id="$ctrl.id"></event-startlist-page>',
-                controller: function($stateParams) {
-                    'ngInject';
-                    this.id = $stateParams.id;
+                controller: idStateController,
+                controllerAs: '$ctrl'
+            })
+            .state('events.register', {
+                url: '/register/:id',
+                template: '<event-register-page id="$ctrl.id"></event-register-page>',
+                resolve: {
+                    authResolve
                 },
+                controller: idStateController,
                 controllerAs: '$ctrl'
             });
     });
+
+function idStateController($stateParams) {
+    'ngInject';
+    this.id = $stateParams.id;
+}
+
+function authResolve(AuthService) {
+    'ngInject';
+    return AuthService.requireSignIn();
+}

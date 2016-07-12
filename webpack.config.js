@@ -16,6 +16,7 @@ module.exports = {
             'angular-ui-router',
             'angular-i18n/angular-locale_ru-ru',
             'angular-sanitize',
+            'angular-messages',
             'firebase',
             'angular-ui-bootstrap',
             'babel-polyfill',
