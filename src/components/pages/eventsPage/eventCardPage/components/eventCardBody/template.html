@@ -9,10 +9,12 @@
                     <a ng-href="{{ $ctrl.provisionFileUrl }}" class="btn btn-default btn-lg btn-block" ng-if="$ctrl.provisionFileUrl">
                         <i class="fa fa-download" aria-hidden="true"></i> Положение ({{ $ctrl.getFileSize() }})
                     </a>
-                    <a ui-sref="events.startlist({ id: $ctrl.event.id })" class="btn btn-info btn-lg btn-block">Список участников</a>
+                    <a class="btn btn-info btn-lg btn-block" ng-if="$ctrl.startlistLength" ui-sref="events.startlist({ id: $ctrl.event.id })">
+                        Список участников ({{ $ctrl.startlistLength }})
+                    </a>
                 </div>
-                <div>
-                    <h4>Контакты</h4>
+                <div class="rightBlock__address">
+                    <h4 class="address__title">Контакты</h4>
                     <address>
                         <div>
                             <strong>{{ $ctrl.event.master }}</strong>

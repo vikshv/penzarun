@@ -71,11 +71,11 @@ export default class EventFormPageController {
             tag, 
             place = 'г. Пенза, Олимпийская аллея',
             distances = '',
-            master,
-            masterUrl,
-            masterPerson,
-            masterPhone,
-            masterEmail
+            master = '',
+            masterUrl = '',
+            masterPerson = '',
+            masterPhone = '',
+            masterEmail = ''
         } = this.event;
 
         this._startSaveProgress();

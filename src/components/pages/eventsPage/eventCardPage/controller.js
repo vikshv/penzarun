@@ -1,10 +1,11 @@
 export default class EventCardPageController {
-    constructor($sce, EventService, FileStorageService) {
+    constructor($sce, EventService, FileStorageService, StartlistService) {
         'ngInject';
         
         this.$sce = $sce;
         this.EventService = EventService;
         this.FileStorageService = FileStorageService;
+        this.StartlistService = StartlistService;
         
         this._initEvent();
     }
@@ -26,6 +27,12 @@ export default class EventCardPageController {
                 .then(result => {
                     this.provisionFileUrl = result[0];
                     this.provisionFileSize = result[1];
+                })
+                .then(() => {
+                    return this.StartlistService.getStartlist(this.event.id);
+                })
+                .then(startlist => {
+                    this.startlistLength = startlist.length;
                 })
                 .then(() => {
                     this._stopLoadProgress();

@@ -8,6 +8,7 @@ export default {
     bindings: {
         event: '<',
         provisionFileUrl: '<',
-        provisionFileSize: '<'
+        provisionFileSize: '<',
+        startlistLength: '<'
     }
 };
