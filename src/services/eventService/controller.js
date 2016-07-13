@@ -3,14 +3,16 @@ export default class EventService {
         'ngInject';
 
         const firebase = FirebaseService.getFirebase();
-        const ref = firebase.database().ref('events').orderByChild('date');
+        this.ref = firebase.database().ref('events');
 
-        this.list = $firebaseArray(ref);
+        this.$firebaseArray = $firebaseArray;
         this.$firebaseObject = $firebaseObject;
     }
 
-    loadEvents() {
-        return this.list.$loaded();
+    loadEvents(options) {
+        const ref = options ? this.ref.orderByChild(options.key).equalTo(options.value) : this.ref.orderByChild('date');
+        const list = this.$firebaseArray(ref);
+        return list.$loaded();
     }
 
     getEvent(key) {
@@ -73,7 +75,8 @@ export default class EventService {
     }
 
     addEvent(data) {
-        return this.list.$add({
+        const list = this.$firebaseArray(this.ref);
+        return list.$add({
                 ...data,
                 createTimestamp: Date.now()
             })

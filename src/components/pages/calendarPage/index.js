@@ -19,4 +19,12 @@ export default angular.module('app.components.pages.calendar', [
                 controllerAs: '$ctrl'
             });
     })
+    .constant('Constants', {
+        filterTagMap: {
+            'events': null,
+            'probegs': 'probeg',
+            'marathons': 'marathon',
+            'trainings': 'training'
+        }
+    })
     .component('calendar', component);
