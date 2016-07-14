@@ -5,36 +5,39 @@
                 <div class="pageCalendar__nav">
                     <ul class="nav nav-pills">
                         <li role="presentation" ng-class="{ active: $ctrl.filterIs('events') }">
-                            <a href="#calendar/events">СОБЫТИЯ</a>
+                            <a ui-sref="calendar($ctrl.getSrefOptions('events'))">СОБЫТИЯ</a>
                         </li>
                         <li role="presentation" ng-class="{ active: $ctrl.filterIs('probegs') }">
-                            <a href="#calendar/probegs">ПРОБЕГИ</a>
+                            <a ui-sref="calendar($ctrl.getSrefOptions('probegs'))">ПРОБЕГИ</a>
                         </li>
                         <li role="presentation" ng-class="{ active: $ctrl.filterIs('marathons') }">
-                            <a href="#calendar/marathons">МАРАФОНЫ</a>
+                            <a ui-sref="calendar($ctrl.getSrefOptions('marathons'))">МАРАФОНЫ</a>
                         </li>
                         <li role="presentation" ng-class="{ active: $ctrl.filterIs('trainings') }">
-                            <a href="#calendar/trainings">ТРЕНИРОВКИ</a>
+                            <a ui-sref="calendar($ctrl.getSrefOptions('trainings'))">ТРЕНИРОВКИ</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-10">
                 <div class="pageCalendar__datepickers">
-                    <uib-datepicker ng-model="$ctrl.dtBegin" class="well well-sm well--inline" 
-                        datepicker-options="$ctrl.datepickerOptions"></uib-datepicker>
-                    <uib-datepicker ng-model="$ctrl.dtEnd" class="well well-sm well--inline" 
-                        datepicker-options="$ctrl.datepickerOptions"></uib-datepicker>
+                    <div class="well well-lg well--datepickers">
+                        <calendar-datepicker date="$ctrl.dateBegin" options="$ctrl.datepickerOptions" 
+                            on-change="$ctrl.onChangeDateBegin(date)"></calendar-datepicker>
+                        <calendar-datepicker date="$ctrl.dateEnd" options="$ctrl.datepickerOptions" 
+                            on-change="$ctrl.onChangeDateEnd(date)"></calendar-datepicker>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-10 col-sm-12 col-xs-12">
                 <div class="pageCalendar__eventList">
                     <progress-bar text="Загрузка списка событий..." ng-if="$ctrl.loadProgress"></progress-bar>
-                    <events-list events="$ctrl.getEvents()" ng-if="!$ctrl.loadProgress"></events-list>
+                    <events-list events="$ctrl.getEvents()" 
+                        empty-list-message="Ничего не найдено" ng-if="!$ctrl.loadProgress"></events-list>
                 </div>
             </div>
         </div>

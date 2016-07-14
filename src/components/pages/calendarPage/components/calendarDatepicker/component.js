@@ -6,8 +6,8 @@ export default {
     template,
     controller,
     bindings: {
-        filter: '<',
-        dateBegin: '<',
-        dateEnd: '<'
+        date: '<',
+        options: '<',
+        onChange: '&'
     }
 };

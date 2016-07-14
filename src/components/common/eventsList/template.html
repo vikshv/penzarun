@@ -13,4 +13,9 @@
             </div>
         </div>
     </div>
+    <div class="eventsList__empty" ng-if="!$ctrl.events.length">
+        <div class="alert alert-warning">
+            <strong>{{ $ctrl.emptyListMessage || 'Нет данных' }}</strong>
+        </div>
+    </div>
 </div>

@@ -3,16 +3,26 @@ export default class EventService {
         'ngInject';
 
         const firebase = FirebaseService.getFirebase();
-        this.ref = firebase.database().ref('events');
+        this.ref = firebase.database().ref('events').orderByChild('date');
 
         this.$firebaseArray = $firebaseArray;
         this.$firebaseObject = $firebaseObject;
     }
 
     loadEvents(options) {
-        const ref = options ? this.ref.orderByChild(options.key).equalTo(options.value) : this.ref.orderByChild('date');
+        const ref = options ? this._getOptionsRef(options) : this.ref;
         const list = this.$firebaseArray(ref);
         return list.$loaded();
+    }
+
+    _getOptionsRef({ dateBegin, dateEnd }) {
+        let result;
+        if (dateBegin && dateEnd) {
+            result = this.ref.startAt(dateBegin).endAt(dateEnd);
+        } else {
+            result = this.ref;
+        }
+        return result;
     }
 
     getEvent(key) {
