@@ -10,12 +10,12 @@ export default class EventService {
     }
 
     loadEvents(options) {
-        const ref = options ? this._getOptionsRef(options) : this.ref;
+        const ref = options ? this._getRefByOptions(options) : this.ref;
         const list = this.$firebaseArray(ref);
         return list.$loaded();
     }
 
-    _getOptionsRef({ dateBegin, dateEnd }) {
+    _getRefByOptions({ dateBegin, dateEnd }) {
         let result;
         if (dateBegin && dateEnd) {
             result = this.ref.startAt(dateBegin).endAt(dateEnd);
@@ -25,44 +25,57 @@ export default class EventService {
         return result;
     }
 
+    getNearEvent(date) {
+        const ref = this.ref.startAt(date).limitToFirst(1);
+        const list = this.$firebaseArray(ref);
+        return list.$loaded()
+            .then(result => {
+                return this._mapEvent(result[0]);
+            });
+    }
+
+    _mapEvent(event) {
+        const { 
+            $id, 
+            date,
+            time,
+            title, 
+            abstract, 
+            description, 
+            tag = 'event', 
+            place, 
+            distances,
+            master,
+            masterUrl,
+            masterPerson,
+            masterPhone,
+            masterEmail
+        } = event;
+
+        return {
+            id: $id,
+            date,
+            time,
+            title,
+            abstract,
+            description,
+            tag,
+            date: new Date(date),
+            place,
+            distances,
+            master,
+            masterUrl,
+            masterPerson,
+            masterPhone,
+            masterEmail
+        };
+    }
+
     getEvent(key) {
         const obj = this._getEventObj(key);
         return obj.$loaded()
             .then(result => {
-                const { 
-                    $id, 
-                    date,
-                    time,
-                    title, 
-                    abstract, 
-                    description, 
-                    tag = 'event', 
-                    place, 
-                    distances,
-                    master,
-                    masterUrl,
-                    masterPerson,
-                    masterPhone,
-                    masterEmail
-                } = result;
-
-                return {
-                    id: $id,
-                    date,
-                    time,
-                    title,
-                    abstract,
-                    description,
-                    tag,
-                    date: new Date(date),
-                    place,
-                    distances,
-                    master,
-                    masterUrl,
-                    masterPerson,
-                    masterPhone,
-                    masterEmail
-                };
+                return this._mapEvent(result);
             });
     }
 
