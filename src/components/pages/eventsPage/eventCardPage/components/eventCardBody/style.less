@@ -20,14 +20,31 @@
         }
     }
 
-    .leftBlock {
-        min-height: 316px;
+    .verticalLine {
+        position: absolute;
+        height: 100%;
+        top: 0;
+        right: 0;
         border-right: 1px solid #ebebeb;
+    }
+
+    .leftBlock {
+        position: relative;
+        min-height: 316px;
+    }
+
+    .rightBlock__margin--top {
+        margin-top: 20px;
     }
 
     .rightBlock__buttons {
         .btn:last-child {
             margin-bottom: 32px;
+        }
+
+        .btn--overflow {
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
 
