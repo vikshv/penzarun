@@ -2,7 +2,7 @@
     <div class="eventsList__event" ng-repeat="event in $ctrl.events">
         <div class="event__title">
             <div class="event__date">
-                {{ event.date | date: 'dd MMMM yyyy' }}
+                {{ event.date | date: 'd MMMM yyyy' }}
             </div>
             <div class="well well-lg well--event">
                 <h4><a ui-sref="events.card({ id: event.$id })" >

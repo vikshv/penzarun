@@ -9,7 +9,7 @@ export default class EventFormPageController {
         
         this._initEvent();
 
-        this.dateFormat = 'EEEE, dd MMMM yyyy';
+        this.dateFormat = 'EEEE, d MMMM yyyy';
         this.datePopupIsOpen = false;
 
         this._initCkeditorOptions();

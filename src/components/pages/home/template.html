@@ -1,17 +1,5 @@
-<div class="page page--home">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="jumbotron">
-                    <h1>{{ $ctrl.event.title }}</h1>
-                    <p>{{ $ctrl.event.abstract }}</p>
-                    <p>
-                        <a class="btn btn-primary btn-lg" ui-sref="events.card({ id: $ctrl.event.id })">
-                            Узнать больше
-                        </a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    <div>
+<progress-bar text="Загрузка..." ng-if="$ctrl.loadProgress"></progress-bar>
+<div class="page page--home" ng-if="!$ctrl.loadProgress">
+    <jumbotron event="$ctrl.event"></jumbotron>
+    <info></info>
 </div>

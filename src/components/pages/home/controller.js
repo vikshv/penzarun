@@ -9,18 +9,26 @@ export default class HomePageController {
 
     _loadEvent() {
         const date = Date.now();
-        //this._startLoadProgress();
+        this._startLoadProgress();
         this.EventService.getNearEvent(date)
             .then(event => {
                 this.event = event;
                 return event.id;
             })
             .then(() => {
-                //this._stopLoadProgress();
+                this._stopLoadProgress();
             })
             .catch(error => {
-                //this._stopLoadProgress();
+                this._stopLoadProgress();
                 throw Error(error);
             });
+    }
+
+    _startLoadProgress() {
+        this.loadProgress = true;
+    }
+
+    _stopLoadProgress() {
+        this.loadProgress = false;
     }
 };

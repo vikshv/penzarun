@@ -1,19 +1,17 @@
 import angular from 'angular';
-import controller from './controller';
-import template from './template.html';
-import './style.less';
+import component from './component';
+import components from './components';
 
-export default angular.module('app.components.pages.home', [])
-.config(function($stateProvider) {
-    'ngInject';
+export default angular.module('app.components.pages.home', [
+        components.name
+    ])
+    .config(function($stateProvider) {
+        'ngInject';
 
-    $stateProvider
-        .state('home', {
-            url: '/home',
-            template: '<home></home>'
-        });
-})
-.component('home', {
-    template,
-    controller
-});
+        $stateProvider
+            .state('home', {
+                url: '/home',
+                template: '<home></home>'
+            });
+    })
+    .component('home', component);
