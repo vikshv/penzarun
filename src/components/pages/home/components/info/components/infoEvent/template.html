@@ -1,11 +1,12 @@
-<h3>Ближайшие события</h3>
-<div class="list-group">
-    <a href="#" class="list-group-item">
-        <h4 class="list-group-item-heading">List group item heading</h4>
-        <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-    </a>
-    <a href="#" class="list-group-item">
-        <h4 class="list-group-item-heading">List group item heading</h4>
-        <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-    </a>
+<div class="homeInfo__events">
+    <h3>Ближайшие события</h3>
+    <div class="list-group">
+        <div class="list-group-item info__spiner" ng-if="$ctrl.loadProgress">
+            <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+        </div>
+        <a class="list-group-item" ui-sref="events.card({ id: event.id })" ng-repeat="event in $ctrl.events">
+            <h4 class="list-group-item-heading">{{ event.title }}</h4>
+            <p class="list-group-item-text">{{ event.abstract }}</p>
+        </a>
+    </div>
 </div>

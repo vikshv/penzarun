@@ -1,11 +1,17 @@
-<h3>Новости</h3>
-<div class="list-group">
-    <a href="#" class="list-group-item">
-        <h4 class="list-group-item-heading">List group item heading</h4>
-        <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-    </a>
-    <a href="#" class="list-group-item">
-        <h4 class="list-group-item-heading">List group item heading</h4>
-        <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-    </a>
+<div class="homeInfo__news">
+    <h3>Новости</h3>
+    <div class="list-group">
+        <div class="list-group-item info__spiner" ng-if="$ctrl.loadProgress">
+            <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+        </div>
+        <div ng-if="!$ctrl.loadProgress">
+            <a class="list-group-item" ui-sref="news.card({ id: news.id })" ng-repeat="news in $ctrl.news">
+                <h4 class="list-group-item-heading">{{ news.title }}</h4>
+                <p class="list-group-item-text">{{ news.content }}</p>
+            </a>
+            <div class="list-group-item" ng-if="!$ctrl.updates.length">
+                <p class="list-group-item-text">Новостей пока нет</p>
+            </div>
+        </div>
+    </div>
 </div>

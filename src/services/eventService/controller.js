@@ -12,26 +12,24 @@ export default class EventService {
     loadEvents(options) {
         const ref = options ? this._getRefByOptions(options) : this.ref;
         const list = this.$firebaseArray(ref);
-        return list.$loaded();
-    }
-
-    _getRefByOptions({ dateBegin, dateEnd }) {
-        let result;
-        if (dateBegin && dateEnd) {
-            result = this.ref.startAt(dateBegin).endAt(dateEnd);
-        } else {
-            result = this.ref;
-        }
-        return result;
-    }
-
-    getNearEvent(date) {
-        const ref = this.ref.startAt(date).limitToFirst(1);
-        const list = this.$firebaseArray(ref);
         return list.$loaded()
             .then(result => {
-                return this._mapEvent(result[0]);
+                return result.map(event => this._mapEvent(event));
             });
+    }
+
+    _getRefByOptions({ dateBegin, dateEnd, limitToFirst }) {
+        let result = this.ref;
+        if (dateBegin) {
+            result = result.startAt(dateBegin);
+        }
+        if (dateEnd) {
+            result = result.endAt(dateEnd);
+        }
+        if (limitToFirst) {
+            result = result.limitToFirst(limitToFirst);
+        }
+        return result;
     }
 
     _mapEvent(event) {

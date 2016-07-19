@@ -1,11 +1,17 @@
-<h3>Обновления</h3>
-<div class="list-group">
-    <div class="list-group-item">
-        <h4 class="list-group-item-heading">List group item heading</h4>
-        <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-    </div>
-    <div class="list-group-item">
-        <h4 class="list-group-item-heading">List group item heading</h4>
-        <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+<div class="homeInfo__updates">
+    <h3>Обновления</h3>
+    <div class="list-group">
+        <div class="list-group-item info__spiner" ng-if="$ctrl.loadProgress">
+            <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+        </div>
+        <div ng-if="!$ctrl.loadProgress">
+            <div class="list-group-item" ng-repeat="update in $ctrl.updates">
+                <h4 class="list-group-item-heading">{{ update.title }}</h4>
+                <p class="list-group-item-text">{{ update.content }}</p>
+            </div>
+            <div class="list-group-item" ng-if="!$ctrl.updates.length">
+                <p class="list-group-item-text">Обновлений пока нет</p>
+            </div>
+        </div>
     </div>
 </div>

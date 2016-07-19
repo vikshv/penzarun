@@ -5,7 +5,7 @@
                 {{ event.date | date: 'd MMMM yyyy' }}
             </div>
             <div class="well well-lg well--event">
-                <h4><a ui-sref="events.card({ id: event.$id })" >
+                <h4><a ui-sref="events.card({ id: event.id })" >
                     {{ event.title }}
                 </a></h4>
                 <p>{{ event.abstract }}</p>
