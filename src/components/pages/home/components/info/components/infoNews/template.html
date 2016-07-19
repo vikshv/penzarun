@@ -5,7 +5,7 @@
             <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
         </div>
         <div ng-if="!$ctrl.loadProgress">
-            <a class="list-group-item" ui-sref="news.card({ id: news.id })" ng-repeat="news in $ctrl.news">
+            <a class="list-group-item" ui-sref="news.id({ id: news.id })" ng-repeat="news in $ctrl.news">
                 <h4 class="list-group-item-heading">{{ news.title }}</h4>
                 <p class="list-group-item-text">{{ news.content }}</p>
             </a>
