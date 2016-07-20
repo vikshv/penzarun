@@ -5,11 +5,13 @@
             <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
         </div>
         <div ng-if="!$ctrl.loadProgress">
-            <a class="list-group-item" ui-sref="news.id({ id: news.id })" ng-repeat="news in $ctrl.news">
-                <h4 class="list-group-item-heading">{{ news.title }}</h4>
-                <p class="list-group-item-text">{{ news.content }}</p>
-            </a>
-            <div class="list-group-item" ng-if="!$ctrl.updates.length">
+            <div class="list-group-item" ng-repeat="news in $ctrl.news">
+                <h4 class="list-group-item-heading">
+                    <a ui-sref="news.card({ id: news.id })">{{ news.title }}</a>
+                </h4>
+                <p class="list-group-item-text">{{ news.abstract }}</p>
+            </div>
+            <div class="list-group-item" ng-if="!$ctrl.news.length">
                 <p class="list-group-item-text">Новостей пока нет</p>
             </div>
         </div>

@@ -7,7 +7,6 @@ export default class NewsController {
 
     _loadNews(NewsService) {
         const options = {
-            dateBegin: Date.now(),
             limitToLast: 3
         };
         this._startLoadProgress();

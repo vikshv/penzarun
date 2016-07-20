@@ -1,9 +1,52 @@
-<div class="page page--newsList">
+<progress-bar text="Загрузка новости..." ng-if="$ctrl.loadProgress"></progress-bar>
+
+<div class="page page--newsForm" ng-hide="$ctrl.loadProgress">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                News form page
+                <div class="well well--form">
+                    <form name="news" class="" ng-submit="$ctrl.submit()">
+                        <fieldset>
+                            <legend>{{ $ctrl.id ? 'Редактирование новости' : 'Добавление новости' }}</legend>
+
+                            <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('title') }">
+                                <label for="title" class="control-label">Заголовок</label>
+                                <input type="text" class="form-control" id="title" name="title" required 
+                                    ng-model="$ctrl.news.title" ng-disabled="$ctrl.disabledForm" autocomplete="off">
+                                <div ng-messages="news.title.$error" ng-if="$ctrl.isHasError('title')" role="alert">
+                                    <div ng-message="required" class="form__message--error">Введите заголовок</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="abstract" class="control-label">Краткое описание</label>
+                                <textarea class="form-control" id="abstract" name="abstract" rows="2" required 
+                                    ng-model="$ctrl.news.abstract" ng-disabled="$ctrl.disabledForm" autocomplete="off"></textarea>
+                                <div ng-messages="news.abstract.$error" ng-if="$ctrl.isHasError('abstract')" role="alert">
+                                    <div ng-message="required" class="form__message--error">Введите краткое описание</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="newsContent" class="control-label">Содержание</label>
+                                <div ckeditor="$ctrl.ckeditorOptions" id="newsContent" ng-model="$ctrl.news.content"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" ng-disabled="news.$invalid || $ctrl.disabledForm">
+                                    <i class="fa fa-lg fa-spinner fa-spin" ng-if="$ctrl.saveProgress"></i> Сохранить
+                                </button>
+                                <button type="button" class="btn btn-danger" 
+                                    ng-if="$ctrl.id" ng-click="$ctrl.onClickRemoveButton()" ng-disabled="$ctrl.disabledForm">
+                                    <i class="fa fa-lg fa-spinner fa-spin" ng-if="$ctrl.removeProgress"></i> Удалить
+                                </button>
+                                <button type="button" class="btn btn-default" 
+                                    ng-click="$ctrl.onClickCancelButton()" ng-disabled="$ctrl.disabledForm">Отмена</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
             </div>
         </div>
-    <div>
+    </div>
 </div>

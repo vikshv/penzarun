@@ -3,7 +3,7 @@ export default class UpdateService {
         'ngInject';
 
         const firebase = FirebaseService.getFirebase();
-        this.ref = firebase.database().ref('updates').orderByChild('date');
+        this.ref = firebase.database().ref('updates');
         this.$firebaseArray = $firebaseArray;
     }
 

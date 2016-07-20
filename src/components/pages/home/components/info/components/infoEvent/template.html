@@ -4,9 +4,11 @@
         <div class="list-group-item info__spiner" ng-if="$ctrl.loadProgress">
             <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
         </div>
-        <a class="list-group-item" ui-sref="events.card({ id: event.id })" ng-repeat="event in $ctrl.events">
-            <h4 class="list-group-item-heading">{{ event.title }}</h4>
+        <div class="list-group-item" ng-repeat="event in $ctrl.events">
+            <h4 class="list-group-item-heading">
+                <a ui-sref="events.card({ id: event.id })">{{ event.title }}</a>
+            </h4>
             <p class="list-group-item-text">{{ event.abstract }}</p>
-        </a>
+        </div>
     </div>
 </div>

@@ -86,10 +86,13 @@ export default class EventService {
 
     saveEvent(key, data) {
         const obj = this._getEventObj(key);
-        Object.assign(obj, data, {
-            editTimestamp: Date.now()
-        });
-        return obj.$save()
+        return obj.$loaded()
+            .then(result => {
+                Object.assign(result, data, {
+                    editTimestamp: Date.now()
+                });
+                return obj.$save();
+            })
             .then(ref => {
                 return ref.key;
             });

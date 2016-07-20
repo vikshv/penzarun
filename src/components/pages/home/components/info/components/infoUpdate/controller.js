@@ -7,7 +7,6 @@ export default class UpdatesController {
 
     _loadUpdates(UpdateService) {
         const options = {
-            dateBegin: Date.now(),
             limitToLast: 3
         };
         this._startLoadProgress();
