@@ -43,6 +43,11 @@ module.exports = {
         new webpack.DefinePlugin({
             LANG: JSON.stringify('ru')
         }),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery'
+        }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor'
         }),

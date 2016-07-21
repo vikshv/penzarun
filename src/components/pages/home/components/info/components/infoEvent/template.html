@@ -5,6 +5,9 @@
             <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
         </div>
         <div class="list-group-item" ng-repeat="event in $ctrl.events">
+            <h5 class="list-group-item-heading">
+                {{ event.date | date: 'd.MM.yyyy' }}
+            </h5>
             <h4 class="list-group-item-heading">
                 <a ui-sref="events.card({ id: event.id })">{{ event.title }}</a>
             </h4>

@@ -6,6 +6,9 @@ import firebase from 'firebase';
 import angularfire from 'angularfire';
 import uiBootstrap from 'angular-ui-bootstrap';
 
+import 'bootstrap/js/collapse';
+import 'bootstrap/js/transition';
+
 import components from './components';
 import directives from './directives';
 import services from './services';

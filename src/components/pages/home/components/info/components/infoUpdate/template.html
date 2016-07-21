@@ -6,6 +6,9 @@
         </div>
         <div ng-if="!$ctrl.loadProgress">
             <div class="list-group-item" ng-repeat="update in $ctrl.updates">
+                <h5 class="list-group-item-heading">
+                    {{ update.date | date: 'd.MM.yyyy' }}
+                </h5>
                 <h4 class="list-group-item-heading">{{ update.title }}</h4>
                 <p class="list-group-item-text">{{ update.content }}</p>
             </div>

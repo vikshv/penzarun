@@ -13,7 +13,7 @@ export default class NewsService {
         const list = this.$firebaseArray(ref.orderByChild('createTimestamp'));
         return list.$loaded()
             .then(result => {
-                return result.map(news => this._mapNews(news));
+                return result.map(news => this._mapNews(news)).reverse();
             })
     }
 
@@ -45,9 +45,10 @@ export default class NewsService {
     }
 
     _mapNews(news) {
-        const { title, abstract, content } = news;
+        const { title, abstract, content, createTimestamp } = news;
         return {
             id: news.$id,
+            date: createTimestamp,
             title,
             abstract,
             content

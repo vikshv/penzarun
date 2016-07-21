@@ -1,8 +1,16 @@
-<div class="page page--newsList">
+<progress-bar text="Загрузка новостей..." ng-if="$ctrl.loadProgress"></progress-bar>
+
+<div class="page page--newsList" ng-if="!$ctrl.loadProgress">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                News list page
+            <div class="col-md-4 col-sm-6" ng-repeat="news in $ctrl.news">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h4><a ui-sref="news.card({ id: news.id })">{{ news.title }}</a></h4>
+                        <p>{{ news.abstract }}</p>
+                        <p class="news__date">Дата: {{ news.date | date: 'd MMMM yyyy' }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     <div>

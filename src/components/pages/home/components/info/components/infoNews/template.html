@@ -6,6 +6,9 @@
         </div>
         <div ng-if="!$ctrl.loadProgress">
             <div class="list-group-item" ng-repeat="news in $ctrl.news">
+                <h5 class="list-group-item-heading">
+                    {{ news.date | date: 'd.MM.yyyy' }}
+                </h5>
                 <h4 class="list-group-item-heading">
                     <a ui-sref="news.card({ id: news.id })">{{ news.title }}</a>
                 </h4>

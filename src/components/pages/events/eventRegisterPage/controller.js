@@ -4,17 +4,15 @@ export default class EventRegisterPageController {
 
         this.$scope = $scope;
         this.$state = $state;
-        this.EventService = EventService;
 
         this._initMember();
-        this._initEvent();
+        this._initEvent(EventService);
     }
 
-    _initEvent() {
+    _initEvent(EventService) {
         this._startProgress();
-        this.EventService.getEvent(this.id)
+        EventService.getEvent(this.id)
                 .then(event => {
-                    console.log({event})
                     this.event = event;
                 })
                 .then(() => {
