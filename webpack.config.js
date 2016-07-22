@@ -62,7 +62,8 @@ module.exports = {
             add: true
         }),
         new HtmlWebPackPlugin({
-            template: './index.html'
+            template: './index.html',
+            favicon: './src/content/ico/favicon.ico'
         })
     ],
 
