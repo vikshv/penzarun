@@ -5,8 +5,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="page-header news__header">
-                    <h4><span class="label label-default">{{ $ctrl.news.date | date: 'd MMMM yyyy' }}</span></h4>
-                    <h2>{{ $ctrl.news.title }}</h2>
+                    <h4>
+                        <span class="label label-warning">{{ $ctrl.news.date | date: 'd MMMM yyyy' }}</span>
+                    </h4>
+                    <h2 class="text-warning">{{ $ctrl.news.title }}</h2>
                     <div class="row">
                         <div class="col-md-10 col-sm-12">
                             {{ $ctrl.news.abstract }}

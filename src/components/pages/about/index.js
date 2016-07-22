@@ -1,7 +1,5 @@
 import angular from 'angular';
-import controller from './controller';
-import template from './template.html';
-import './style.less';
+import component from './component';
 
 export default angular.module('app.components.pages.about', [])
     .config(function($stateProvider) {
@@ -13,7 +11,4 @@ export default angular.module('app.components.pages.about', [])
                 template: '<about></about>'
             });
     })
-    .component('about', {
-        template,
-        controller
-    });
+    .component('about', component);
