@@ -6,10 +6,10 @@
             <div class="col-md-12">
                 <div class="page-header news__header">
                     <h4><span class="label label-default">{{ $ctrl.news.date | date: 'd MMMM yyyy' }}</span></h4>
-                    <h3>{{ $ctrl.news.title }}</h3>
+                    <h2>{{ $ctrl.news.title }}</h2>
                     <div class="row">
                         <div class="col-md-10 col-sm-12">
-                            <p>{{ $ctrl.news.abstract }}</p>
+                            {{ $ctrl.news.abstract }}
                         </div>
                     </div>
                 </div>
@@ -17,7 +17,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="well well-sm well--news">
+                <div class="well">
                     <div class="row">
                         <div class="col-md-10 col-sm-12">
                             <div class="news__content" ng-bind-html="$ctrl.getContentHtml()"></div>
