@@ -6,6 +6,9 @@
                     <div class="btn-group" role="group">
                         <a class="btn btn-lg btn-primary" ui-sref="events.register({ id: $ctrl.eventId })" ng-if="$ctrl.isAuth()">Регистрация</a>
                     </div>
+                    <div class="btn-group" role="group" ng-if="$ctrl.isAuth()">
+                        <a class="btn btn-lg btn-link" ui-sref="events.edit({ id: $ctrl.eventId })">Редактировать</a>
+                    </div>
                 </div>
             </div>
         </div>
