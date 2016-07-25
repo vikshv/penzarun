@@ -15,16 +15,36 @@ export default class CounterService {
     }
 
     _initVisitors() {
-        let visitors;
+        const result = {};
+        const currentKey = this._getCurrentKey();
+
         return this.$obj.$loaded()
-            .then(result => {
-                let { value } = result;
+            .then(visitors => {
+                let { total } = visitors;
+                let current = visitors[currentKey];
+
+                if (!current) {
+                    current = visitors[currentKey] = {};
+                }
+
+                let { value } = current;
+                
+                isFinite(total) || (total = 0);
+                result.total = visitors.total = total + 1;
+
                 isFinite(value) || (value = 0);
-                visitors = result.value = value + 1;
+                result.current = current.value = value + 1;
+
                 return this.$obj.$save();
             })
             .then(() => {
-                return visitors;
+                return result;
             });
+    }
+
+    _getCurrentKey() {
+        const now = new Date();
+        const date = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        return date.getTime();
     }
 }

@@ -1,10 +1,25 @@
 export default class NewsCardPageController {
-    constructor($sce, NewsService) {
+    constructor($sce, $state, NewsService) {
         'ngInject';
 
         this.$sce = $sce;
+        this.$state = $state;
 
+        this._initVKComments();
         this._loadNews(NewsService);
+    }
+
+    _initVKComments() {
+        const { id } = this;
+        const href = this.$state.href('news.card', { id });
+        const pageUrl = `http://penzarun.ru/${href}`;
+
+        VK.Widgets.Comments('vk_comments', {
+            redesign: 1,
+            limit: 10,
+            attach: '*',
+            pageUrl
+        }, `news-${id}`);
     }
 
     getContentHtml() {

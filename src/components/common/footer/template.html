@@ -47,7 +47,10 @@
                     <a href="https://github.com/vikshv/penzarun">GitHub Project</a>
                     ·
                     <a href="https://github.com/vikshv/penzarun/issues">Issues</a>
-                    <span ng-if="$ctrl.visitors">· Просмотров: {{ $ctrl.visitors }}</span>
+                    <span ng-if="$ctrl.visitors">
+                        · Просмотры: сегодня <span class="badge">{{ $ctrl.visitors.current }}</span>,
+                        всего <span class="badge">{{ $ctrl.visitors.total }}</span>
+                    </span>
                 </div>
             </div>
         </div>

@@ -35,6 +35,11 @@ angular.module('app', [
             databaseURL: 'https://project-5043437142388192252.firebaseio.com',
             storageBucket: 'gs://project-5043437142388192252.appspot.com'
         });
+
+        window.VK.init({
+            apiId: 5561839,
+            onlyWidgets: true
+        });
     })
     .run(function($rootScope, $state) {
         'ngInject';
