@@ -1,5 +1,10 @@
 export default class FooterController {
-    constructor() {
+    constructor(CounterService) {
         'ngInject';
+
+        CounterService.getVisitors()
+            .then(result => {
+                this.visitors = result;
+            });
     }
 };

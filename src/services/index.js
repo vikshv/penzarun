@@ -7,6 +7,7 @@ import fileStorageService from './fileStorageService';
 import startlistService from './startlistService';
 import updateService from './updateService';
 import newsService from './newsService';
+import counterService from './counterService';
 
 export default angular.module('app.services', [
     authService.name,
@@ -15,5 +16,6 @@ export default angular.module('app.services', [
     fileStorageService.name,
     startlistService.name,
     updateService.name,
-    newsService.name
+    newsService.name,
+    counterService
 ]);
