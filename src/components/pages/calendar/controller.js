@@ -7,11 +7,16 @@ export default class CalendarPageController {
         this.EventService = EventService;
 
         this.filter || (this.filter = 'events');
-        this.dateBegin || (this.dateBegin = this._getDefaultDateBegin());
-        this.dateEnd || (this.dateEnd = this._getDefaultDateEnd());
 
         this._initDatepickers();
         this._loadEvents();
+
+        $scope.$watch('$ctrl.dateBegin', date => {
+            this.endDatepickerOptions = {
+                minDate: date,
+                maxDate: this._getMaxDate()
+            };
+        });
     }
 
     _getDefaultDateBegin() {
@@ -19,24 +24,25 @@ export default class CalendarPageController {
         return new Date(now.getFullYear(), now.getMonth(), now.getDate());
     }
 
-    _getDefaultDateEnd() {
-        return this._getMaxDate();
-    }
-
     _getMaxDate() {
         const now = new Date();
         return new Date(now.getFullYear(), 11, 31);
     }
 
-    _getFormatDate(date) {
-        const dt = new Date(date);
-        return `${dt.getFullYear()}-${dt.getMonth() + 1}-${dt.getDate()}`;
-    }
-
     _initDatepickers() {
-        this.datepickerOptions = {
+        const maxDate = this._getMaxDate();
+
+        this.beginDatepickerOptions = {
             minDate: new Date(2015, 0, 1),
-            maxDate: this._getMaxDate()
+            maxDate
+        };
+
+        this.dateBegin = this._getDefaultDateBegin();
+        this.dateEnd = maxDate;
+
+        this.endDatepickerOptions = {
+            minDate: this.dateBegin,
+            maxDate
         };
     }
 
@@ -92,20 +98,11 @@ export default class CalendarPageController {
 
     onChangeDateBegin(value) {
         this.dateBegin = value;
-        this.$state.go('calendar', this.getSrefOptions());
+        this._loadEvents();
     }
 
     onChangeDateEnd(value) {
         this.dateEnd = value;
-        this.$state.go('calendar', this.getSrefOptions());
-    }
-
-    getSrefOptions(filter = this.filter) {
-        const { dateBegin, dateEnd } = this;
-        return {
-            filter,
-            dateBegin: this._getFormatDate(dateBegin),
-            dateEnd: this._getFormatDate(dateEnd)
-        };
+        this._loadEvents();
     }
 };
