@@ -3,8 +3,8 @@
 var path = require ('path');
 var webpack = require ('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 var HtmlWebPackPlugin = require('html-webpack-plugin');
+var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 
 module.exports = {
     context: path.join(__dirname, '/'),
@@ -26,18 +26,6 @@ module.exports = {
         penzarun: './src/index.js'
     },
 
-    output: {
-        path: path.join(__dirname, 'dist'),
-        publicPath: '/dist/',
-        filename: 'bundle.[name].[chunkhash].js'
-    },
-    
-    watchOptions: {
-        aggregateTimeout: 300
-    },
-
-    //devtool: 'source-map',
-
     plugins: [
         new webpack.NoErrorsPlugin(),
         new webpack.DefinePlugin({
@@ -48,19 +36,13 @@ module.exports = {
             jQuery: 'jquery',
             'window.jQuery': 'jquery'
         }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor'
-        }),
-        // new webpack.optimize.UglifyJsPlugin({
-        //     compress: {
-        //         drop_console: true,
-        //         unsafe: true
-        //     }
-        // }),
-        new ExtractTextPlugin('penzarun.css'),
         new ngAnnotatePlugin({
             add: true
         }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor'
+        }),
+        new ExtractTextPlugin('penzarun.css'),
         new HtmlWebPackPlugin({
             template: './index.html',
             favicon: './src/content/ico/favicon.ico'
@@ -109,10 +91,6 @@ module.exports = {
 
     noParse: [
         /\/node_modules\/(angular|bootstrap|jquery|font-awesome)/
-    ],
-
-    htmlLoader: {
-        minimize: true
-    }
+    ]
 };
 

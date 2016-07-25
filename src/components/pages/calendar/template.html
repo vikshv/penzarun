@@ -5,16 +5,16 @@
                 <div class="pageCalendar__nav">
                     <ul class="nav nav-pills">
                         <li role="presentation" ng-class="{ active: $ctrl.filterIs('events') }">
-                            <a ui-sref="calendar($ctrl.getSrefOptions('events'))">СОБЫТИЯ</a>
+                            <a ui-sref="calendar({ filter: 'events'})">СОБЫТИЯ</a>
                         </li>
                         <li role="presentation" ng-class="{ active: $ctrl.filterIs('probegs') }">
-                            <a ui-sref="calendar($ctrl.getSrefOptions('probegs'))">ПРОБЕГИ</a>
+                            <a ui-sref="calendar({ filter: 'probegs'})">ПРОБЕГИ</a>
                         </li>
                         <li role="presentation" ng-class="{ active: $ctrl.filterIs('marathons') }">
-                            <a ui-sref="calendar($ctrl.getSrefOptions('marathons'))">МАРАФОНЫ</a>
+                            <a ui-sref="calendar({ filter: 'marathons'})">МАРАФОНЫ</a>
                         </li>
                         <li role="presentation" ng-class="{ active: $ctrl.filterIs('trainings') }">
-                            <a ui-sref="calendar($ctrl.getSrefOptions('trainings'))">ТРЕНИРОВКИ</a>
+                            <a ui-sref="calendar({ filter: 'trainings'})">ТРЕНИРОВКИ</a>
                         </li>
                     </ul>
                 </div>
