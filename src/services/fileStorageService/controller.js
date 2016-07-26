@@ -1,6 +1,7 @@
 
 const fileName = {
-    provision: 'Положение'
+    provision: 'Положение',
+    protocol: 'Протокол'
 };
 
 export default class FileStorageServiceController {
@@ -10,6 +11,8 @@ export default class FileStorageServiceController {
         const firebase = FirebaseService.getFirebase();
         this.storageRef = firebase.storage().ref();
     }
+
+    /* Положение */
 
     uploadProvisionFile(eventKey, file) {
         return this._uploadFile(eventKey, file, fileName.provision);
@@ -36,6 +39,36 @@ export default class FileStorageServiceController {
             fileName: fileName.provision
         });
     }
+
+    /* Протокол */
+
+    uploadProtocolFile(eventKey, file) {
+        return this._uploadFile(eventKey, file, fileName.protocol);
+    }
+
+    deleteProtocolFile(eventKey) {
+        return this._deleteFile(eventKey, fileName.protocol);
+    }
+
+    getProtocolFileUrl(eventKey) {
+        return this._getUrl(eventKey, fileName.protocol);
+    }
+
+    getProtocolFileName(eventKey) {
+        return this._getFileName({
+            eventKey, 
+            fileName: fileName.protocol
+        });
+    }
+
+    getProtocolFileSize(eventKey) {
+        return this._getFileSize({
+            eventKey,
+            fileName: fileName.protocol
+        });
+    }
+
+    /* API */
 
     _getFileRef(key, fileName) {
         return this.storageRef.child(`${fileName}${key}`);

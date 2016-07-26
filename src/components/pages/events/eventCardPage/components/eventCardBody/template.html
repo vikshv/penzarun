@@ -8,10 +8,22 @@
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 rightBlock">
                 <div class="rightBlock__margin--top hidden-lg hidden-md"></div>
                 <div class="rightBlock__buttons">
-                    <a ng-href="{{ $ctrl.provisionFileUrl }}" class="btn btn-default btn-lg btn-block btn--overflow" ng-if="$ctrl.provisionFileUrl">
-                        <i class="fa fa-download" aria-hidden="true"></i> Положение ({{ $ctrl.getFileSize() }})
+
+                    <a class="btn btn-default btn-lg btn-block btn--overflow" 
+                        ng-href="{{ $ctrl.provisionFileUrl }}"
+                        ng-if="$ctrl.provisionFileUrl">
+                        <i class="fa fa-download" aria-hidden="true"></i> Положение ({{ $ctrl.getFileSize($ctrl.provisionFileSize) }})
                     </a>
-                    <a class="btn btn-info btn-lg btn-block btn--overflow" ng-if="$ctrl.startlistLength" ui-sref="events.startlist({ id: $ctrl.event.id })">
+
+                    <a class="btn btn-default btn-lg btn-block btn--overflow" 
+                        ng-href="{{ $ctrl.protocolFileUrl }}"
+                        ng-if="$ctrl.protocolFileUrl">
+                        <i class="fa fa-download" aria-hidden="true"></i> Протокол ({{ $ctrl.getFileSize($ctrl.protocolFileSize) }})
+                    </a>
+
+                    <a class="btn btn-info btn-lg btn-block btn--overflow" 
+                        ng-if="$ctrl.startlistLength" 
+                        ui-sref="events.startlist({ id: $ctrl.event.id })">
                         Список участников ({{ $ctrl.startlistLength }})
                     </a>
                 </div>

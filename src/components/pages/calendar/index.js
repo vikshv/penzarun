@@ -22,7 +22,7 @@ export default angular.module('app.components.pages.calendar', [
                 controllerAs: '$ctrl'
             });
     })
-    .constant('Constants', {
+    .constant('CalendarPageConstants', {
         filterTagMap: {
             'events': null,
             'probegs': 'probeg',

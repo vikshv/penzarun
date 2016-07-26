@@ -28,13 +28,13 @@ export default class EventCardBodyController {
         return this.$sce.trustAsHtml(this.event.description);
     }
 
-    getFileSize() {
+    getFileSize(fileSize) {
         let result;
-        if (Mb < this.provisionFileSize) {
-            const size = this.provisionFileSize / Mb;
+        if (Mb < fileSize) {
+            const size = fileSize / Mb;
             result = `${size.toFixed()} Мб`;
         } else {
-            const size = this.provisionFileSize / Kb;
+            const size = fileSize / Kb;
             result = `${size.toFixed()} Кб`;
         }
         return result;

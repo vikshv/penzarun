@@ -143,15 +143,32 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="description" class="col-md-2 control-label">Положение</label>
+                                <label for="provisionFile" class="col-md-2 control-label">Положение</label>
                                 <div class="col-md-8">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" readonly ng-value="$ctrl.provisionFile.name">
+                                        <input type="text" class="form-control" id="provisionFile" readonly ng-value="$ctrl.provisionFile.name">
                                         <span class="input-group-btn">
                                             <upload-file-button upload-file="$ctrl.provisionFile"></upload-file-button>
                                         </span>
                                         <span class="input-group-btn">
                                             <button class="btn btn-danger" type="button" ng-click="$ctrl.removeProvision()" ng-disabled="!$ctrl.provisionFile.name">
+                                                <i class="fa fa-times" aria-hidden="true"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="protocolFile" class="col-md-2 control-label">Протокол</label>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="protocolFile" readonly ng-value="$ctrl.protocolFile.name">
+                                        <span class="input-group-btn">
+                                            <upload-file-button upload-file="$ctrl.protocolFile"></upload-file-button>
+                                        </span>
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-danger" type="button" ng-click="$ctrl.removeProtocol()" ng-disabled="!$ctrl.protocolFile.name">
                                                 <i class="fa fa-times" aria-hidden="true"></i>
                                             </button>
                                         </span>

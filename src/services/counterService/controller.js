@@ -1,9 +1,14 @@
 export default class CounterService {
-    constructor(FirebaseService, $firebaseObject) {
+    constructor(FirebaseService, $firebaseObject, CounterServiceConstants, AuthService) {
         'ngInject';
 
+        const { databaseName } = CounterServiceConstants;
+
+        this.CounterServiceConstants = CounterServiceConstants;
+        this.AuthService = AuthService;
+
         const firebase = FirebaseService.getFirebase();
-        const ref = firebase.database().ref('visitors');
+        const ref = firebase.database().ref(databaseName);
         this.$obj = $firebaseObject(ref);
     }
 
@@ -34,8 +39,13 @@ export default class CounterService {
 
                 isFinite(value) || (value = 0);
                 result.current = current.value = value + 1;
-
-                return this.$obj.$save();
+            })
+            .then(() => {
+                const auth = this.AuthService.getAuth();
+                const { adminEmail } = this.CounterServiceConstants;
+                if (auth.email !== adminEmail) {
+                    return this.$obj.$save();
+                }
             })
             .then(() => {
                 return result;

@@ -33,11 +33,17 @@ export default class EventFormPageController {
                     return event.id;
                 })
                 .then(eventId => {
-                    return this.FileStorageService.getProvisionFileName(eventId);
+                    return Promise.all([
+                        this.FileStorageService.getProvisionFileName(eventId),
+                        this.FileStorageService.getProtocolFileName(eventId)
+                    ]);
                 })
-                .then(name => {
+                .then(results => {
                     this.provisionFile = {
-                        name
+                        name: results[0]
+                    };
+                    this.protocolFile = {
+                        name: results[1]
                     };
                 })
                 .then(() => {
@@ -80,7 +86,7 @@ export default class EventFormPageController {
 
         this._startSaveProgress();
 
-        this._saveEvent({
+        const options = {
             date: date.getTime(),
             time,
             title,
@@ -94,23 +100,22 @@ export default class EventFormPageController {
             masterPerson,
             masterPhone,
             masterEmail
-        })
-        .then(id => {
-            if (this.provisionFile) {
-                if (this.provisionFile.size) {
-                    return this._uploadProvisionFile(id);
-                }
-            } else {
-                return this._deleteProvisionFile(id);
-            }
-        })
-        .then(() => {
-            this._gotoEventList();
-        })
-        .catch(error => {
-            this._stopSaveProgress();
-            throw Error(error);
-        });
+        };
+
+        this._saveEvent(options)
+            .then(id => {
+                return Promise.all([
+                    this._updateProvisionFile(id),
+                    this._updateProtocolFile(id)
+                ]);
+            })
+            .then(() => {
+                this._gotoEventList();
+            })
+            .catch(error => {
+                this._stopSaveProgress();
+                throw Error(error);
+            });
     }
 
     onClickRemoveButton() {
@@ -124,6 +129,10 @@ export default class EventFormPageController {
 
     removeProvision() {
         this.provisionFile = null;
+    }
+
+    removeProtocol() {
+        this.protocolFile = null;
     }
 
     _saveEvent(data) {
@@ -148,12 +157,32 @@ export default class EventFormPageController {
             });
     }
 
-    _uploadProvisionFile(eventId) {
-        return this.FileStorageService.uploadProvisionFile(eventId, this.provisionFile);
+    _updateProvisionFile(eventId) {
+        let result;
+        if (this.provisionFile) {
+            if (this.provisionFile.size) {
+                result = this.FileStorageService.uploadProvisionFile(eventId, this.provisionFile);
+            } else {
+                result = Promise.resolve();
+            }
+        } else {
+            result = this.FileStorageService.deleteProvisionFile(eventId);
+        }
+        return result;
     }
 
-    _deleteProvisionFile(eventId) {
-        return this.FileStorageService.deleteProvisionFile(eventId);
+    _updateProtocolFile(eventId) {
+        let result;
+        if (this.protocolFile) {
+            if (this.protocolFile.size) {
+                result = this.FileStorageService.uploadProtocolFile(eventId, this.protocolFile);
+            } else {
+                result = Promise.resolve();
+            }
+        } else {
+            result = this.FileStorageService.deleteProtocolFile(eventId);
+        }
+        return result;
     }
 
     _startLoadProgress() {

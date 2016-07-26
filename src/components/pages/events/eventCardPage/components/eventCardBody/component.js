@@ -7,8 +7,13 @@ export default {
     controller,
     bindings: {
         event: '<',
+
         provisionFileUrl: '<',
         provisionFileSize: '<',
+
+        protocolFileUrl: '<',
+        protocolFileSize: '<',
+        
         startlistLength: '<'
     }
 };

@@ -1,9 +1,9 @@
 export default class CalendarPageController {
-    constructor($scope, $state, EventService, Constants) {
+    constructor($scope, $state, EventService, CalendarPageConstants) {
         'ngInject';
         
         this.$state = $state;
-        this.Constants = Constants;
+        this.CalendarPageConstants = CalendarPageConstants;
         this.EventService = EventService;
 
         this.filter || (this.filter = 'events');
@@ -65,7 +65,7 @@ export default class CalendarPageController {
     }
 
     _filterEvents(events) {
-        const { filterTagMap } = this.Constants;
+        const { filterTagMap } = this.CalendarPageConstants;
         const tagName = filterTagMap[this.filter];
         let result;
 

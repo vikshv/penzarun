@@ -18,7 +18,10 @@ export default class EventCardPageController {
                     return event.id;
                 })
                 .then(eventId => {
-                    return this._initProvisionFile(eventId); 
+                    return Promise.all([
+                        this._initProvisionFile(eventId),
+                        this._initProtocolFile(eventId),
+                    ]);
                 })
                 .then(() => {
                     return this.StartlistService.getStartlist(this.event.id);
@@ -46,6 +49,17 @@ export default class EventCardPageController {
         .then(result => {
             this.provisionFileUrl = result[0];
             this.provisionFileSize = result[1];
+        });
+    }
+
+    _initProtocolFile(eventId) {
+        return Promise.all([
+            this.FileStorageService.getProtocolFileUrl(eventId),
+            this.FileStorageService.getProtocolFileSize(eventId)
+        ])
+        .then(result => {
+            this.protocolFileUrl = result[0];
+            this.protocolFileSize = result[1];
         });
     }
 
