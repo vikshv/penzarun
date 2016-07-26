@@ -43,7 +43,7 @@ export default class CounterService {
             .then(() => {
                 const auth = this.AuthService.getAuth();
                 const { adminEmail } = this.CounterServiceConstants;
-                if (auth.email !== adminEmail) {
+                if (!auth || auth.email !== adminEmail) {
                     return this.$obj.$save();
                 }
             })
