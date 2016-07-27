@@ -15,12 +15,12 @@ export default class EventCardPageController {
             this.EventService.getEvent(this.id)
                 .then(event => {
                     this.event = event;
-                    return event.id;
+                    return event;
                 })
-                .then(eventId => {
+                .then(event => {
                     return Promise.all([
-                        this._initProvisionFile(eventId),
-                        this._initProtocolFile(eventId),
+                        this._initProvisionFile(event),
+                        this._initProtocolFile(event),
                     ]);
                 })
                 .then(() => {
@@ -41,26 +41,40 @@ export default class EventCardPageController {
         }
     }
 
-    _initProvisionFile(eventId) {
-        return Promise.all([
-            this.FileStorageService.getProvisionFileUrl(eventId),
-            this.FileStorageService.getProvisionFileSize(eventId)
-        ])
-        .then(result => {
-            this.provisionFileUrl = result[0];
-            this.provisionFileSize = result[1];
-        });
+    _initProvisionFile(event) {
+        const { id, isProvisionFile } = event;
+        let result;
+        if (isProvisionFile) {
+            result = Promise.all([
+                    this.FileStorageService.getProvisionFileUrl(id),
+                    this.FileStorageService.getProvisionFileSize(id)
+                ])
+                .then(result => {
+                    this.provisionFileUrl = result[0];
+                    this.provisionFileSize = result[1];
+                });
+        } else {
+            result = Promise.resolve();
+        }
+        return result;
     }
 
-    _initProtocolFile(eventId) {
-        return Promise.all([
-            this.FileStorageService.getProtocolFileUrl(eventId),
-            this.FileStorageService.getProtocolFileSize(eventId)
-        ])
-        .then(result => {
-            this.protocolFileUrl = result[0];
-            this.protocolFileSize = result[1];
-        });
+    _initProtocolFile(event) {
+        const { id, isProtocolFile } = event;
+        let result;
+        if (isProtocolFile) {
+            result = Promise.all([
+                this.FileStorageService.getProtocolFileUrl(id),
+                this.FileStorageService.getProtocolFileSize(id)
+            ])
+            .then(result => {
+                this.protocolFileUrl = result[0];
+                this.protocolFileSize = result[1];
+            });
+        } else {
+            result = Promise.resolve();
+        }
+        return result;
     }
 
     _startLoadProgress() {

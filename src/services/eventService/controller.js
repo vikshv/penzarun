@@ -47,7 +47,9 @@ export default class EventService {
             masterUrl,
             masterPerson,
             masterPhone,
-            masterEmail
+            masterEmail,
+            isProvisionFile,
+            isProtocolFile
         } = event;
 
         return {
@@ -65,7 +67,9 @@ export default class EventService {
             masterUrl,
             masterPerson,
             masterPhone,
-            masterEmail
+            masterEmail,
+            isProvisionFile,
+            isProtocolFile
         };
     }
 

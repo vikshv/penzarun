@@ -54,7 +54,6 @@ export default class CounterService {
 
     _getCurrentKey() {
         const now = new Date();
-        const date = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-        return date.getTime();
+        return `${now.getFullYear()}${now.getMonth()}${now.getDate()}`;
     }
 }

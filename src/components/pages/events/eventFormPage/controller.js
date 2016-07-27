@@ -30,12 +30,12 @@ export default class EventFormPageController {
             this.EventService.getEvent(this.id)
                 .then(event => {
                     this.event = event;
-                    return event.id;
+                    return event;
                 })
-                .then(eventId => {
+                .then(event => {
                     return Promise.all([
-                        this.FileStorageService.getProvisionFileName(eventId),
-                        this.FileStorageService.getProtocolFileName(eventId)
+                        this._loadProvisionFile(event),
+                        this._loadProtocolFile(event)
                     ]);
                 })
                 .then(results => {
@@ -99,7 +99,9 @@ export default class EventFormPageController {
             masterUrl,
             masterPerson,
             masterPhone,
-            masterEmail
+            masterEmail,
+            isProvisionFile: this._isProvisionFile(),
+            isProtocolFile: this._isProtocolFile()
         };
 
         this._saveEvent(options)
@@ -155,6 +157,36 @@ export default class EventFormPageController {
                 this._stopRemoveProgress();
                 throw Error(error);
             });
+    }
+
+    _isProvisionFile() {
+        return !!(this.provisionFile && this.provisionFile.name);
+    }
+
+    _isProtocolFile() {
+        return !!(this.protocolFile && this.protocolFile.name);
+    }
+
+    _loadProvisionFile(event) {
+        const { id, isProvisionFile } = event;
+        let result;
+        if (isProvisionFile) {
+            result = this.FileStorageService.getProvisionFileName(id);
+        } else {
+            result = Promise.resolve(null);
+        }
+        return result;
+    }
+
+    _loadProtocolFile(event) {
+        const { id, isProtocolFile } = event;
+        let result;
+        if (isProtocolFile) {
+            result = this.FileStorageService.getProtocolFileName(id);
+        } else {
+            result = Promise.resolve(null);
+        }
+        return result;
     }
 
     _updateProvisionFile(eventId) {
