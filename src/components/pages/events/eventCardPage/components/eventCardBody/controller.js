@@ -2,26 +2,44 @@ const Kb = 1024;
 const Mb = Kb * Kb;
 
 export default class EventCardBodyController {
-    constructor($sce, $state) {
+    constructor($sce, $state, VKService) {
         'ngInject';
         
         this.$sce = $sce;
         this.$state = $state;
 
-        this._initVKComments();
+        this._initVKComments(VKService);
+        this._initVKPhotoGallery(VKService);
     }
 
-    _initVKComments() {
+    _initVKComments(VKService) {
         const id = this.event.id
         const href = this.$state.href('events.card', { id });
-        const pageUrl = `http://penzarun.ru/${href}`;
 
-        VK.Widgets.Comments('vk_comments', {
-            redesign: 1,
-            limit: 10,
-            attach: '*',
-            pageUrl
-        }, `event-${id}`);
+        VKService.initWidgetsComments({
+            elementId: 'vk_comments',
+            pageUrl: `http://penzarun.ru/${href}`,
+            pageId: `event-${id}`
+        })
+    }
+
+    _initVKPhotoGallery(VKService) {
+        const { vkAlbumPhotoId } = this.event;
+        if (vkAlbumPhotoId) {
+            VKService.getPhotoGallery({
+                    albumId: vkAlbumPhotoId
+                })
+                .then((result) => {
+                    const { items } = result;
+                    this.slides = items.map((item, index) => {
+                        return {
+                            id: index,
+                            image: item.photo_604,
+                            text: item.text
+                        };
+                    });
+                });
+        }
     }
 
     getDescriptionHtml() {

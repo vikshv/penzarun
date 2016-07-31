@@ -81,7 +81,8 @@ export default class EventFormPageController {
             masterUrl = '',
             masterPerson = '',
             masterPhone = '',
-            masterEmail = ''
+            masterEmail = '',
+            vkAlbumPhotoId = ''
         } = this.event;
 
         this._startSaveProgress();
@@ -101,7 +102,8 @@ export default class EventFormPageController {
             masterPhone,
             masterEmail,
             isProvisionFile: this._isProvisionFile(),
-            isProtocolFile: this._isProtocolFile()
+            isProtocolFile: this._isProtocolFile(),
+            vkAlbumPhotoId
         };
 
         this._saveEvent(options)

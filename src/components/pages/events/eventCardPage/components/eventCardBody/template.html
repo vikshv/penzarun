@@ -2,7 +2,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 leftBlock">
-                <div class="eventCard__description" ng-if="$ctrl.event.description" ng-bind-html="$ctrl.getDescriptionHtml()"></div>
+                <div class="eventCard__description" 
+                    ng-if="$ctrl.event.description"
+                    ng-bind-html="$ctrl.getDescriptionHtml()"></div>
                 <div class="verticalLine hidden-sm hidden-xs"></div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 rightBlock">
@@ -48,6 +50,23 @@
                             <abbr title="Электронная почта">Эл. почта:</abbr> <a href="mailto:#">{{ $ctrl.event.masterEmail }}</a>
                         </div>
                     </address>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-if="$ctrl.slides">
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <div id="vk_gallery" class="gallery">
+                    <div class="page-header">
+                        <h4>Галерея фотографий</h4>
+                    </div>
+                    <div uib-carousel active="0">
+                        <div uib-slide ng-repeat="slide in $ctrl.slides" index="slide.id">
+                            <img ng-src="{{ slide.image }}">
+                            <div class="carousel-caption">
+                                <p>{{ slide.text }}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

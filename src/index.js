@@ -38,7 +38,7 @@ angular.module('app', [
 
         window.VK.init({
             apiId: 5561839,
-            onlyWidgets: true
+            onlyWidgets: false
         });
     })
     .run(function($rootScope, $state) {

@@ -49,7 +49,8 @@ export default class EventService {
             masterPhone,
             masterEmail,
             isProvisionFile,
-            isProtocolFile
+            isProtocolFile,
+            vkAlbumPhotoId
         } = event;
 
         return {
@@ -69,7 +70,8 @@ export default class EventService {
             masterPhone,
             masterEmail,
             isProvisionFile,
-            isProtocolFile
+            isProtocolFile,
+            vkAlbumPhotoId
         };
     }
 
