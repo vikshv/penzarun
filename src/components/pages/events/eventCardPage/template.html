@@ -1,11 +1,24 @@
 <progress-bar text="Загрузка события..." ng-if="$ctrl.loadProgress"></progress-bar>
+
 <div class="page page--eventCard eventCard--{{ $ctrl.event.tag }}" ng-if="!$ctrl.loadProgress">
+    
     <event-card-header event="$ctrl.event"></event-card-header>
+    
     <event-card-body event="$ctrl.event"
         provision-file-url="$ctrl.provisionFileUrl"
         provision-file-size="$ctrl.provisionFileSize"
         protocol-file-url="$ctrl.protocolFileUrl"
         protocol-file-size="$ctrl.protocolFileSize"
         startlist-length="$ctrl.startlistLength"></event-card-body>
-    <event-card-footer event-id="$ctrl.event.id"></event-card-footer>
+    
+    <event-card-footer event="$ctrl.event"></event-card-footer>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <div id="vk_comments" class="comments"></div>
+            </div>
+        </div>
+    </div>
+    
 </div>

@@ -2,25 +2,12 @@ const Kb = 1024;
 const Mb = Kb * Kb;
 
 export default class EventCardBodyController {
-    constructor($sce, $state, VKService) {
+    constructor($sce, VKService) {
         'ngInject';
         
         this.$sce = $sce;
-        this.$state = $state;
 
-        this._initVKComments(VKService);
         this._initVKPhotoGallery(VKService);
-    }
-
-    _initVKComments(VKService) {
-        const id = this.event.id
-        const href = this.$state.href('events.card', { id });
-
-        VKService.initWidgetsComments({
-            elementId: 'vk_comments',
-            pageUrl: `http://penzarun.ru/${href}`,
-            pageId: `event-${id}`
-        })
     }
 
     _initVKPhotoGallery(VKService) {

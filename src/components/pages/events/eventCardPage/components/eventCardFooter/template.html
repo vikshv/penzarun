@@ -3,11 +3,11 @@
         <div class="row">
             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                 <div class="btn-toolbar" role="toolbar">
-                    <div class="btn-group" role="group">
-                        <a class="btn btn-lg btn-primary" ui-sref="events.register({ id: $ctrl.eventId })" ng-if="$ctrl.isAuth()">Регистрация</a>
+                    <div class="btn-group" role="group" ng-if="$ctrl.isRegisterEnabled()">
+                        <a class="btn btn-lg btn-primary" ui-sref="events.register({ id: $ctrl.event.id })">Регистрация</a>
                     </div>
                     <div class="btn-group" role="group" ng-if="$ctrl.isAuth()">
-                        <a class="btn btn-lg btn-link" ui-sref="events.edit({ id: $ctrl.eventId })">Редактировать</a>
+                        <a class="btn btn-lg btn-default" ui-sref="events.edit({ id: $ctrl.event.id })">Редактировать</a>
                     </div>
                 </div>
             </div>

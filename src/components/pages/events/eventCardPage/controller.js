@@ -1,12 +1,25 @@
 export default class EventCardPageController {
-    constructor(EventService, FileStorageService, StartlistService) {
+    constructor($state, EventService, FileStorageService, StartlistService, VKService) {
         'ngInject';
-        
+
+        this.$state = $state;
         this.EventService = EventService;
         this.FileStorageService = FileStorageService;
         this.StartlistService = StartlistService;
+        this.VKService = VKService;
         
         this._initEvent();
+    }
+
+    _initVKComments(VKService) {
+        const id = this.event.id
+        const href = this.$state.href('events.card', { id });
+
+        this.VKService.initWidgetsComments({
+            elementId: 'vk_comments',
+            pageUrl: `http://penzarun.ru/${href}`,
+            pageId: `event-${id}`
+        })
     }
 
     _initEvent() {
@@ -28,6 +41,7 @@ export default class EventCardPageController {
                 })
                 .then(startlist => {
                     this.startlistLength = startlist.length;
+                    this._initVKComments();
                 })
                 .then(() => {
                     this._stopLoadProgress();
