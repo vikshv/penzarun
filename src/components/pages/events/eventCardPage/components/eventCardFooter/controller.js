@@ -13,4 +13,4 @@ export default class EventCardFooterController {
         const now = Date.now();
         return this.isAuth() && now < this.event.date;
     }
-};
+}

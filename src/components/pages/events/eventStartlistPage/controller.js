@@ -23,4 +23,4 @@ export default class EventsListPageController {
     _stopProgress() {
         this.progress = false;
     }
-};
+}

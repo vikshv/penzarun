@@ -77,12 +77,7 @@ export default class FileStorageServiceController {
     _uploadFile(eventKey, file, fileName) {
         const uploadTask = this._getFileRef(eventKey, fileName).put(file);
         return new Promise((resolve, reject) => {
-            uploadTask.on('state_changed', snapshot => {
-                }, error => {
-                    reject(error);
-                }, () => {
-                    resolve(uploadTask.snapshot.downloadURL);
-                });
+            uploadTask.on('state_changed', () => {}, reject, () => resolve(uploadTask.snapshot.downloadURL));
         });
     }
 
@@ -138,4 +133,4 @@ export default class FileStorageServiceController {
                 }
             });
     }
-};
+}

@@ -105,4 +105,4 @@ export default class CalendarPageController {
         this.dateEnd = value;
         this._loadEvents();
     }
-};
+}

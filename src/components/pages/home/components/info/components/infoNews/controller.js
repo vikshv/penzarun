@@ -30,4 +30,4 @@ export default class NewsController {
     _stopLoadProgress() {
         this.loadProgress = false;
     }
-};
+}

@@ -14,7 +14,7 @@ export default class NewsService {
         return list.$loaded()
             .then(result => {
                 return result.map(news => this._mapNews(news)).reverse();
-            })
+            });
     }
 
     _getRefByOptions({ dateBegin, dateEnd, limitToLast }) {
@@ -84,4 +84,4 @@ export default class NewsService {
         const obj = this._getNewsObj(id);
         return obj.$remove();
     }
-};
+}

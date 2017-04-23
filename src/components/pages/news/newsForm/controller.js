@@ -129,7 +129,7 @@ export default class NewsFormPageController {
     }
 
     _setReadOnlyCKEDITOR(val) {
-        CKEDITOR.instances.newsContent.setReadOnly(val);
+        window.CKEDITOR.instances.newsContent.setReadOnly(val);
     }
 
     _gotoNews(id) {
@@ -139,4 +139,4 @@ export default class NewsFormPageController {
     _gotoNewsList() {
         this.$state.go('news.list');
     }
-};
+}

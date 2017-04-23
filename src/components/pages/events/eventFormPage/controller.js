@@ -252,6 +252,6 @@ export default class EventFormPageController {
     }
 
     _setReadOnlyCKEDITOR(val) {
-        CKEDITOR.instances.eventDescription.setReadOnly(val);
+        window.CKEDITOR.instances.eventDescription.setReadOnly(val);
     }
-};
+}

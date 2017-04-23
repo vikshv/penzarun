@@ -30,4 +30,4 @@ export default class UpdatesController {
     _stopLoadProgress() {
         this.loadProgress = false;
     }
-};
+}

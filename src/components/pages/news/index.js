@@ -45,7 +45,7 @@ export default angular.module('app.components.pages.news', [
                 },
                 controller: idStateController,
                 controllerAs: '$ctrl'
-            })
+            });
     });
 
 function idStateController($stateParams) {

@@ -7,4 +7,4 @@ export default class FooterController {
                 this.visitors = result;
             });
     }
-};
+}

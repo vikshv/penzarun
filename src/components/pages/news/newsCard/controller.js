@@ -14,7 +14,7 @@ export default class NewsCardPageController {
         const href = this.$state.href('news.card', { id });
         const pageUrl = `http://penzarun.ru/${href}`;
 
-        VK.Widgets.Comments('vk_comments', {
+        window.VK.Widgets.Comments('vk_comments', {
             redesign: 1,
             limit: 10,
             attach: '*',
@@ -48,4 +48,4 @@ export default class NewsCardPageController {
     _stopLoadProgress() {
         this.loadProgress = false;
     }
-};
+}

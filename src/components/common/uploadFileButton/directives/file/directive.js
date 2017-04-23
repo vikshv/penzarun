@@ -3,7 +3,7 @@ export default {
         file: '='
     },
 
-    link: function(scope, el, attrs) {
+    link: function(scope, el) {
         el.bind('change', event => {
             const files = event.target.files;
             scope.file = files[0];

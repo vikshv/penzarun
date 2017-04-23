@@ -27,4 +27,4 @@ export default class NewsListPageController {
     _stopLoadProgress() {
         this.loadProgress = false;
     }
-};
+}

@@ -44,4 +44,4 @@ export default class EventCardBodyController {
         }
         return result;
     }
-};
+}

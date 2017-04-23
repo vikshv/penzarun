@@ -39,4 +39,4 @@ export default class EventsFilterController {
         }
         return result;
     }
-};
+}

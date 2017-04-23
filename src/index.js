@@ -1,9 +1,9 @@
 import 'babel-polyfill';
 import angular from 'angular';
-import 'angular-i18n/angular-locale_ru-ru'
+import 'angular-i18n/angular-locale_ru-ru';
 import uiRouter from 'angular-ui-router';
 import firebase from 'firebase';
-import angularfire from 'angularfire';
+import angularfire from 'angularfire';  // eslint-disable-line
 import uiBootstrap from 'angular-ui-bootstrap';
 
 import 'bootstrap/js/collapse';
@@ -47,7 +47,6 @@ angular.module('app', [
         'ngInject';
 
         $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
-            console.error('stateChangeError:', error);
             if (error === 'AUTH_REQUIRED') {
                 $state.go('home');
             }

@@ -61,6 +61,11 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
+                enforce: 'pre',
+                loader: 'eslint'
+            },
+            {
+                test: /\.js$/,
                 exclude: /node_modules/,
                 use: [
                     {

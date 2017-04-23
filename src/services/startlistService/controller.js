@@ -14,4 +14,4 @@ export default class StartlistServiceController {
         const ref = this.startlist.child(eventId);
         return this.$firebaseArray(ref);
     }
-};
+}

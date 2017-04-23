@@ -5,4 +5,4 @@ import './style.less';
 export default {
     template,
     controller
-}
+};

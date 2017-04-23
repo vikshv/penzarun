@@ -31,4 +31,4 @@ export default class InfoEventController {
     _stopLoadProgress() {
         this.loadProgress = false;
     }
-};
+}

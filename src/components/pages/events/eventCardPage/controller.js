@@ -11,15 +11,15 @@ export default class EventCardPageController {
         this._initEvent();
     }
 
-    _initVKComments(VKService) {
-        const id = this.event.id
+    _initVKComments() {
+        const id = this.event.id;
         const href = this.$state.href('events.card', { id });
 
         this.VKService.initWidgetsComments({
             elementId: 'vk_comments',
             pageUrl: `http://penzarun.ru/${href}`,
             pageId: `event-${id}`
-        })
+        });
     }
 
     _initEvent() {
@@ -33,7 +33,7 @@ export default class EventCardPageController {
                 .then(event => {
                     return Promise.all([
                         this._initProvisionFile(event),
-                        this._initProtocolFile(event),
+                        this._initProtocolFile(event)
                     ]);
                 })
                 .then(() => {
@@ -98,4 +98,4 @@ export default class EventCardPageController {
     _stopLoadProgress() {
         this.loadProgress = false;
     }
-};
+}

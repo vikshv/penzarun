@@ -22,13 +22,10 @@ export default class AuthServiceController {
     }
 
     signInWithEmailAndPassword(email, password) {
-        return this.auth.$signInWithEmailAndPassword(email, password)
-            .then(firebaseUser => {
-                console.log({firebaseUser});
-            });
+        return this.auth.$signInWithEmailAndPassword(email, password);
     }
 
     signOut() {
         this.auth.$signOut();
     }
-};
+}

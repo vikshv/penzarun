@@ -2,8 +2,8 @@ export default class EventService {
     constructor(FirebaseService, $firebaseArray, $firebaseObject) {
         'ngInject';
 
-        const firebase = FirebaseService.getFirebase();
-        this.ref = firebase.database().ref('events').orderByChild('date');
+        this.firebase = FirebaseService.getFirebase();
+        this.ref = this.firebase.database().ref('events').orderByChild('date');
 
         this.$firebaseArray = $firebaseArray;
         this.$firebaseObject = $firebaseObject;
@@ -55,7 +55,6 @@ export default class EventService {
 
         return {
             id: $id,
-            date,
             time,
             title,
             abstract,
@@ -121,7 +120,7 @@ export default class EventService {
     }
 
     _getEventObj(key) {
-        const ref = firebase.database().ref(`events/${key}`);
+        const ref = this.firebase.database().ref(`events/${key}`);
         return this.$firebaseObject(ref);
     }
-};
+}

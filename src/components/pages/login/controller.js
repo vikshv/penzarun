@@ -41,4 +41,4 @@ export default class LoginController {
     _gotoUserState() {
         this.$state.go('user');
     }
-};
+}

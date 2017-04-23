@@ -26,4 +26,4 @@ export default class UpdateService {
         }
         return result;
     }
-};
+}

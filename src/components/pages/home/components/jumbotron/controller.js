@@ -30,4 +30,4 @@ export default class JumbotronController {
     _stopLoadProgress() {
         this.loadProgress = false;
     }
-};
+}
