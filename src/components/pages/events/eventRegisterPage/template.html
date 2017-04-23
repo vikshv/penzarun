@@ -49,19 +49,38 @@
                             <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('fio') }">
                                 <label for="fio" class="col-md-2 control-label">ФИО</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control" name="fio" required ng-model="$ctrl.member.fio" ng-disabled="$ctrl.disabledForm" autocomplete="off">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        name="fio"
+                                        required
+                                        ng-model="$ctrl.member.fio"
+                                        ng-disabled="$ctrl.disabledForm"
+                                        autocomplete="off"
+                                    >
                                     <div ng-messages="member.fio.$error" ng-if="$ctrl.isHasError('fio')" role="alert">
                                         <div ng-message="required" class="form__message--error">Введите ФИО</div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('age') }">
-                                <label for="age" class="col-md-2 control-label">Год рождения</label>
+                            <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('date') }">
+                                <label for="date" class="col-md-2 control-label">Дата рождения</label>
                                 <div class="col-md-4">
-                                    <input type="text" maxlength="4" class="form-control" name="age" required ng-model="$ctrl.member.age" ng-disabled="$ctrl.disabledForm" autocomplete="off">
-                                    <div ng-messages="member.age.$error" ng-if="$ctrl.isHasError('age')" role="alert">
-                                        <div ng-message="required" class="form__message--error">Введите год рождения</div>
+                                    <div class="input-group">
+                                        <input type="text" id="date" name="date" required class="form-control" autocomplete="off"
+                                            uib-datepicker-popup="{{ $ctrl.dateFormat }}" ng-model="$ctrl.member.date"
+                                            is-open="$ctrl.datePopupIsOpen" show-button-bar="false" on-open-focus="true"
+                                            ng-disabled="$ctrl.disabledForm"
+                                        >
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary" type="button" ng-click="$ctrl.openDatePopup()">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                    <div ng-messages="member.date.$error" ng-if="$ctrl.isHasError('date')" role="alert">
+                                        <div ng-message="required" class="form__message--error">Введите дату рождения</div>
                                     </div>
                                 </div>
                             </div>
@@ -70,10 +89,16 @@
                                 <label for="gender" class="col-md-2 control-label">Пол</label>
                                 <div class="col-md-4">
                                     <label class="radio-inline">
-                                        <input type="radio" name="gender" value="муж" checked ng-model="$ctrl.member.gender"> муж
+                                        <input type="radio" name="gender" value="муж" checked
+                                            ng-model="$ctrl.member.gender"
+                                            ng-disabled="$ctrl.disabledForm"
+                                        > муж
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" name="gender" value="жен" ng-model="$ctrl.member.gender"> жен
+                                        <input type="radio" name="gender" value="жен"
+                                            ng-model="$ctrl.member.gender"
+                                            ng-disabled="$ctrl.disabledForm"
+                                        > жен
                                     </label>
                                 </div>
                             </div>
@@ -82,7 +107,10 @@
                             <div class="form-group" ng-class="{ 'has-error' : $ctrl.isHasError('distance') }">
                                 <label for="distance" class="col-md-2 control-label">Дистанция</label>
                                 <div class="col-md-4">
-                                    <input type="text" maxlength="32" class="form-control" name="distance" required ng-model="$ctrl.member.distance" ng-disabled="$ctrl.disabledForm" autocomplete="off">
+                                    <input type="text" maxlength="32" class="form-control" name="distance" required ng-model="$ctrl.member.distance"
+                                        ng-disabled="$ctrl.disabledForm" autocomplete="off"
+                                        ng-disabled="$ctrl.disabledForm"
+                                    >
                                     <div ng-messages="member.distance.$error" ng-if="$ctrl.isHasError('distance')" role="alert">
                                         <div ng-message="required" class="form__message--error">Введите дистанцию</div>
                                     </div>
@@ -92,28 +120,58 @@
                             <div class="form-group">
                                 <label for="startNumber" class="col-md-2 control-label">Стартовый номер</label>
                                 <div class="col-md-4">
-                                    <input type="text" maxlength="8" class="form-control" name="startNumber" placeholder="без номера">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="city" class="col-md-2 control-label">Город</label>
-                                <div class="col-md-4">
-                                    <input type="text" maxlength="32" class="form-control" name="city" placeholder="Пенза">
+                                    <input
+                                        type="text"
+                                        maxlength="8"
+                                        class="form-control"
+                                        ng-model="$ctrl.member.number"
+                                        name="startNumber"
+                                        ng-disabled="$ctrl.disabledForm"
+                                        placeholder="без номера"
+                                    >
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="club" class="col-md-2 control-label">Клуб</label>
                                 <div class="col-md-4">
-                                    <input type="text" maxlength="64" class="form-control" name="club" placeholder="Не состою в клубе">
+                                    <input 
+                                        type="text"
+                                        maxlength="64"
+                                        class="form-control"
+                                        name="club" 
+                                        ng-model="$ctrl.member.club"
+                                        ng-disabled="$ctrl.disabledForm"
+                                        placeholder="Не состою в клубе"
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="city" class="col-md-2 control-label">Город</label>
+                                <div class="col-md-4">
+                                    <input
+                                        type="text"
+                                        maxlength="32"
+                                        class="form-control"
+                                        name="city"
+                                        ng-model="$ctrl.member.city"
+                                        ng-disabled="$ctrl.disabledForm"
+                                    >
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="сountry" class="col-md-2 control-label">Страна/Регион</label>
                                 <div class="col-md-4">
-                                    <input type="text" maxlength="64" class="form-control" name="сountry" placeholder="Россия">
+                                    <input
+                                        type="text"
+                                        maxlength="64"
+                                        class="form-control"
+                                        name="сountry"
+                                        ng-model="$ctrl.member.country"
+                                        ng-disabled="$ctrl.disabledForm"
+                                    >
                                 </div>
                             </div>
 

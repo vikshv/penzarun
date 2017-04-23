@@ -5,8 +5,15 @@ export default class EventRegisterPageController {
         this.$scope = $scope;
         this.$state = $state;
 
+        this.dateFormat = 'd MMMM yyyy';
+        this.datePopupIsOpen = false;
+
         this._initMember();
         this._initEvent(EventService);
+    }
+
+    openDatePopup() {
+        this.datePopupIsOpen = true;
     }
 
     _initEvent(EventService) {
@@ -14,8 +21,6 @@ export default class EventRegisterPageController {
         EventService.getEvent(this.id)
                 .then(event => {
                     this.event = event;
-                })
-                .then(() => {
                     this._stopProgress();
                 })
                 .catch(error => {
@@ -27,7 +32,12 @@ export default class EventRegisterPageController {
     _initMember() {
         this.member = {
             fio: '',
-            age: ''
+            date: '',
+            gender: 'муж',
+            number: '',
+            city: 'Пенза',
+            club: '',
+            country: 'Россия'
         };
     }
 
