@@ -6,15 +6,9 @@ var webpack = require ('webpack');
 var config = require('./webpack.config.js');
 
 module.exports = extend({}, config, {
-    output: {
-        path: path.join(__dirname, 'dist'),
-        publicPath:  '/dist/',
-        filename: 'bundle.[name].[chunkhash].js'
-    },
-    
+    watch: true,
+
     watchOptions: {
         aggregateTimeout: 300
-    },
-
-    //devtool: 'source-map'
+    }
 });

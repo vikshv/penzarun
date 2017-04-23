@@ -15,6 +15,8 @@ import services from './services';
 
 import './style.less';
 
+window.firebase || (window.firebase = firebase);
+
 angular.module('app', [
         uiRouter,
         'firebase',
