@@ -14,7 +14,7 @@ export default class EventService {
         const list = this.$firebaseArray(ref);
         return list.$loaded()
             .then(result => {
-                return result.map(event => this._mapEvent(event)).reverse();
+                return result.map(event => this._mapEvent(event));
             });
     }
 

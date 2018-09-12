@@ -14,7 +14,7 @@ export default class EventsListPageController {
         this.EventService.loadEvents()
             .then(result => {
                 this._stopProgress();
-                this.filtredEvents = this.events = result;
+                this.filtredEvents = this.events = result.reverse();
             });
     }
 
