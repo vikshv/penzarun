@@ -1,21 +1,19 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="jumbotron">
-                <div class="jumbotron__spinner" ng-if="$ctrl.loadProgress">
-                    <i class="fa fa-circle-o-notch fa-spin fa-5x fa-fw"></i>
-                </div>
-                <div ng-if="!$ctrl.loadProgress">
-                    <h1>{{ $ctrl.event.title }}</h1>
-                    <p>
-                        {{ $ctrl.event.date | date: 'EEEE, d MMMM yyyy' }},  {{ $ctrl.event.time }}
-                    </p>
-                    <p>{{ $ctrl.event.abstract }}</p>
-                    <p>
-                        <a class="btn btn-primary btn-lg" ui-sref="events.card({ id: $ctrl.event.id })">Подробнее</a>
-                    </p>
-                </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <div class="jumbotron__spinner" ng-if="$ctrl.loadProgress">
+                <i class="fa fa-circle-o-notch fa-spin fa-5x fa-fw"></i>
+            </div>
+            <div ng-if="!$ctrl.loadProgress">
+                <h1>{{ $ctrl.event.title }}</h1>
+                <p>
+                    {{ $ctrl.event.date | date: 'EEEE, d MMMM yyyy' }},  {{ $ctrl.event.time }}
+                </p>
+                <p>{{ $ctrl.event.abstract }}</p>
+                <p>
+                    <a class="btn btn-primary btn-lg" ui-sref="events.card({ id: $ctrl.event.id })">Подробнее</a>
+                </p>
             </div>
         </div>
     </div>
-<div>
+</div>

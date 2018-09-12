@@ -6,6 +6,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebPackPlugin = require('html-webpack-plugin');
 var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 var ProgressBarPlugin = require('progress-bar-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -51,6 +52,12 @@ module.exports = {
             template: './index.html',
             favicon: './src/content/ico/favicon.ico'
         }),
+        new CopyWebpackPlugin([
+            {
+                from: './src/content/images',
+                to: '/images'
+            }
+        ]),
         new ProgressBarPlugin()
     ],
 
