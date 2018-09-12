@@ -6,7 +6,6 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebPackPlugin = require('html-webpack-plugin');
 var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 var ProgressBarPlugin = require('progress-bar-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -52,12 +51,6 @@ module.exports = {
             template: './index.html',
             favicon: './src/content/ico/favicon.ico'
         }),
-        new CopyWebpackPlugin([
-            {
-                from: './src/content/images',
-                to: '/images'
-            }
-        ]),
         new ProgressBarPlugin()
     ],
 
@@ -97,6 +90,18 @@ module.exports = {
                 test: /\.less$/,
                 loader: ExtractTextPlugin.extract('css?sourceMap!less?sourceMap')
             }, 
+            {
+                test: /\.jpg$/,
+                use: [
+                    {
+                        loader: 'file',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'images/'
+                        }
+                    }
+                ]
+            },
             {
                 test: /\.html/,
                 exclude: /node_modules/,
